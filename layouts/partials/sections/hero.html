@@ -1,0 +1,80 @@
+{{- $s := .section -}}
+
+<section class="hero section">
+  <div class="container">
+    <div class="hero__grid">
+      {{/* Left column - Content */}}
+      <div class="hero__content">
+        {{- with $s.eyebrow }}
+          <span class="section-label animate-fade-up">{{ . }}</span>
+        {{- end }}
+
+        {{- with $s.heading }}
+          <h1 class="hero__heading animate-fade-up delay-1">
+            {{- if $s.heading_italic -}}
+              {{ replace . $s.heading_italic (printf "<em>%s</em>" $s.heading_italic) | safeHTML }}
+            {{- else -}}
+              {{ . }}
+            {{- end -}}
+          </h1>
+        {{- end }}
+
+        {{- with $s.description }}
+          <p class="hero__description animate-fade-up delay-2">{{ . }}</p>
+        {{- end }}
+
+        <div class="hero__cta animate-fade-up delay-3">
+          {{- with $s.cta_primary }}
+            <a href="{{ .url }}" class="btn btn-primary">{{ .text }}</a>
+          {{- end }}
+          {{- with $s.cta_secondary }}
+            <a href="{{ .url }}" class="btn btn-outline">{{ .text }}</a>
+          {{- end }}
+        </div>
+
+        {{- with $s.stats }}
+          <div class="hero__stats animate-fade-up delay-3">
+            {{- range . }}
+              <div class="hero__stat">
+                <span class="hero__stat-value">{{ .value }}</span>
+                <span class="hero__stat-label">{{ .label }}</span>
+              </div>
+            {{- end }}
+          </div>
+        {{- end }}
+      </div>
+
+      {{/* Right column - Image */}}
+      <div class="hero__media animate-fade-up delay-2">
+        {{- if $s.image }}
+          <img
+            src="{{ $s.image }}"
+            alt="{{ $s.heading | default "Hero" }}"
+            class="hero__image"
+            loading="eager"
+          >
+        {{- else }}
+          {{/* SVG Placeholder */}}
+          <div class="hero__placeholder">
+            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <rect width="400" height="300" fill="var(--green-pale)"/>
+              <circle cx="200" cy="120" r="60" fill="var(--green)" opacity="0.3"/>
+              <ellipse cx="200" cy="220" rx="100" ry="40" fill="var(--green)" opacity="0.2"/>
+              <path d="M170 100 Q200 70 230 100" stroke="var(--terra)" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <circle cx="180" cy="110" r="6" fill="var(--text)"/>
+              <circle cx="220" cy="110" r="6" fill="var(--text)"/>
+              <ellipse cx="200" cy="130" rx="8" ry="6" fill="var(--text)"/>
+            </svg>
+          </div>
+        {{- end }}
+
+        {{- with $s.badge }}
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            {{ . }}
+          </div>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</section>

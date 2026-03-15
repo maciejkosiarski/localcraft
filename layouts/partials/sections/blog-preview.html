@@ -1,0 +1,106 @@
+{{- $s := .section -}}
+{{- $limit := $s.limit | default 3 -}}
+{{- $posts := where site.RegularPages "Section" "blog" -}}
+{{- $posts = first $limit $posts -}}
+
+{{- with $posts }}
+<section class="blog-preview section">
+  <div class="container">
+    {{/* Section header */}}
+    <div class="section__header animate-fade-up">
+      {{- with $s.label }}
+        <span class="section-label">{{ . }}</span>
+      {{- end }}
+      {{- with $s.heading }}
+        <h2 class="section-heading">{{ . }}</h2>
+      {{- end }}
+      {{- with $s.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{- end }}
+    </div>
+
+    {{/* Blog posts grid */}}
+    <div class="blog-preview__grid">
+      {{- range $i, $post := $posts }}
+        {{- $isFeatured := eq $i 0 -}}
+        <article class="blog-preview__card{{ if $isFeatured }} blog-preview__card--featured{{ end }} animate-fade-up delay-{{ add $i 1 }}">
+          {{/* Post image */}}
+          {{- with $post.Params.image }}
+            <a href="{{ $post.RelPermalink }}" class="blog-preview__image-link">
+              <img
+                src="{{ . }}"
+                alt="{{ $post.Title }}"
+                class="blog-preview__image"
+                loading="lazy"
+              >
+            </a>
+          {{- else }}
+            <a href="{{ $post.RelPermalink }}" class="blog-preview__image-link">
+              <div class="blog-preview__placeholder">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="400" height="300" fill="#E8F0EA"/>
+                  <circle cx="200" cy="120" r="40" fill="#3B5C45" opacity="0.3"/>
+                  <rect x="120" y="180" width="160" height="20" rx="4" fill="#3B5C45" opacity="0.2"/>
+                  <rect x="140" y="210" width="120" height="12" rx="4" fill="#3B5C45" opacity="0.15"/>
+                </svg>
+              </div>
+            </a>
+          {{- end }}
+
+          <div class="blog-preview__content">
+            {{/* Meta info */}}
+            <div class="blog-preview__meta">
+              <time datetime="{{ $post.Date.Format "2006-01-02" }}">
+                {{ $post.Date.Format "2 January 2006" }}
+              </time>
+              <span class="blog-preview__separator" aria-hidden="true">&bull;</span>
+              {{- $wordCount := $post.WordCount -}}
+              {{- $readingTime := div $wordCount 200 -}}
+              {{- if lt $readingTime 1 }}{{ $readingTime = 1 }}{{ end -}}
+              <span>{{ $readingTime }} min czytania</span>
+            </div>
+
+            {{/* Title */}}
+            <h3 class="blog-preview__title">
+              <a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a>
+            </h3>
+
+            {{/* Excerpt */}}
+            {{- with $post.Summary }}
+              <p class="blog-preview__excerpt">{{ . | truncate 120 }}</p>
+            {{- end }}
+
+            {{/* Read more link */}}
+            <a href="{{ $post.RelPermalink }}" class="blog-preview__link">
+              Czytaj dalej
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      {{- end }}
+    </div>
+
+    {{/* CTA button */}}
+    {{- with $s.cta }}
+      <div class="blog-preview__cta animate-fade-up">
+        <a href="{{ .url }}" class="btn btn-outline">{{ .text }}</a>
+      </div>
+    {{- end }}
+  </div>
+</section>
+{{- else }}
+  {{/* No posts - only show in development */}}
+  {{- if hugo.IsServer }}
+    <section class="blog-preview section">
+      <div class="container">
+        <div class="section__header">
+          <p style="color: var(--text-muted); text-align: center;">
+            Brak postów w sekcji blog. Dodaj posty do <code>content/blog/</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+  {{- end }}
+{{- end }}

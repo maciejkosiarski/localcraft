@@ -19,12 +19,14 @@
     
     <div class="footer__social">
       {{ range .Site.Params.footer.social }}
-        <a href="{{ .url }}" target="_blank" rel="noopener" class="footer__social-link">{{ .name }}</a>
+        <a href="{{ .url }}" target="_blank" rel="noopener" class="footer__social-link" aria-label="{{ .name }}">{{ .name }}</a>
       {{ end }}
     </div>
   </div>
   
   <div class="container footer__bottom">
-    <p>&copy; {{ now.Year }} {{ .Site.Params.business.name }}. Wszelkie prawa zastrzeżone.</p>
+    {{- $startYear := .Site.Params.business.start_year | default now.Year -}}
+    {{- $currentYear := now.Year -}}
+    <p>&copy; {{ if eq $startYear $currentYear }}{{ $currentYear }}{{ else }}{{ $startYear }}–{{ $currentYear }}{{ end }} {{ .Site.Params.business.name }}. {{ i18n "footer_copyright" }}</p>
   </div>
 </footer>

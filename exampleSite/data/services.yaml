@@ -1,0 +1,14 @@
+- name: "Strzyżenie"
+  description: "Profesjonalne strzyżenie dostosowane do rasy i typu sierści. Modelowanie, przycinanie i stylizacja."
+  price: "od 80 zł"
+  icon: "scissors"
+
+- name: "Kąpiel z pielęgnacją"
+  description: "Kąpiel w profesjonalnych kosmetykach, suszenie i rozczesywanie. Idealnie pachnący pupil."
+  price: "od 50 zł"
+  icon: "droplet"
+
+- name: "Trymowanie"
+  description: "Ręczne trymowanie dla ras szorstkowłosych. Zachowujemy naturalną strukturę sierści."
+  price: "od 120 zł"
+  icon: "hand"

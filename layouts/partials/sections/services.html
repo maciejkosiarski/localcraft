@@ -1,0 +1,59 @@
+{{- $s := .section -}}
+{{- $services := site.Data.services -}}
+{{- with $s.data_source }}
+  {{- $services = index site.Data . -}}
+{{- end -}}
+
+{{- with $services }}
+<section class="services section">
+  <div class="container">
+    {{/* Section header */}}
+    <div class="section__header animate-fade-up">
+      {{- with $s.label }}
+        <span class="section-label">{{ . }}</span>
+      {{- end }}
+      {{- with $s.heading }}
+        <h2 class="section-heading">{{ . }}</h2>
+      {{- end }}
+      {{- with $s.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{- end }}
+    </div>
+
+    {{/* Services grid */}}
+    <div class="services__grid">
+      {{- range $i, $service := $services }}
+        <div class="services__card card animate-fade-up delay-{{ add $i 1 }}">
+          <div class="services__icon">
+            {{- if eq $service.icon "scissors" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+                <line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/>
+                <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+              </svg>
+            {{- else if eq $service.icon "droplet" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+              </svg>
+            {{- else if eq $service.icon "hand" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+                <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+              </svg>
+            {{- else }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+            {{- end }}
+          </div>
+          <h3 class="services__name">{{ $service.name }}</h3>
+          <p class="services__description">{{ $service.description }}</p>
+          <span class="services__price">{{ $service.price }}</span>
+        </div>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}

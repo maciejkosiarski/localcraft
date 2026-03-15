@@ -6,6 +6,12 @@ languages:
     languageCode: pl-PL
     title: "Ciachu Ciachu"
     weight: 1
+    params:
+      logo:
+        name: "Ciachu Ciachu"
+        dot: true
+      business:
+        name: "Ciachu Ciachu"
     menu:
       main:
         - name: "O nas"
@@ -28,6 +34,12 @@ languages:
     languageCode: en-US
     title: "Snip Snip"
     weight: 2
+    params:
+      logo:
+        name: "Snip Snip"
+        dot: true
+      business:
+        name: "Snip Snip"
     menu:
       main:
         - name: "About"
@@ -46,7 +58,8 @@ languages:
           url: "/en/location/"
           weight: 5
 languageCode: pl-PL
-theme: [".."]
+themesDir: ".."
+theme: ["."]
 
 params:
   logo:
@@ -59,6 +72,7 @@ params:
     address: "ul. Kwiatowa 15, Warszawa"
     lat: 52.2297
     lng: 21.0122
+    start_year: 2018
   footer:
     description: "Profesjonalna pielęgnacja Twoich pupili"
     social:

@@ -1,0 +1,60 @@
+{{- $s := .section -}}
+{{- $testimonials := site.Data.testimonials -}}
+{{- with $s.data_source }}
+  {{- $testimonials = index site.Data . -}}
+{{- end -}}
+
+{{- with $testimonials }}
+<section class="testimonials section">
+  <div class="container">
+    {{/* Section header */}}
+    <div class="section__header animate-fade-up">
+      {{- with $s.label }}
+        <span class="section-label testimonials__label">{{ . }}</span>
+      {{- end }}
+      {{- with $s.heading }}
+        <h2 class="section-heading testimonials__heading">{{ . }}</h2>
+      {{- end }}
+      {{- with $s.description }}
+        <p class="section-sub testimonials__sub">{{ . }}</p>
+      {{- end }}
+    </div>
+
+    {{/* Testimonials grid */}}
+    <div class="testimonials__grid">
+      {{- range $i, $testimonial := $testimonials }}
+        <div class="testimonials__card animate-fade-up delay-{{ add $i 1 }}">
+          {{/* Stars rating */}}
+          <div class="testimonials__stars" role="img" aria-label="{{ $testimonial.rating }} z 5 gwiazdek">
+            {{- range seq $testimonial.rating }}
+              <svg class="testimonials__star" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            {{- end }}
+          </div>
+
+          {{/* Quote */}}
+          <blockquote class="testimonials__quote">
+            {{ $testimonial.text }}
+          </blockquote>
+
+          {{/* Author */}}
+          <cite class="testimonials__author">
+            {{/* Avatar with initials */}}
+            {{- $nameParts := split $testimonial.name " " -}}
+            {{- $initials := "" -}}
+            {{- range $nameParts -}}
+              {{- $initials = printf "%s%s" $initials (substr . 0 1) -}}
+            {{- end -}}
+            <span class="testimonials__avatar">{{ $initials }}</span>
+            <div class="testimonials__info">
+              <span class="testimonials__name">{{ $testimonial.name }}</span>
+              <span class="testimonials__pet">{{ $testimonial.pet }}</span>
+            </div>
+          </cite>
+        </div>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}

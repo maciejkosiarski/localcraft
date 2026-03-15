@@ -1,0 +1,14 @@
+- name: "Anna Kowalska"
+  pet: "Luna, Golden Retriever"
+  rating: 5
+  text: "Najlepszy salon groomerski w Warszawie! Luna zawsze wraca zadbana i szczęśliwa. Panie są bardzo cierpliwe i profesjonalne."
+
+- name: "Michał Nowak"
+  pet: "Bruno, Yorkshire Terrier"
+  rating: 5
+  text: "Bruno boi się strzyżenia, ale tutaj czuje się bezpiecznie. Widać, że zespół naprawdę kocha zwierzęta. Polecam serdecznie!"
+
+- name: "Katarzyna Wiśniewska"
+  pet: "Max, Shih Tzu"
+  rating: 5
+  text: "Korzystamy z usług Ciachu Ciachu od 3 lat. Zawsze perfekcyjne strzyżenie i miła obsługa. Max wychodzi jak nowy!"
