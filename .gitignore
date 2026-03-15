@@ -1,7 +1,9 @@
 # Hugo
 .hugo_build.lock
 public/
+**/public/
 resources/_gen/
+**/resources/_gen/
 
 # Node/npm (not used but just in case)
 node_modules/
