@@ -46,8 +46,7 @@ languages:
           url: "/en/location/"
           weight: 5
 languageCode: pl-PL
-theme: localcraft
-themesDir: ../themes
+theme: [".."]
 
 params:
   logo:
