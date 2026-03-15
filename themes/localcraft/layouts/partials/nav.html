@@ -1,0 +1,32 @@
+<nav class="nav">
+  <div class="container nav__inner">
+    <a href="{{ "/" | relLangURL }}" class="nav__logo">
+      {{ .Site.Params.logo.name }}{{ if .Site.Params.logo.dot }}<span class="nav__dot">.</span>{{ end }}
+    </a>
+    
+    <button class="nav__toggle" aria-expanded="false" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <div class="nav__menu">
+      <ul class="nav__list">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+          <li class="nav__item">
+            <a href="{{ .URL | relLangURL }}" class="nav__link{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} nav__link--active{{ end }}">
+              {{ .Name }}
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{{ $navJs := resources.Get "js/nav.js" }}
+{{ if $navJs }}
+  {{ $navJs = $navJs | minify | fingerprint }}
+  <script src="{{ $navJs.RelPermalink }}" defer></script>
+{{ end }}

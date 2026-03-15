@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector(".nav__toggle"),t=document.querySelector(".nav__menu");e&&t&&e.addEventListener("click",function(){const n=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",!n),t.classList.toggle("active")})})

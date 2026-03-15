@@ -1,0 +1,27 @@
+# Hugo
+.hugo_build.lock
+public/
+resources/_gen/
+
+# Node/npm (not used but just in case)
+node_modules/
+package-lock.json
+package.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build output
+*.log
+*.tmp
+
+# Local environment
+.env
+.env.local

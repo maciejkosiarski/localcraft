@@ -1,0 +1,30 @@
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="{{ "/" | relLangURL }}" class="footer__logo">
+        {{ .Site.Params.logo.name }}{{ if .Site.Params.logo.dot }}<span class="footer__dot">.</span>{{ end }}
+      </a>
+      {{ with .Site.Params.footer.description }}
+        <p class="footer__desc">{{ . }}</p>
+      {{ end }}
+    </div>
+    
+    <div class="footer__contact">
+      {{ with .Site.Params.business }}
+        <p class="footer__address">{{ .address }}</p>
+        <a href="tel:{{ .phone }}" class="footer__phone">{{ .phone }}</a>
+        <a href="mailto:{{ .email }}" class="footer__email">{{ .email }}</a>
+      {{ end }}
+    </div>
+    
+    <div class="footer__social">
+      {{ range .Site.Params.footer.social }}
+        <a href="{{ .url }}" target="_blank" rel="noopener" class="footer__social-link">{{ .name }}</a>
+      {{ end }}
+    </div>
+  </div>
+  
+  <div class="container footer__bottom">
+    <p>&copy; {{ now.Year }} {{ .Site.Params.business.name }}. Wszelkie prawa zastrzeżone.</p>
+  </div>
+</footer>

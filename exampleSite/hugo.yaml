@@ -1,0 +1,67 @@
+baseURL: https://snipsnip.pl/
+defaultContentLanguage: pl
+languages:
+  pl:
+    languageName: Polski
+    languageCode: pl-PL
+    title: "Ciachu Ciachu"
+    weight: 1
+    menu:
+      main:
+        - name: "O nas"
+          url: "/pl/o-nas/"
+          weight: 1
+        - name: "Cennik"
+          url: "/pl/cennik/"
+          weight: 2
+        - name: "Galeria"
+          url: "/pl/galeria/"
+          weight: 3
+        - name: "FAQ"
+          url: "/pl/faq/"
+          weight: 4
+        - name: "Kontakt"
+          url: "/pl/lokalizacja/"
+          weight: 5
+  en:
+    languageName: English
+    languageCode: en-US
+    title: "Snip Snip"
+    weight: 2
+    menu:
+      main:
+        - name: "About"
+          url: "/en/about/"
+          weight: 1
+        - name: "Pricing"
+          url: "/en/pricing/"
+          weight: 2
+        - name: "Gallery"
+          url: "/en/gallery/"
+          weight: 3
+        - name: "FAQ"
+          url: "/en/faq/"
+          weight: 4
+        - name: "Contact"
+          url: "/en/location/"
+          weight: 5
+languageCode: pl-PL
+theme: localcraft
+themesDir: ../themes
+
+params:
+  logo:
+    name: "Snip Snip"
+    dot: true
+  business:
+    name: "Snip Snip"
+    phone: "+48 123 456 789"
+    email: "kontakt@snipsnip.pl"
+    address: "ul. Kwiatowa 15, Warszawa"
+    lat: 52.2297
+    lng: 21.0122
+  footer:
+    description: "Profesjonalna pielęgnacja Twoich pupili"
+    social:
+      - name: "Facebook"
+        url: "https://facebook.com/"
