@@ -1,0 +1,148 @@
+{{ define "main" }}
+<section class="gallery section">
+  <div class="container">
+    <header class="section__header">
+      {{ with .Params.label }}
+        <span class="section-label">{{ . }}</span>
+      {{ end }}
+      <h1 class="section-heading">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{- $pages := .Pages -}}
+    {{- if $pages -}}
+    {{/* Breed filters */}}
+    {{- $breeds := slice -}}
+    {{- range $pages -}}
+      {{- with .Params.breed -}}
+        {{- $breeds = $breeds | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $breeds = $breeds | uniq | sort -}}
+    {{- if gt (len $breeds) 1 -}}
+    <div class="gallery__filters" role="group" aria-label="{{ i18n "filter_by_breed" | default "Filter by breed" }}">
+      <button type="button" class="gallery__filter-btn active" data-breed="all">
+        {{ i18n "all" | default "All" }}
+      </button>
+      {{- range $breeds -}}
+      <button type="button" class="gallery__filter-btn" data-breed="{{ . | urlize }}">
+        {{ . }}
+      </button>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    <div class="gallery__grid">
+      {{- range $pages -}}
+      <article class="gallery__card" data-breed="{{ .Params.breed | urlize }}">
+        <div class="ba-slider" aria-label="{{ i18n "ba_slider_label" | default "Before and after comparison. Drag the slider to compare." }}">
+          {{/* After image (background layer) */}}
+          <div class="ba-slider__after">
+            {{ with .Params.image_after }}
+              <img
+                src="{{ . }}"
+                alt="{{ $.Title }} {{ i18n "after" | default "after" }} grooming"
+                class="ba-slider__image"
+                loading="lazy"
+              >
+            {{ else }}
+              <div class="ba-slider__placeholder ba-slider__placeholder--after" aria-hidden="true">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="400" height="300" fill="#F5E6E0"/>
+                  <circle cx="200" cy="120" r="50" fill="#C4714A" opacity="0.3"/>
+                  <ellipse cx="200" cy="220" rx="80" ry="40" fill="#C4714A" opacity="0.2"/>
+                </svg>
+              </div>
+            {{ end }}
+            <span class="ba-slider__label ba-slider__label--after">{{ i18n "after" | default "After" }}</span>
+          </div>
+
+          {{/* Before image (overlay layer with clip-path) */}}
+          <div class="ba-slider__before">
+            {{ with .Params.image_before }}
+              <img
+                src="{{ . }}"
+                alt="{{ $.Title }} {{ i18n "before" | default "before" }} grooming"
+                class="ba-slider__image"
+                loading="lazy"
+              >
+            {{ else }}
+              <div class="ba-slider__placeholder ba-slider__placeholder--before" aria-hidden="true">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="400" height="300" fill="#E8F0EA"/>
+                  <circle cx="200" cy="120" r="50" fill="#3B5C45" opacity="0.3"/>
+                  <ellipse cx="200" cy="220" rx="80" ry="40" fill="#3B5C45" opacity="0.2"/>
+                </svg>
+              </div>
+            {{ end }}
+            <span class="ba-slider__label ba-slider__label--before">{{ i18n "before" | default "Before" }}</span>
+          </div>
+
+          {{/* Slider handle */}}
+          <div class="ba-slider__handle" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-label="{{ i18n "ba_handle_label" | default "Comparison slider" }}">
+            <div class="ba-slider__handle-line"></div>
+            <div class="ba-slider__handle-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 5L3 12L8 19M16 5L21 12L16 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="ba-slider__handle-line"></div>
+          </div>
+        </div>
+
+        <div class="gallery__info">
+          <h2 class="gallery__name">{{ .Title }}</h2>
+          {{ with .Params.breed }}
+            <span class="gallery__breed">{{ . }}</span>
+          {{ end }}
+        </div>
+      </article>
+      {{- end -}}
+    </div>
+    {{- else -}}
+    <p class="gallery__empty">{{ .Params.empty_message | default "Gallery coming soon." }}</p>
+    {{- end -}}
+
+    {{ with .Content }}
+      <div class="gallery__content prose">
+        {{ . }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* Lightbox dialog */}}
+<dialog class="lightbox" aria-label="{{ i18n "lightbox_label" | default "Image lightbox" }}">
+  <div class="lightbox__content">
+    <button type="button" class="lightbox__close" aria-label="{{ i18n "close" | default "Close" }}">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="{{ i18n "previous" | default "Previous" }}">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="{{ i18n "next" | default "Next" }}">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__image" src="" alt="">
+      <figcaption class="lightbox__caption"></figcaption>
+    </figure>
+  </div>
+</dialog>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $galleryJs := resources.Get "js/gallery.js" -}}
+{{- if $galleryJs -}}
+  {{- $galleryJs = $galleryJs | minify | fingerprint -}}
+  <script src="{{ $galleryJs.RelPermalink }}" defer></script>
+{{- end -}}
+{{ end }}

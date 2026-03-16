@@ -1,1 +1,50 @@
 footer_copyright: "Wszelkie prawa zastrzeżone."
+before: "Przed"
+after: "Po"
+
+# About
+about_us: "O nas"
+our_values: "Nasze wartości"
+values_heading: "Dlaczego my?"
+our_team: "Nasz zespół"
+team_heading: "Poznaj nas bliżej"
+
+# Blog
+blog: "Blog"
+read_more: "Czytaj dalej"
+min_read: "min czytania"
+back_to_blog: "Wróć do bloga"
+related_posts: "Powiązane artykuły"
+no_posts: "Brak artykułów."
+prev: "Poprzednia"
+next: "Następna"
+pagination: "Nawigacja stron"
+
+# Testimonials
+stars_of_5: "z 5 gwiazdek"
+
+# Pricing
+filter_by_category: "Filtruj według kategorii"
+service: "Usługa"
+duration: "Czas"
+price: "Cena"
+
+# Gallery
+ba_slider_label: "Porównanie przed i po. Przeciągnij suwak, aby porównać."
+ba_handle_label: "Suwak porównania"
+
+# FAQ
+faq: "FAQ"
+faq_heading: "Najczęściej zadawane pytania"
+
+# Location
+location: "Lokalizacja"
+address: "Adres"
+contact: "Kontakt"
+opening_hours: "Godziny otwarcia"
+closed: "Zamknięte"
+open_in_google_maps: "Otwórz w Google Maps"
+map_aria_label: "Mapa z lokalizacją salonu"
+status_open: "Teraz otwarte"
+status_closed: "Teraz zamknięte"
+status_closing_soon: "Zamykamy wkrótce"

@@ -1,0 +1,14 @@
+- name: "Haircut"
+  description: "Professional grooming tailored to breed and coat type. Styling, trimming, and shaping."
+  price: "from 80 PLN"
+  icon: "scissors"
+
+- name: "Bath & Care"
+  description: "Bath with professional products, drying and brushing. A perfectly fresh pup."
+  price: "from 50 PLN"
+  icon: "droplet"
+
+- name: "Hand Stripping"
+  description: "Hand stripping for wire-haired breeds. We preserve the natural coat texture."
+  price: "from 120 PLN"
+  icon: "hand"

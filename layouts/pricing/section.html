@@ -11,22 +11,35 @@
       {{ end }}
     </header>
 
-    {{- $pricing := site.Data.pricing -}}
+    {{- $pricing := index site.Data .Language.Lang "pricing" -}}
     {{- if $pricing -}}
 
-    <div class="pricing__search" id="pricing-search">
-      <input
-        type="search"
-        class="pricing__input"
-        placeholder="{{ .Params.search_placeholder | default "Search services..." }}"
-        aria-label="{{ .Params.search_placeholder | default "Search services" }}"
-        id="pricing-search-input"
-      >
+    <div class="pricing__controls">
+      <div class="pricing__search" id="pricing-search">
+        <input
+          type="search"
+          class="pricing__input"
+          placeholder="{{ .Params.search_placeholder | default "Search services..." }}"
+          aria-label="{{ .Params.search_placeholder | default "Search services" }}"
+          id="pricing-search-input"
+        >
+      </div>
+
+      <div class="pricing__filters" role="group" aria-label="{{ i18n "filter_by_category" | default "Filter by category" }}">
+        <button type="button" class="pricing__filter-btn active" data-category="all">
+          {{ .Params.filter_all | default "All" }}
+        </button>
+        {{- range $pricing.categories -}}
+        <button type="button" class="pricing__filter-btn" data-category="{{ .name | urlize }}">
+          {{ .name }}
+        </button>
+        {{- end -}}
+      </div>
     </div>
 
     <div class="pricing__categories">
       {{- range $pricing.categories -}}
-      <div class="pricing__category">
+      <div class="pricing__category" data-category="{{ .name | urlize }}">
         <div class="pricing__category-header">
           <h2 class="pricing__category-name">{{ .name }}</h2>
           {{ with .description }}
@@ -106,4 +119,12 @@
     {{ end }}
   </div>
 </section>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $pricingJs := resources.Get "js/pricing.js" -}}
+{{- if $pricingJs -}}
+  {{- $pricingJs = $pricingJs | minify | fingerprint -}}
+  <script src="{{ $pricingJs.RelPermalink }}" defer></script>
+{{- end -}}
 {{ end }}

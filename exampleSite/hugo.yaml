@@ -4,6 +4,7 @@ languages:
   pl:
     languageName: Polski
     languageCode: pl-PL
+    contentDir: content/pl
     title: "Ciachu Ciachu"
     weight: 1
     params:
@@ -26,12 +27,16 @@ languages:
         - name: "FAQ"
           url: "/pl/faq/"
           weight: 4
+        - name: "Blog"
+          url: "/pl/blog/"
+          weight: 5
         - name: "Kontakt"
           url: "/pl/lokalizacja/"
-          weight: 5
+          weight: 6
   en:
     languageName: English
     languageCode: en-US
+    contentDir: content/en
     title: "Snip Snip"
     weight: 2
     params:
@@ -54,12 +59,22 @@ languages:
         - name: "FAQ"
           url: "/en/faq/"
           weight: 4
+        - name: "Blog"
+          url: "/en/blog/"
+          weight: 5
         - name: "Contact"
           url: "/en/location/"
-          weight: 5
+          weight: 6
 languageCode: pl-PL
 themesDir: ".."
 theme: ["."]
+
+taxonomies:
+  tag: tags
+  category: categories
+
+pagination:
+  pagerSize: 6
 
 params:
   logo:

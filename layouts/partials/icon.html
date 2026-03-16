@@ -1,0 +1,21 @@
+{{/*
+  icon.html
+  Universal icon partial that loads SVG icons by name.
+
+  Usage: {{ partial "icon.html" (dict "name" "scissors" "size" 24) }}
+
+  Parameters:
+    - name: icon name (required) - maps to partials/icons/{name}.html
+    - size: icon size in pixels (optional, default varies by icon)
+*/}}
+
+{{- $name := .name -}}
+{{- $size := .size -}}
+{{- $iconPath := printf "icons/%s.html" $name -}}
+
+{{- if templates.Exists (printf "partials/%s" $iconPath) -}}
+  {{- partial $iconPath (dict "size" $size) -}}
+{{- else -}}
+  {{/* Fallback to circle if icon not found */}}
+  {{- partial "icons/circle.html" (dict "size" $size) -}}
+{{- end -}}

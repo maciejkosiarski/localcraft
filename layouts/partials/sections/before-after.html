@@ -1,0 +1,48 @@
+{{- $s := .section -}}
+{{- $limit := $s.limit | default 3 -}}
+{{- $lang := site.Language.Lang -}}
+{{- with .page.Language -}}
+  {{- $lang = .Lang -}}
+{{- end -}}
+{{- $langPrefix := printf "/%s/" $lang -}}
+{{- $allGallery := where site.RegularPages "Type" "gallery" -}}
+{{- $galleryPages := slice -}}
+{{- range $allGallery -}}
+  {{- if hasPrefix .RelPermalink $langPrefix -}}
+    {{- $galleryPages = $galleryPages | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $galleryPages = first $limit $galleryPages -}}
+
+<section class="before-after section">
+  <div class="container">
+    <header class="section__header">
+      {{ with $s.label }}
+        <span class="section-label">{{ . }}</span>
+      {{ end }}
+      {{ with $s.heading }}
+        <h2 class="section-heading">{{ . }}</h2>
+      {{ end }}
+      {{ with $s.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{- if $galleryPages -}}
+    <div class="before-after__grid">
+      {{- range $galleryPages -}}
+        {{- partial "gallery-card.html" (dict "page" . "prefix" "before-after") -}}
+      {{- end -}}
+    </div>
+
+    {{ with $s.cta }}
+      <div class="before-after__cta">
+        <a href="{{ .url }}" class="btn btn-outline">{{ .text }}</a>
+      </div>
+    {{ end }}
+
+    {{- else -}}
+    <p class="before-after__empty">{{ $s.empty_message | default "Gallery coming soon." }}</p>
+    {{- end -}}
+  </div>
+</section>

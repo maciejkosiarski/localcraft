@@ -1,0 +1,83 @@
+{{ define "main" }}
+<article class="blog-post">
+  <header class="blog-post__header section">
+    <div class="container">
+      <div class="blog-post__header-inner">
+        <a href="{{ .Parent.RelPermalink }}" class="blog-post__back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          {{ i18n "back_to_blog" | default "Back to blog" }}
+        </a>
+
+        <div class="blog-post__meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "2 January 2006" }}
+          </time>
+          <span class="blog-post__separator" aria-hidden="true">&bull;</span>
+          <span>{{ math.Round (div (countwords .Content) 200.0) }} {{ i18n "min_read" }}</span>
+        </div>
+
+        <h1 class="blog-post__title">{{ .Title }}</h1>
+
+        {{ with .Description }}
+          <p class="blog-post__description">{{ . }}</p>
+        {{ end }}
+
+        {{ with .Params.tags }}
+          <div class="blog-post__tags">
+            {{ range . }}
+              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="blog-post__tag">{{ . }}</a>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </header>
+
+  {{ with .Params.image }}
+    <div class="blog-post__hero">
+      <div class="container">
+        <img src="{{ . }}" alt="" class="blog-post__hero-image">
+      </div>
+    </div>
+  {{ end }}
+
+  <div class="blog-post__body section">
+    <div class="container">
+      <div class="blog-post__content prose">
+        {{ .Content }}
+      </div>
+
+      {{/* Related posts */}}
+      {{ $related := first 3 (where (where .Site.RegularPages "Section" "blog") ".Permalink" "!=" .Permalink) }}
+      {{ with $related }}
+        <aside class="blog-post__related">
+          <h2 class="blog-post__related-title">{{ i18n "related_posts" | default "Related posts" }}</h2>
+          <div class="blog-post__related-grid">
+            {{ range . }}
+              <a href="{{ .RelPermalink }}" class="blog-post__related-card">
+                {{ with .Params.image }}
+                  <img src="{{ . }}" alt="" class="blog-post__related-image" loading="lazy">
+                {{ else }}
+                  <div class="blog-post__related-placeholder">
+                    <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <rect width="400" height="250" fill="#E8F0EA"/>
+                      <path d="M175 100 L200 75 L250 125 L275 100 L325 150 L325 200 L75 200 L75 150 Z" fill="#3B5C45" opacity="0.3"/>
+                      <circle cx="125" cy="90" r="20" fill="#3B5C45" opacity="0.3"/>
+                    </svg>
+                  </div>
+                {{ end }}
+                <div class="blog-post__related-content">
+                  <h3 class="blog-post__related-name">{{ .Title }}</h3>
+                  <span class="blog-post__related-date">{{ .Date.Format "2 Jan 2006" }}</span>
+                </div>
+              </a>
+            {{ end }}
+          </div>
+        </aside>
+      {{ end }}
+    </div>
+  </div>
+</article>
+{{ end }}

@@ -1,4 +1,16 @@
+{{ define "head" }}
+  {{ with .Params.redirect }}
+    <meta http-equiv="refresh" content="0; url={{ . }}">
+  {{ end }}
+{{ end }}
+
 {{ define "main" }}
+  {{/* Handle redirect if specified */}}
+  {{ with .Params.redirect }}
+    <script>window.location.href = "{{ . }}";</script>
+    <p>Redirecting to <a href="{{ . }}">{{ . }}</a>...</p>
+  {{ end }}
+
   {{/* Render content from _index.md if any */}}
   {{ with .Content }}
     <div class="container">
@@ -6,23 +18,6 @@
     </div>
   {{ end }}
 
-  {{/* Iterate through sections defined in front matter */}}
-  {{ range .Params.sections }}
-    {{ if .enabled }}
-      {{/* Build partial path */}}
-      {{ $partialPath := printf "sections/%s.html" .type }}
-
-      {{/* Check if partial exists before rendering */}}
-      {{ if templates.Exists (printf "partials/%s" $partialPath) }}
-        {{ partial $partialPath (dict "section" . "page" $) }}
-      {{ else }}
-        {{/* Debug: show missing partial in development */}}
-        {{ if hugo.IsServer }}
-          <div class="section" style="background: #fff3cd; padding: 2rem; text-align: center;">
-            <p><strong>Brak partiala:</strong> <code>partials/sections/{{ .type }}.html</code></p>
-          </div>
-        {{ end }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
+  {{/* Render dynamic sections */}}
+  {{ partial "sections-renderer.html" . }}
 {{ end }}

@@ -1,0 +1,86 @@
+{{ define "main" }}
+{{- $lang := .Language.Lang -}}
+
+{{/* Hero Section */}}
+<section class="about-hero section">
+  <div class="container">
+    <div class="about-hero__content">
+      <span class="section-label animate-fade-up">{{ .Params.eyebrow | default (i18n "about_us") }}</span>
+      <h1 class="about-hero__heading animate-fade-up delay-1">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="about-hero__description animate-fade-up delay-2">{{ . }}</p>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* Values Section */}}
+{{ with index site.Data $lang "values" }}
+<section class="about-values section">
+  <div class="container">
+    <div class="section__header">
+      <span class="section-label">{{ i18n "our_values" }}</span>
+      <h2 class="section-heading">{{ i18n "values_heading" }}</h2>
+    </div>
+
+    <div class="about-values__grid">
+      {{ range . }}
+        <div class="about-values__card card animate-fade-up">
+          <div class="about-values__icon">
+            {{ partial "icon.html" (dict "name" .icon "size" 32) }}
+          </div>
+          <h3 class="about-values__title">{{ .title }}</h3>
+          <p class="about-values__description">{{ .description }}</p>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* Team Section */}}
+{{ with index site.Data $lang "team" }}
+<section class="about-team section">
+  <div class="container">
+    <div class="section__header">
+      <span class="section-label">{{ i18n "our_team" }}</span>
+      <h2 class="section-heading">{{ i18n "team_heading" }}</h2>
+    </div>
+
+    <div class="about-team__members">
+      {{ range $index, $member := . }}
+        <div class="about-team__member {{ if (modBool $index 2) }}about-team__member--reverse{{ end }} animate-fade-up">
+          <div class="about-team__image">
+            {{ if $member.image }}
+              <img src="{{ $member.image }}" alt="{{ $member.name }}" loading="lazy">
+            {{ else }}
+              {{/* Avatar placeholder with initials */}}
+              <div class="about-team__avatar">
+                <span class="about-team__initials">{{ $member.initials }}</span>
+              </div>
+            {{ end }}
+          </div>
+          <div class="about-team__content">
+            <h3 class="about-team__name">{{ $member.name }}</h3>
+            <span class="about-team__role">{{ $member.role }}</span>
+            <p class="about-team__bio">{{ $member.bio }}</p>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* Optional: Page content from markdown */}}
+{{ with .Content }}
+<section class="about-content section">
+  <div class="container">
+    <div class="about-content__inner">
+      {{ . }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

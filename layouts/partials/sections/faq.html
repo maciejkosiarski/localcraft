@@ -1,0 +1,67 @@
+{{- $s := .section -}}
+{{- $lang := .page.Language.Lang -}}
+{{- $faq := index site.Data $lang "faq" -}}
+{{- with $s.data_source }}
+  {{- $faq = index site.Data $lang . -}}
+{{- end -}}
+
+{{- /* Limit items for homepage section */ -}}
+{{- $limit := $s.limit | default 6 -}}
+{{- $faq = first $limit $faq -}}
+
+{{- with $faq }}
+<section class="faq section" id="faq">
+  <div class="container">
+    {{/* Section header */}}
+    <div class="section__header animate-fade-up">
+      {{- with $s.label }}
+        <span class="section-label">{{ . }}</span>
+      {{- end }}
+      {{- with $s.heading }}
+        <h2 class="section-heading">{{ . }}</h2>
+      {{- end }}
+      {{- with $s.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{- end }}
+    </div>
+
+    {{/* FAQ Accordion */}}
+    <div class="faq__list" role="list">
+      {{- range $i, $item := $faq }}
+        <div class="faq__item animate-fade-up delay-{{ add (mod $i 3) 1 }}" role="listitem">
+          <button
+            class="faq__question"
+            type="button"
+            aria-expanded="false"
+            aria-controls="faq-answer-{{ $i }}"
+            id="faq-question-{{ $i }}"
+          >
+            <span class="faq__question-text">{{ $item.question }}</span>
+            <span class="faq__icon" aria-hidden="true">
+              {{- partial "icon.html" (dict "name" "chevron-down" "size" 20) -}}
+            </span>
+          </button>
+          <div
+            class="faq__answer"
+            id="faq-answer-{{ $i }}"
+            role="region"
+            aria-labelledby="faq-question-{{ $i }}"
+            hidden
+          >
+            <div class="faq__answer-content">
+              {{ $item.answer | markdownify }}
+            </div>
+          </div>
+        </div>
+      {{- end }}
+    </div>
+
+    {{/* CTA */}}
+    {{- with $s.cta }}
+      <div class="faq__cta animate-fade-up">
+        <a href="{{ .url }}" class="btn btn-outline">{{ .label }}</a>
+      </div>
+    {{- end }}
+  </div>
+</section>
+{{- end }}

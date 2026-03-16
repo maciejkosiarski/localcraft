@@ -15,12 +15,37 @@
         {{ $currentPage := . }}
         {{ range .Site.Menus.main }}
           <li class="nav__item">
-            <a href="{{ .URL | relLangURL }}" class="nav__link{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} nav__link--active{{ end }}">
+            <a href="{{ .URL }}" class="nav__link{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} nav__link--active{{ end }}">
               {{ .Name }}
             </a>
           </li>
         {{ end }}
       </ul>
+
+      {{/* Language switcher */}}
+      {{ if gt (len .Site.Languages) 1 }}
+      <div class="nav__lang">
+        {{- $currentLang := .Language.Lang -}}
+        {{- $translations := .Translations -}}
+        {{ range .Site.Languages }}
+          {{- $lang := .Lang -}}
+          {{ if eq $lang $currentLang }}
+            <span class="nav__lang-item nav__lang-item--active">{{ $lang | upper }}</span>
+          {{ else }}
+            {{- $targetURL := "" -}}
+            {{- range $translations -}}
+              {{- if eq .Language.Lang $lang -}}
+                {{- $targetURL = .RelPermalink -}}
+              {{- end -}}
+            {{- end -}}
+            {{- if not $targetURL -}}
+              {{- $targetURL = (printf "/%s/" $lang) -}}
+            {{- end -}}
+            <a href="{{ $targetURL }}" hreflang="{{ $lang }}" class="nav__lang-item">{{ $lang | upper }}</a>
+          {{ end }}
+        {{ end }}
+      </div>
+      {{ end }}
     </div>
   </div>
 </nav>

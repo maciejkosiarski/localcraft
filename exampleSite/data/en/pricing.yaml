@@ -1,0 +1,86 @@
+categories:
+  - name: "Small dogs"
+    description: "up to 10 kg"
+    services:
+      - name: "Bath with drying"
+        price: "50 PLN"
+        duration: "45 min"
+        tags: ["bath", "care"]
+      - name: "Clipper cut"
+        price: "80 PLN"
+        duration: "60 min"
+        tags: ["haircut"]
+      - name: "Scissor cut"
+        price: "100 PLN"
+        duration: "90 min"
+        tags: ["haircut"]
+      - name: "Hand stripping"
+        price: "120 PLN"
+        duration: "120 min"
+        tags: ["stripping"]
+      - name: "Mat removal"
+        price: "30 PLN"
+        duration: "30 min"
+        tags: ["care"]
+
+  - name: "Medium dogs"
+    description: "10–25 kg"
+    services:
+      - name: "Bath with drying"
+        price: "70 PLN"
+        duration: "60 min"
+        tags: ["bath", "care"]
+      - name: "Clipper cut"
+        price: "120 PLN"
+        duration: "90 min"
+        tags: ["haircut"]
+      - name: "Scissor cut"
+        price: "150 PLN"
+        duration: "120 min"
+        tags: ["haircut"]
+      - name: "Hand stripping"
+        price: "180 PLN"
+        duration: "150 min"
+        tags: ["stripping"]
+      - name: "Mat removal"
+        price: "50 PLN"
+        duration: "45 min"
+        tags: ["care"]
+
+  - name: "Large dogs"
+    description: "over 25 kg"
+    services:
+      - name: "Bath with drying"
+        price: "100 PLN"
+        duration: "90 min"
+        tags: ["bath", "care"]
+      - name: "Clipper cut"
+        price: "180 PLN"
+        duration: "120 min"
+        tags: ["haircut"]
+      - name: "Scissor cut"
+        price: "220 PLN"
+        duration: "150 min"
+        tags: ["haircut"]
+      - name: "Hand stripping"
+        price: "250 PLN"
+        duration: "180 min"
+        tags: ["stripping"]
+      - name: "Mat removal"
+        price: "80 PLN"
+        duration: "60 min"
+        tags: ["care"]
+
+extras:
+  - name: "Nail trimming"
+    price: "20 PLN"
+    duration: "10 min"
+  - name: "Ear cleaning"
+    price: "15 PLN"
+    duration: "10 min"
+  - name: "Ear hair removal"
+    price: "15 PLN"
+    duration: "10 min"
+  - name: "Gland cleaning"
+    price: "25 PLN"
+    duration: "10 min"

@@ -1,0 +1,30 @@
+{{/*
+  sections-renderer.html
+  Renders dynamic sections defined in front matter.
+
+  Usage: {{ partial "sections-renderer.html" . }}
+
+  Expects .Params.sections array with objects containing:
+    - type: string (maps to partials/sections/{type}.html)
+    - enabled: bool
+    - ...other section-specific params
+*/}}
+
+{{- range .Params.sections }}
+  {{- if .enabled }}
+    {{/* Build partial path */}}
+    {{- $partialPath := printf "sections/%s.html" .type }}
+
+    {{/* Check if partial exists before rendering */}}
+    {{- if templates.Exists (printf "partials/%s" $partialPath) }}
+      {{- partial $partialPath (dict "section" . "page" $) }}
+    {{- else }}
+      {{/* Debug: show missing partial in development */}}
+      {{- if hugo.IsServer }}
+        <div class="section" style="background: #fff3cd; padding: 2rem; text-align: center;">
+          <p><strong>Brak partiala:</strong> <code>partials/sections/{{ .type }}.html</code></p>
+        </div>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

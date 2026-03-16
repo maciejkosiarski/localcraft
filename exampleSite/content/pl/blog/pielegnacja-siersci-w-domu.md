@@ -3,6 +3,7 @@ title: "Codzienna pielęgnacja sierści w domu"
 date: 2024-01-08
 description: "Dowiedz się, jak dbać o sierść psa między wizytami w salonie groomerskim."
 image: "/images/blog/home-care.jpg"
+tags: ["pielęgnacja", "sierść", "porady"]
 ---
 
 Regularne szczotkowanie w domu to klucz do zdrowej i pięknej sierści. Sprawdź, jak robić to prawidłowo i jakich narzędzi używać.

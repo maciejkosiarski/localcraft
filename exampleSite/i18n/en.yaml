@@ -1,1 +1,50 @@
 footer_copyright: "All rights reserved."
+before: "Before"
+after: "After"
+
+# About
+about_us: "About Us"
+our_values: "Our Values"
+values_heading: "Why Choose Us?"
+our_team: "Our Team"
+team_heading: "Meet the Team"
+
+# Blog
+blog: "Blog"
+read_more: "Read more"
+min_read: "min read"
+back_to_blog: "Back to blog"
+related_posts: "Related posts"
+no_posts: "No posts yet."
+prev: "Previous"
+next: "Next"
+pagination: "Pagination"
+
+# Testimonials
+stars_of_5: "out of 5 stars"
+
+# Pricing
+filter_by_category: "Filter by category"
+service: "Service"
+duration: "Duration"
+price: "Price"
+
+# Gallery
+ba_slider_label: "Before and after comparison. Drag the slider to compare."
+ba_handle_label: "Comparison slider"
+
+# FAQ
+faq: "FAQ"
+faq_heading: "Frequently Asked Questions"
+
+# Location
+location: "Location"
+address: "Address"
+contact: "Contact"
+opening_hours: "Opening Hours"
+closed: "Closed"
+open_in_google_maps: "Open in Google Maps"
+map_aria_label: "Map showing salon location"
+status_open: "Open now"
+status_closed: "Closed now"
+status_closing_soon: "Closing soon"

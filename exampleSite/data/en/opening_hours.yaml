@@ -1,0 +1,22 @@
+# Salon opening hours
+days:
+  - day: "Monday"
+    open: "09:00"
+    close: "18:00"
+  - day: "Tuesday"
+    open: "09:00"
+    close: "18:00"
+  - day: "Wednesday"
+    open: "09:00"
+    close: "18:00"
+  - day: "Thursday"
+    open: "09:00"
+    close: "18:00"
+  - day: "Friday"
+    open: "09:00"
+    close: "18:00"
+  - day: "Saturday"
+    open: "10:00"
+    close: "14:00"
+  - day: "Sunday"
+    closed: true

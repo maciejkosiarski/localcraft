@@ -1,0 +1,41 @@
+- question: "Do I need to make an appointment?"
+  answer: "Yes, we recommend booking in advance as our slots fill up quickly. You can book by phone or through the form on our website. In urgent cases, we try to find a same-day appointment."
+
+- question: "How often should my dog be groomed?"
+  answer: "Grooming frequency depends on breed and coat type. Long-haired dogs (e.g., Yorkshire Terrier, Maltese) need grooming every 4-6 weeks. Breeds with undercoats (e.g., Golden Retriever) — every 8-12 weeks. During your first visit, we'll recommend the optimal schedule for your pet."
+
+- question: "Can I stay during the grooming session?"
+  answer: "For safety and pet comfort, we ask owners to wait in the reception area or return at the scheduled pickup time. Dogs often behave calmer when they don't see their owner. In special cases (puppies, anxious dogs), we can arrange individual accommodations."
+
+- question: "How long does a grooming session take?"
+  answer: "Time depends on dog size, coat condition, and services requested. Approximately: small dog — 1.5-2 hours, medium — 2-2.5 hours, large — 2.5-3.5 hours. First visits or heavily matted coats may take longer."
+
+- question: "What does full grooming include?"
+  answer: "Full grooming is a comprehensive package: bath with shampoo suited to coat type, drying, brushing, haircut as requested, nail trimming, ear cleaning, and tidying fur around paws and sanitary areas. On request, we also apply conditioners and fragrances."
+
+- question: "Do you use natural products?"
+  answer: "Yes, we use premium products that are gentle and safe for animal skin. We offer hypoallergenic shampoos for sensitive pets and organic products on request. All products are dermatologically tested."
+
+- question: "How should I prepare my dog for the visit?"
+  answer: "Don't feed your dog 2 hours before the visit (to prevent nausea). Take them for a walk right before coming. If your dog takes medication, inform us in advance. Bring the health booklet for the first visit."
+
+- question: "Do you accept puppies?"
+  answer: "Yes! We accept puppies from 3-4 months of age, after basic vaccinations are complete. The first visit is introductory — we familiarize the puppy with the salon, sounds, and tools, without full grooming. This is important for building positive associations with grooming."
+
+- question: "What if my dog has mats?"
+  answer: "Light mats are brushed out gently. For severe matting, a short clipper cut may be necessary — this is the only humane solution that doesn't cause pain. Mats compress the skin and can cause irritation, so their removal is a priority."
+
+- question: "Do you groom cats?"
+  answer: "Yes, we also groom cats. Due to their specific temperament, we require a prior phone consultation to discuss details. For cats with particularly restless dispositions, we may recommend a vet visit with sedation option."
+
+- question: "What payment methods do you accept?"
+  answer: "We accept cash, card (Visa, Mastercard), and BLIK. Payment is made after the service is completed. We also offer packages and passes for recurring visits with a discount."
+
+- question: "What if I need to cancel my appointment?"
+  answer: "Please cancel or reschedule at least 24 hours in advance. For later cancellations or no-shows, we charge a fee of 50% of the booked service price. However, we understand emergencies — please contact us."
+
+- question: "Do you offer services for dogs with health issues?"
+  answer: "Yes, we have experience working with senior dogs, post-surgery pets, and those with skin issues. Please inform us about your pet's health condition in advance. In some cases, we may require a vet certificate."
+
+- question: "Do you have parking?"
+  answer: "Yes, we have free parking for customers right in front of the salon. Accessible parking spaces are also available. During peak hours, parking may be full — we recommend arriving 5 minutes early."

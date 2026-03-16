@@ -1,0 +1,22 @@
+# Godziny otwarcia salonu
+days:
+  - day: "Poniedziałek"
+    open: "09:00"
+    close: "18:00"
+  - day: "Wtorek"
+    open: "09:00"
+    close: "18:00"
+  - day: "Środa"
+    open: "09:00"
+    close: "18:00"
+  - day: "Czwartek"
+    open: "09:00"
+    close: "18:00"
+  - day: "Piątek"
+    open: "09:00"
+    close: "18:00"
+  - day: "Sobota"
+    open: "10:00"
+    close: "14:00"
+  - day: "Niedziela"
+    closed: true

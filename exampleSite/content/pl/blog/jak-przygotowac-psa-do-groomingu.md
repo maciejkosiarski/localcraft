@@ -3,6 +3,7 @@ title: "Jak przygotować psa do pierwszej wizyty u groomera"
 date: 2024-01-15
 description: "Praktyczne wskazówki, jak oswoić pupila z wizytą w salonie groomerskim i sprawić, by była przyjemnym doświadczeniem."
 image: "/images/blog/grooming-prep.jpg"
+tags: ["porady", "pierwsza wizyta", "socjalizacja"]
 ---
 
 Pierwsza wizyta u groomera może być stresująca zarówno dla psa, jak i dla właściciela. Odpowiednie przygotowanie sprawi, że będzie to pozytywne doświadczenie dla wszystkich.

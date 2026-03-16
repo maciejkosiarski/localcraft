@@ -1,0 +1,127 @@
+{{ define "main" }}
+{{- $lang := .Language.Lang -}}
+{{- $business := site.Params.business -}}
+{{- $hours := index site.Data $lang "opening_hours" -}}
+
+<section class="location-hero section">
+  <div class="container">
+    <div class="location-hero__content">
+      <span class="section-label animate-fade-up">{{ i18n "location" }}</span>
+      <h1 class="location-hero__heading animate-fade-up delay-1">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="location-hero__description animate-fade-up delay-2">{{ . }}</p>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="location-main section">
+  <div class="container">
+    <div class="location-grid">
+      {{/* Map */}}
+      <div class="location-map animate-fade-up">
+        <div id="map"
+             data-lat="{{ $business.lat }}"
+             data-lng="{{ $business.lng }}"
+             data-name="{{ $business.name }}"
+             aria-label="{{ i18n "map_aria_label" }}">
+        </div>
+      </div>
+
+      {{/* Info */}}
+      <div class="location-info animate-fade-up delay-1">
+        {{/* Status */}}
+        <div class="location-status" id="open-status" data-lang="{{ $lang }}">
+          <span class="location-status__indicator"></span>
+          <span class="location-status__text"></span>
+        </div>
+
+        {{/* Address */}}
+        <div class="location-info__block">
+          <h2 class="location-info__title">{{ i18n "address" }}</h2>
+          <p class="location-info__text">{{ $business.address }}</p>
+          <a href="https://www.google.com/maps/search/?api=1&query={{ $business.lat }},{{ $business.lng }}"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="location-info__link">
+            {{ i18n "open_in_google_maps" }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+
+        {{/* Contact */}}
+        <div class="location-info__block">
+          <h2 class="location-info__title">{{ i18n "contact" }}</h2>
+          {{ with $business.phone }}
+            <p class="location-info__text">
+              <a href="tel:{{ . | replaceRE `\s` `` }}">{{ . }}</a>
+            </p>
+          {{ end }}
+          {{ with $business.email }}
+            <p class="location-info__text">
+              <a href="mailto:{{ . }}">{{ . }}</a>
+            </p>
+          {{ end }}
+        </div>
+
+        {{/* Opening Hours */}}
+        {{ with $hours }}
+        <div class="location-info__block">
+          <h2 class="location-info__title">{{ i18n "opening_hours" }}</h2>
+          <ul class="location-hours" id="opening-hours-list">
+            {{ range $index, $item := .days }}
+              <li class="location-hours__item" data-day="{{ $index }}">
+                <span class="location-hours__day">{{ $item.day }}</span>
+                <span class="location-hours__time">
+                  {{ if $item.closed }}
+                    {{ i18n "closed" }}
+                  {{ else }}
+                    {{ $item.open }} – {{ $item.close }}
+                  {{ end }}
+                </span>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* Leaflet CSS */}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="">
+
+{{/* Leaflet JS */}}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+{{/* Opening hours data for JS */}}
+<script>
+  window.openingHours = [
+    {{ range $index, $item := $hours.days }}
+      {{ if $index }},{{ end }}
+      { closed: {{ if $item.closed }}true{{ else }}false{{ end }}, open: "{{ $item.open }}", close: "{{ $item.close }}" }
+    {{ end }}
+  ];
+  window.locationStrings = {
+    open: "{{ i18n "status_open" }}",
+    closed: "{{ i18n "status_closed" }}",
+    closingSoon: "{{ i18n "status_closing_soon" }}"
+  };
+</script>
+
+{{/* Location JS */}}
+{{ $locationJS := resources.Get "js/location.js" }}
+{{ with $locationJS }}
+  <script src="{{ .RelPermalink }}" defer></script>
+{{ end }}
+
+{{ end }}

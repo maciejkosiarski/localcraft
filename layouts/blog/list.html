@@ -1,0 +1,101 @@
+{{ define "main" }}
+<section class="blog-page section">
+  <div class="container">
+    <header class="section__header">
+      <span class="section-label">{{ i18n "blog" | default "Blog" }}</span>
+      <h1 class="section-heading">{{ .Title }}</h1>
+      {{ with .Description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{ $pages := .RegularPages }}
+    {{ if gt (len $pages) 0 }}
+      <div class="blog__grid">
+        {{ range $pages.ByDate.Reverse }}
+          <article class="blog__card card">
+            {{ with .Params.image }}
+              <a href="{{ $.RelPermalink }}" class="blog__image-link">
+                <img src="{{ . }}" alt="" class="blog__image" loading="lazy">
+              </a>
+            {{ else }}
+              <a href="{{ $.RelPermalink }}" class="blog__image-link">
+                <div class="blog__placeholder">
+                  <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="400" height="250" fill="#E8F0EA"/>
+                    <path d="M175 100 L200 75 L250 125 L275 100 L325 150 L325 200 L75 200 L75 150 Z" fill="#3B5C45" opacity="0.3"/>
+                    <circle cx="125" cy="90" r="20" fill="#3B5C45" opacity="0.3"/>
+                  </svg>
+                </div>
+              </a>
+            {{ end }}
+
+            <div class="blog__content">
+              <div class="blog__meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">
+                  {{ .Date.Format "2 Jan 2006" }}
+                </time>
+                <span class="blog__separator" aria-hidden="true">&bull;</span>
+                <span>{{ math.Round (div (countwords .Content) 200.0) }} {{ i18n "min_read" }}</span>
+              </div>
+
+              <h2 class="blog__title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </h2>
+
+              {{ with .Description }}
+                <p class="blog__excerpt">{{ . | truncate 120 }}</p>
+              {{ end }}
+
+              {{ with .Params.tags }}
+                <div class="blog__tags">
+                  {{ range first 3 . }}
+                    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="blog__tag">{{ . }}</a>
+                  {{ end }}
+                </div>
+              {{ end }}
+
+              <a href="{{ .RelPermalink }}" class="blog__link">
+                {{ i18n "read_more" }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+
+      {{/* Pagination */}}
+      {{ $paginator := .Paginate $pages }}
+      {{ if gt $paginator.TotalPages 1 }}
+        <nav class="blog__pagination" aria-label="{{ i18n "pagination" | default "Pagination" }}">
+          {{ if $paginator.HasPrev }}
+            <a href="{{ $paginator.Prev.URL }}" class="blog__pagination-link blog__pagination-link--prev">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+              {{ i18n "prev" | default "Previous" }}
+            </a>
+          {{ end }}
+
+          <span class="blog__pagination-info">
+            {{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}
+          </span>
+
+          {{ if $paginator.HasNext }}
+            <a href="{{ $paginator.Next.URL }}" class="blog__pagination-link blog__pagination-link--next">
+              {{ i18n "next" | default "Next" }}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          {{ end }}
+        </nav>
+      {{ end }}
+    {{ else }}
+      <p class="blog__empty">{{ i18n "no_posts" | default "No posts yet." }}</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

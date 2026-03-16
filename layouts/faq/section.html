@@ -1,0 +1,83 @@
+{{ define "head" }}
+{{- /* JSON-LD FAQPage Schema */ -}}
+{{- $faq := index site.Data .Language.Lang "faq" -}}
+{{- if $faq -}}
+{{- $schema := dict "@context" "https://schema.org" "@type" "FAQPage" -}}
+{{- $entities := slice -}}
+{{- range $faq -}}
+  {{- $qa := dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" .answer) -}}
+  {{- $entities = $entities | append $qa -}}
+{{- end -}}
+{{- $schema = merge $schema (dict "mainEntity" $entities) -}}
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{- end -}}
+{{ end }}
+
+{{ define "main" }}
+{{- $faq := index site.Data .Language.Lang "faq" -}}
+
+<section class="faq-page section">
+  <div class="container">
+    <header class="section__header animate-fade-up">
+      {{ with .Params.label }}
+        <span class="section-label">{{ . }}</span>
+      {{ end }}
+      <h1 class="section-heading">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{- if $faq -}}
+    <div class="faq__list" role="list">
+      {{- range $i, $item := $faq }}
+        <div class="faq__item animate-fade-up" role="listitem">
+          <button
+            class="faq__question"
+            type="button"
+            aria-expanded="false"
+            aria-controls="faq-answer-{{ $i }}"
+            id="faq-question-{{ $i }}"
+          >
+            <span class="faq__question-text">{{ $item.question }}</span>
+            <span class="faq__icon" aria-hidden="true">
+              {{- partial "icon.html" (dict "name" "chevron-down" "size" 20) -}}
+            </span>
+          </button>
+          <div
+            class="faq__answer"
+            id="faq-answer-{{ $i }}"
+            role="region"
+            aria-labelledby="faq-question-{{ $i }}"
+            hidden
+          >
+            <div class="faq__answer-content">
+              {{ $item.answer | markdownify }}
+            </div>
+          </div>
+        </div>
+      {{- end }}
+    </div>
+    {{- else -}}
+    <p class="faq__empty">{{ .Params.empty_message | default "FAQ coming soon." }}</p>
+    {{- end -}}
+
+    {{/* Optional: Page content from markdown */}}
+    {{ with .Content }}
+      <div class="faq__content prose">
+        {{ . }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $faqJs := resources.Get "js/faq.js" -}}
+{{- if $faqJs -}}
+  {{- $faqJs = $faqJs | minify | fingerprint -}}
+  <script src="{{ $faqJs.RelPermalink }}" defer></script>
+{{- end -}}
+{{ end }}
