@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article class="section">
+  <div class="container">
+    <header class="section__header">
+      {{ with .Params.label }}
+        <span class="section-label">{{ . }}</span>
+      {{ end }}
+      <h1 class="section-heading">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{ with .Content }}
+      <div class="prose">
+        {{ . }}
+      </div>
+    {{ end }}
+  </div>
+</article>
+{{ end }}

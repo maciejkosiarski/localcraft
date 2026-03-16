@@ -11,10 +11,10 @@ sections:
     description: "Profesjonalne strzyżenie, kąpiele i zabiegi pielęgnacyjne w przyjaznej atmosferze. Działamy z pasją od 2018 roku."
     cta_primary:
       text: "Umów wizytę"
-      url: "/kontakt/"
+      url: "/pl/lokalizacja/"
     cta_secondary:
       text: "Zobacz cennik"
-      url: "/cennik/"
+      url: "/pl/cennik/"
     image: "/images/hero-dog.jpg"
     stats:
       - value: "2000+"
@@ -37,7 +37,7 @@ sections:
     description: "Galeria przemian naszych podopiecznych."
     cta:
       text: "Zobacz więcej"
-      url: "/galeria/"
+      url: "/pl/galeria/"
     limit: 3
 
   - type: testimonials
@@ -54,7 +54,7 @@ sections:
     limit: 3
     cta:
       text: "Wszystkie artykuły"
-      url: "/blog/"
+      url: "/pl/blog/"
 
   - type: cta-banner
     enabled: true
