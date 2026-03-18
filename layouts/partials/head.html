@@ -45,3 +45,47 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+{{/* JSON-LD Structured Data */}}
+{{- if .IsHome }}
+{{- $biz := site.Params.business }}
+{{- $lang := .Language.Lang }}
+{{- $hours := index site.Data $lang "opening_hours" }}
+{{- if $biz }}
+{{- $address := dict "@type" "PostalAddress" "streetAddress" ($biz.street | default "") "addressLocality" ($biz.city | default "") "addressCountry" ($biz.country | default "PL") }}
+{{- if $biz.postalCode }}{{ $address = merge $address (dict "postalCode" $biz.postalCode) }}{{ end }}
+{{- $ld := dict "@context" "https://schema.org" "@type" ($biz.type | default "LocalBusiness") "name" site.Title "url" (site.BaseURL | string) "address" $address }}
+{{- if site.Params.description }}{{ $ld = merge $ld (dict "description" site.Params.description) }}{{ end }}
+{{- if $biz.phone }}{{ $ld = merge $ld (dict "telephone" $biz.phone) }}{{ end }}
+{{- if $biz.email }}{{ $ld = merge $ld (dict "email" $biz.email) }}{{ end }}
+{{- if and $biz.lat $biz.lng }}
+  {{- $geo := dict "@type" "GeoCoordinates" "latitude" $biz.lat "longitude" $biz.lng }}
+  {{- $ld = merge $ld (dict "geo" $geo) }}
+{{- end }}
+{{- if $hours }}
+  {{- $days := slice "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday" }}
+  {{- $specs := slice }}
+  {{- range $i, $day := $hours.days }}
+    {{- if not $day.closed }}
+      {{- $spec := dict "@type" "OpeningHoursSpecification" "dayOfWeek" (index $days $i) "opens" $day.open "closes" $day.close }}
+      {{- $specs = $specs | append $spec }}
+    {{- end }}
+  {{- end }}
+  {{- $ld = merge $ld (dict "openingHoursSpecification" $specs) }}
+{{- end }}
+{{- if site.Params.footer.social }}
+  {{- $urls := slice }}
+  {{- range site.Params.footer.social }}{{ $urls = $urls | append .url }}{{ end }}
+  {{- $ld = merge $ld (dict "sameAs" $urls) }}
+{{- end }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}
+{{- else if and .IsPage (eq .Section "blog") }}
+{{- $author := dict "@type" "Organization" "name" site.Title }}
+{{- $publisher := dict "@type" "Organization" "name" site.Title "url" (site.BaseURL | string) }}
+{{- $ld := dict "@context" "https://schema.org" "@type" "Article" "headline" .Title "url" .Permalink "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00") "author" $author "publisher" $publisher }}
+{{- $desc := .Description | default (.Summary | plainify | truncate 160) }}
+{{- if $desc }}{{ $ld = merge $ld (dict "description" $desc) }}{{ end }}
+{{- with $image }}{{ $ld = merge $ld (dict "image" (. | absURL)) }}{{ end }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}
