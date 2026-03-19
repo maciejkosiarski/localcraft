@@ -26,7 +26,7 @@
       {{- range $i, $testimonial := $testimonials }}
         <div class="testimonials__card animate-fade-up delay-{{ add $i 1 }}">
           {{/* Stars rating */}}
-          <div class="testimonials__stars" role="img" aria-label="{{ $testimonial.rating }} {{ i18n "stars_of_5" | default "z 5 gwiazdek" }}">
+          <div class="testimonials__stars" role="img" aria-label="{{ $testimonial.rating }} {{ i18n "stars_of_5" | default "out of 5 stars" }}">
             {{- range seq $testimonial.rating }}
               <span class="testimonials__star">{{- partial "icon.html" (dict "name" "star" "size" 20) -}}</span>
             {{- end }}
@@ -48,7 +48,7 @@
             <span class="testimonials__avatar">{{ $initials }}</span>
             <div class="testimonials__info">
               <span class="testimonials__name">{{ $testimonial.name }}</span>
-              <span class="testimonials__pet">{{ $testimonial.pet }}</span>
+              <span class="testimonials__detail">{{ $testimonial.detail }}</span>
             </div>
           </cite>
         </div>

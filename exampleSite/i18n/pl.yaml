@@ -1,6 +1,13 @@
+# General
 footer_copyright: "Wszelkie prawa zastrzeżone."
 before: "Przed"
 after: "Po"
+all: "Wszystkie"
+close: "Zamknij"
+previous: "Poprzednia"
+lightbox_label: "Podgląd zdjęcia"
+main_navigation: "Nawigacja główna"
+language_switch: "Zmiana języka"
 
 # About
 about_us: "O nas"

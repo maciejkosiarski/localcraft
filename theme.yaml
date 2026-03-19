@@ -1,14 +1,14 @@
 name: localcraft
 license: MIT
-description: Hugo theme for small service businesses - grooming salons, hairdressers, beauty salons, massage parlors. Organic warm minimalism design.
+description: Hugo theme for small local service businesses - hairdressers, beauty salons, massage parlors, pet groomers and more. Organic warm minimalism design.
 homepage: https://github.com/uzytkownik/localcraft
 tags:
   - hugo
   - theme
-  - grooming-salon
+  - local-business
+  - service-business
   - hairdresser
   - beauty-salon
-  - business
   - minimal
 min_version: 0.123.0
 author:

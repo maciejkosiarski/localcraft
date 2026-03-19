@@ -1,5 +1,5 @@
 ---
 title: "Misia"
-breed: "Maltese"
+category: "Maltese"
 date: 2024-01-15
 ---

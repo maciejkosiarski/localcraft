@@ -1,5 +1,5 @@
 ---
 title: "Reks"
-breed: "Schnauzer"
+category: "Schnauzer"
 date: 2024-01-08
 ---

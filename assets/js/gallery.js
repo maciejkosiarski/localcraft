@@ -1,5 +1,5 @@
 /**
- * Gallery: Before/After Slider, Breed Filters & Lightbox
+ * Gallery: Before/After Slider, Category Filters & Lightbox
  * Vanilla JS implementation
  */
 (function () {
@@ -92,7 +92,7 @@
   }
 
   // ==================
-  // Breed Filters
+  // Category Filters
   // ==================
   function initFilters() {
     const filterContainer = document.querySelector('.gallery__filters');
@@ -105,7 +105,7 @@
       const btn = e.target.closest('.gallery__filter-btn');
       if (!btn) return;
 
-      const breed = btn.dataset.breed;
+      const category = btn.dataset.category;
 
       // Update active button
       buttons.forEach(function (b) { b.classList.remove('active'); });
@@ -113,7 +113,7 @@
 
       // Filter cards
       cards.forEach(function (card) {
-        if (breed === 'all' || card.dataset.breed === breed) {
+        if (category === 'all' || card.dataset.category === category) {
           card.hidden = false;
         } else {
           card.hidden = true;
@@ -157,7 +157,7 @@
       const card = visibleCards[currentIndex];
       const img = getImageFromCard(card);
       const name = card.querySelector('.gallery__name');
-      const breed = card.querySelector('.gallery__breed');
+      const category = card.querySelector('.gallery__category');
 
       if (img) {
         image.src = img.src;
@@ -165,8 +165,8 @@
       }
 
       const captionText = name ? name.textContent : '';
-      const breedText = breed ? ' — ' + breed.textContent : '';
-      caption.textContent = captionText + breedText;
+      const categoryText = category ? ' — ' + category.textContent : '';
+      caption.textContent = captionText + categoryText;
 
       // Update nav visibility
       prevBtn.style.visibility = visibleCards.length > 1 ? 'visible' : 'hidden';

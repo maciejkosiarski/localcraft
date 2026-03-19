@@ -1,5 +1,5 @@
 ---
 title: "Tosia"
-breed: "Shih Tzu"
+category: "Shih Tzu"
 date: 2024-01-10
 ---

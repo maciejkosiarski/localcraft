@@ -5,7 +5,7 @@
   Usage: {{ partial "gallery-card.html" (dict "page" . "prefix" "gallery") }}
 
   Parameters:
-    - page: the gallery page with .Title, .Params.image_before, .Params.image_after, .Params.breed
+    - page: the gallery page with .Title, .Params.image_before, .Params.image_after, .Params.category
     - prefix: CSS class prefix, e.g. "gallery" or "before-after" (default: "gallery")
     - headingLevel: h2 or h3 (default: "h3")
 */}}
@@ -14,14 +14,14 @@
 {{- $prefix := .prefix | default "gallery" -}}
 {{- $headingLevel := .headingLevel | default "h3" -}}
 
-<article class="{{ $prefix }}__card"{{ with $page.Params.breed }} data-breed="{{ . | urlize }}"{{ end }}>
+<article class="{{ $prefix }}__card"{{ with $page.Params.category }} data-category="{{ . | urlize }}"{{ end }}>
   <div class="{{ $prefix }}__images">
     {{/* Before image */}}
     <figure class="{{ $prefix }}__figure {{ $prefix }}__figure--before">
       {{- with $page.Params.image_before }}
         <img
           src="{{ . }}"
-          alt="{{ $page.Title }} before grooming"
+          alt="{{ $page.Title }} — {{ i18n "before" | default "before" }}"
           class="{{ $prefix }}__image"
           loading="lazy"
         >
@@ -42,7 +42,7 @@
       {{- with $page.Params.image_after }}
         <img
           src="{{ . }}"
-          alt="{{ $page.Title }} after grooming"
+          alt="{{ $page.Title }} — {{ i18n "after" | default "after" }}"
           class="{{ $prefix }}__image"
           loading="lazy"
         >
@@ -61,8 +61,8 @@
 
   <div class="{{ $prefix }}__info">
     {{ printf "<%s class=\"%s__name\">%s</%s>" $headingLevel $prefix $page.Title $headingLevel | safeHTML }}
-    {{- with $page.Params.breed }}
-      <span class="{{ $prefix }}__breed">{{ . }}</span>
+    {{- with $page.Params.category }}
+      <span class="{{ $prefix }}__category">{{ . }}</span>
     {{- end }}
   </div>
 </article>

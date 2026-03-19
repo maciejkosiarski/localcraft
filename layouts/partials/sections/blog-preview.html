@@ -57,7 +57,7 @@
               {{- $wordCount := $post.WordCount -}}
               {{- $readingTime := div $wordCount 200 -}}
               {{- if lt $readingTime 1 }}{{ $readingTime = 1 }}{{ end -}}
-              <span>{{ $readingTime }} {{ i18n "min_read" | default "min czytania" }}</span>
+              <span>{{ $readingTime }} {{ i18n "min_read" | default "min read" }}</span>
             </div>
 
             {{/* Title */}}
@@ -72,7 +72,7 @@
 
             {{/* Read more link */}}
             <a href="{{ $post.RelPermalink }}" class="blog-preview__link">
-              {{ i18n "read_more" | default "Czytaj dalej" }}
+              {{ i18n "read_more" | default "Read more" }}
               {{- partial "icon.html" (dict "name" "arrow-right" "size" 16) -}}
             </a>
           </div>

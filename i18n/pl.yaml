@@ -1,0 +1,59 @@
+# Localcraft Theme - Polish translations (defaults)
+
+# General
+footer_copyright: "Wszelkie prawa zastrzezone."
+before: "Przed"
+after: "Po"
+all: "Wszystkie"
+close: "Zamknij"
+previous: "Poprzednia"
+lightbox_label: "Podglad zdjecia"
+main_navigation: "Nawigacja glowna"
+language_switch: "Zmiana jezyka"
+
+# About
+about_us: "O nas"
+our_values: "Nasze wartosci"
+values_heading: "Dlaczego my?"
+our_team: "Nasz zespol"
+team_heading: "Poznaj nas blizej"
+
+# Blog
+blog: "Blog"
+read_more: "Czytaj dalej"
+min_read: "min czytania"
+back_to_blog: "Wroc do bloga"
+related_posts: "Powiazane artykuly"
+no_posts: "Brak artykulow."
+prev: "Poprzednia"
+next: "Nastepna"
+pagination: "Nawigacja stron"
+
+# Testimonials
+stars_of_5: "z 5 gwiazdek"
+
+# Pricing
+filter_by_category: "Filtruj wedlug kategorii"
+service: "Usluga"
+duration: "Czas"
+price: "Cena"
+
+# Gallery
+ba_slider_label: "Porownanie przed i po. Przeciagnij suwak, aby porownac."
+ba_handle_label: "Suwak porownania"
+
+# FAQ
+faq: "FAQ"
+faq_heading: "Najczesciej zadawane pytania"
+
+# Location
+location: "Lokalizacja"
+address: "Adres"
+contact: "Kontakt"
+opening_hours: "Godziny otwarcia"
+closed: "Zamkniete"
+open_in_google_maps: "Otworz w Google Maps"
+map_aria_label: "Mapa z lokalizacja"
+status_open: "Teraz otwarte"
+status_closed: "Teraz zamkniete"
+status_closing_soon: "Zamykamy wkrotce"

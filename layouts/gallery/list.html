@@ -13,21 +13,21 @@
 
     {{- $pages := .Pages -}}
     {{- if $pages -}}
-    {{/* Breed filters */}}
-    {{- $breeds := slice -}}
+    {{/* Category filters */}}
+    {{- $categories := slice -}}
     {{- range $pages -}}
-      {{- with .Params.breed -}}
-        {{- $breeds = $breeds | append . -}}
+      {{- with .Params.category -}}
+        {{- $categories = $categories | append . -}}
       {{- end -}}
     {{- end -}}
-    {{- $breeds = $breeds | uniq | sort -}}
-    {{- if gt (len $breeds) 1 -}}
-    <div class="gallery__filters" role="group" aria-label="{{ i18n "filter_by_breed" | default "Filter by breed" }}">
-      <button type="button" class="gallery__filter-btn active" data-breed="all">
+    {{- $categories = $categories | uniq | sort -}}
+    {{- if gt (len $categories) 1 -}}
+    <div class="gallery__filters" role="group" aria-label="{{ i18n "filter_by_category" | default "Filter by category" }}">
+      <button type="button" class="gallery__filter-btn active" data-category="all">
         {{ i18n "all" | default "All" }}
       </button>
-      {{- range $breeds -}}
-      <button type="button" class="gallery__filter-btn" data-breed="{{ . | urlize }}">
+      {{- range $categories -}}
+      <button type="button" class="gallery__filter-btn" data-category="{{ . | urlize }}">
         {{ . }}
       </button>
       {{- end -}}
@@ -36,14 +36,14 @@
 
     <div class="gallery__grid">
       {{- range $pages -}}
-      <article class="gallery__card" data-breed="{{ .Params.breed | urlize }}">
+      <article class="gallery__card" data-category="{{ .Params.category | urlize }}">
         <div class="ba-slider" aria-label="{{ i18n "ba_slider_label" | default "Before and after comparison. Drag the slider to compare." }}">
           {{/* After image (background layer) */}}
           <div class="ba-slider__after">
             {{ with .Params.image_after }}
               <img
                 src="{{ . }}"
-                alt="{{ $.Title }} {{ i18n "after" | default "after" }} grooming"
+                alt="{{ $.Title }} — {{ i18n "after" | default "after" }}"
                 class="ba-slider__image"
                 loading="lazy"
               >
@@ -64,7 +64,7 @@
             {{ with .Params.image_before }}
               <img
                 src="{{ . }}"
-                alt="{{ $.Title }} {{ i18n "before" | default "before" }} grooming"
+                alt="{{ $.Title }} — {{ i18n "before" | default "before" }}"
                 class="ba-slider__image"
                 loading="lazy"
               >
@@ -94,8 +94,8 @@
 
         <div class="gallery__info">
           <h2 class="gallery__name">{{ .Title }}</h2>
-          {{ with .Params.breed }}
-            <span class="gallery__breed">{{ . }}</span>
+          {{ with .Params.category }}
+            <span class="gallery__category">{{ . }}</span>
           {{ end }}
         </div>
       </article>

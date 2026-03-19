@@ -1,3 +1,5 @@
+# Localcraft Theme - English translations (defaults)
+
 # General
 footer_copyright: "All rights reserved."
 before: "Before"
@@ -51,7 +53,7 @@ contact: "Contact"
 opening_hours: "Opening Hours"
 closed: "Closed"
 open_in_google_maps: "Open in Google Maps"
-map_aria_label: "Map showing salon location"
+map_aria_label: "Map showing business location"
 status_open: "Open now"
 status_closed: "Closed now"
 status_closing_soon: "Closing soon"

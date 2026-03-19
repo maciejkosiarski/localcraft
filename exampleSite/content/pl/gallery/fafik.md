@@ -1,5 +1,5 @@
 ---
 title: "Fafik"
-breed: "Poodle"
+category: "Poodle"
 date: 2024-01-12
 ---

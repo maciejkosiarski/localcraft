@@ -1,5 +1,5 @@
 ---
 title: "Luna"
-breed: "Yorkshire Terrier"
+category: "Yorkshire Terrier"
 date: 2024-01-20
 ---

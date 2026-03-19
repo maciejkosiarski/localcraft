@@ -739,7 +739,7 @@ img {
   font-size: var(--text-base);
 }
 
-.testimonials__pet {
+.testimonials__detail {
   font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.7);
 }
@@ -1472,7 +1472,7 @@ img {
   margin-bottom: var(--space-xs);
 }
 
-.gallery__breed {
+.gallery__category {
   display: inline-block;
   font-size: var(--text-sm);
   color: var(--text-muted);

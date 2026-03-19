@@ -1,14 +1,14 @@
 - name: "Anna Kowalska"
-  pet: "Luna, Golden Retriever"
+  detail: "Luna, Golden Retriever"
   rating: 5
   text: "The best grooming salon in Warsaw! Luna always comes back well-groomed and happy. The staff are very patient and professional."
 
 - name: "Michał Nowak"
-  pet: "Bruno, Yorkshire Terrier"
+  detail: "Bruno, Yorkshire Terrier"
   rating: 5
   text: "Bruno is afraid of grooming, but here he feels safe. You can tell the team really loves animals. Highly recommended!"
 
 - name: "Katarzyna Wiśniewska"
-  pet: "Max, Shih Tzu"
+  detail: "Max, Shih Tzu"
   rating: 5
   text: "We've been using Snip Snip services for 3 years. Always perfect grooming and friendly service. Max looks like new every time!"
