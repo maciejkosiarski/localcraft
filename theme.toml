@@ -1,0 +1,13 @@
+name = "Localcraft"
+license = "MIT"
+licenselink = "https://github.com/maciejkosiarski/localcraft/blob/master/LICENSE"
+description = "Hugo theme for small local service businesses - hairdressers, beauty salons, massage parlors, pet groomers and more. Organic warm minimalism design."
+homepage = "https://github.com/maciejkosiarski/localcraft"
+demosite = "https://localcraft-demo.netlify.app"
+tags = ["business", "responsive", "multilingual", "minimal", "services", "portfolio", "gallery", "blog", "contact", "seo"]
+features = ["i18n", "SEO", "JSON-LD", "Leaflet maps", "Before/after gallery", "Responsive", "No JS frameworks"]
+min_version = "0.123.0"
+
+[author]
+  name = "Maciej Kosiarski"
+  homepage = "https://github.com/maciejkosiarski"

@@ -2,7 +2,7 @@
 
 A Hugo theme for small local service businesses — hairdressers, beauty salons, massage parlors, pet groomers, and more.
 
-![Localcraft Theme Screenshot](images/screenshot.png)
+![Localcraft Theme Screenshot](https://raw.githubusercontent.com/maciejkosiarski/localcraft/master/images/screenshot.png)
 
 ## Features
 

@@ -1,0 +1,6 @@
+# Hugo version requirements for Localcraft theme
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.123.0"
