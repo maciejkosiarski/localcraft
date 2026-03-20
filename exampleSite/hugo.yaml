@@ -1,12 +1,12 @@
 baseURL: https://snipsnip.pl/
-defaultContentLanguage: pl
+defaultContentLanguage: en
 languages:
   pl:
     languageName: Polski
     languageCode: pl-PL
     contentDir: content/pl
     title: "Ciachu Ciachu"
-    weight: 1
+    weight: 2
     params:
       logo:
         name: "Ciachu Ciachu"
@@ -38,7 +38,7 @@ languages:
     languageCode: en-US
     contentDir: content/en
     title: "Snip Snip"
-    weight: 2
+    weight: 1
     params:
       logo:
         name: "Snip Snip"
@@ -65,7 +65,7 @@ languages:
         - name: "Contact"
           url: "/en/location/"
           weight: 6
-languageCode: pl-PL
+languageCode: en-US
 themesDir: ".."
 theme: ["."]
 
