@@ -38,7 +38,7 @@
   {{ with .Params.image }}
     <div class="blog-post__hero">
       <div class="container">
-        <img src="{{ . }}" alt="" class="blog-post__hero-image">
+        <img src="{{ . | relURL }}" alt="" class="blog-post__hero-image">
       </div>
     </div>
   {{ end }}
@@ -58,7 +58,7 @@
             {{ range . }}
               <a href="{{ .RelPermalink }}" class="blog-post__related-card">
                 {{ with .Params.image }}
-                  <img src="{{ . }}" alt="" class="blog-post__related-image" loading="lazy">
+                  <img src="{{ . | relURL }}" alt="" class="blog-post__related-image" loading="lazy">
                 {{ else }}
                   <div class="blog-post__related-placeholder">
                     <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

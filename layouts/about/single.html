@@ -52,7 +52,7 @@
         <div class="about-team__member {{ if (modBool $index 2) }}about-team__member--reverse{{ end }} animate-fade-up">
           <div class="about-team__image">
             {{ if $member.image }}
-              <img src="{{ $member.image }}" alt="{{ $member.name }}" loading="lazy">
+              <img src="{{ $member.image | relURL }}" alt="{{ $member.name }}" loading="lazy">
             {{ else }}
               {{/* Avatar placeholder with initials */}}
               <div class="about-team__avatar">

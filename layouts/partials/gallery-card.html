@@ -20,7 +20,7 @@
     <figure class="{{ $prefix }}__figure {{ $prefix }}__figure--before">
       {{- with $page.Params.image_before }}
         <img
-          src="{{ . }}"
+          src="{{ . | relURL }}"
           alt="{{ $page.Title }} — {{ i18n "before" | default "before" }}"
           class="{{ $prefix }}__image"
           loading="lazy"
@@ -41,7 +41,7 @@
     <figure class="{{ $prefix }}__figure {{ $prefix }}__figure--after">
       {{- with $page.Params.image_after }}
         <img
-          src="{{ . }}"
+          src="{{ . | relURL }}"
           alt="{{ $page.Title }} — {{ i18n "after" | default "after" }}"
           class="{{ $prefix }}__image"
           loading="lazy"

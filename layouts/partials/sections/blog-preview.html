@@ -28,7 +28,7 @@
           {{- with $post.Params.image }}
             <a href="{{ $post.RelPermalink }}" class="blog-preview__image-link">
               <img
-                src="{{ . }}"
+                src="{{ . | relURL }}"
                 alt="{{ $post.Title }}"
                 class="blog-preview__image"
                 loading="lazy"

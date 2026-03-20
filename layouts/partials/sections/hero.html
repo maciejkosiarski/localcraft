@@ -48,7 +48,7 @@
       <div class="hero__media animate-fade-up delay-2">
         {{- if $s.image }}
           <img
-            src="{{ $s.image }}"
+            src="{{ $s.image | relURL }}"
             alt="{{ $s.heading | default "Hero" }}"
             class="hero__image"
             loading="eager"
