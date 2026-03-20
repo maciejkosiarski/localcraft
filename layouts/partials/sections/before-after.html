@@ -37,7 +37,7 @@
 
     {{ with $s.cta }}
       <div class="before-after__cta">
-        <a href="{{ .url | relURL }}" class="btn btn-outline">{{ .text }}</a>
+        <a href="{{ partial "url.html" .url }}" class="btn btn-outline">{{ .text }}</a>
       </div>
     {{ end }}
 

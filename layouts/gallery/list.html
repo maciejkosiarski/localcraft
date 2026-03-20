@@ -42,7 +42,7 @@
           <div class="ba-slider__after">
             {{ with .Params.image_after }}
               <img
-                src="{{ . | relURL }}"
+                src="{{ partial "url.html" . }}"
                 alt="{{ $.Title }} — {{ i18n "after" | default "after" }}"
                 class="ba-slider__image"
                 loading="lazy"
@@ -63,7 +63,7 @@
           <div class="ba-slider__before">
             {{ with .Params.image_before }}
               <img
-                src="{{ . | relURL }}"
+                src="{{ partial "url.html" . }}"
                 alt="{{ $.Title }} — {{ i18n "before" | default "before" }}"
                 class="ba-slider__image"
                 loading="lazy"

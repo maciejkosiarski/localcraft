@@ -30,7 +30,7 @@
 
 {{/* Favicon */}}
 {{- with .Site.Params.favicon }}
-<link rel="icon" href="{{ . | relURL }}" type="image/x-icon">
+<link rel="icon" href="{{ partial "url.html" . }}" type="image/x-icon">
 {{- end }}
 
 {{/* Canonical URL */}}

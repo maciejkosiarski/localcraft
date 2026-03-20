@@ -25,10 +25,10 @@
 
         <div class="hero__cta animate-fade-up delay-3">
           {{- with $s.cta_primary }}
-            <a href="{{ .url | absURL }}" class="btn btn-primary">{{ .text }}</a>
+            <a href="{{ partial "url.html" .url }}" class="btn btn-primary">{{ .text }}</a>
           {{- end }}
           {{- with $s.cta_secondary }}
-            <a href="{{ .url | absURL }}" class="btn btn-outline">{{ .text }}</a>
+            <a href="{{ partial "url.html" .url }}" class="btn btn-outline">{{ .text }}</a>
           {{- end }}
         </div>
 
@@ -48,7 +48,7 @@
       <div class="hero__media animate-fade-up delay-2">
         {{- if $s.image }}
           <img
-            src="{{ $s.image | relURL }}"
+            src="{{ partial "url.html" $s.image }}"
             alt="{{ $s.heading | default "Hero" }}"
             class="hero__image"
             loading="eager"

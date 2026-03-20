@@ -28,7 +28,7 @@
           {{- with $post.Params.image }}
             <a href="{{ $post.RelPermalink }}" class="blog-preview__image-link">
               <img
-                src="{{ . | relURL }}"
+                src="{{ partial "url.html" . }}"
                 alt="{{ $post.Title }}"
                 class="blog-preview__image"
                 loading="lazy"
@@ -83,7 +83,7 @@
     {{/* CTA button */}}
     {{- with $s.cta }}
       <div class="blog-preview__cta animate-fade-up">
-        <a href="{{ .url | relURL }}" class="btn btn-outline">{{ .text }}</a>
+        <a href="{{ partial "url.html" .url }}" class="btn btn-outline">{{ .text }}</a>
       </div>
     {{- end }}
   </div>

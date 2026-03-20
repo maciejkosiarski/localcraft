@@ -1,0 +1,12 @@
+{{/*
+  url.html - generates correct relative URL for paths from data/front matter
+
+  Usage:
+    {{ partial "url.html" "/images/photo.jpg" }}
+    {{ partial "url.html" .url }}
+
+  Handles both:
+    - Root domain: https://example.com/ → /images/photo.jpg
+    - Subdirectory: https://example.com/demo/ → /demo/images/photo.jpg
+*/}}
+{{- strings.TrimPrefix "/" . | relURL -}}
