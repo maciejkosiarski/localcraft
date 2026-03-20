@@ -1,5 +1,6 @@
 baseURL: https://snipsnip.pl/
 defaultContentLanguage: en
+defaultContentLanguageInSubdir: true
 languages:
   pl:
     languageName: Polski
@@ -80,23 +81,22 @@ params:
   logo:
     name: "Snip Snip"
     dot: true
-  # SEO & Business Info - użytkownik motywu wypełnia te pola
+  # SEO & Business Info
   business:
     name: "Snip Snip"
     # Schema.org type: PetGroomer, HairSalon, BeautySalon, DaySpa, HealthAndBeautyBusiness
     type: "PetGroomer"
     phone: "+48 123 456 789"
     email: "kontakt@snipsnip.pl"
-    # Adres rozdzielony na pola dla JSON-LD
     street: "ul. Kwiatowa 15"
     city: "Warszawa"
     postalCode: "00-001"
     country: "PL"
-    # Współrzędne dla mapy i JSON-LD
+    # Coordinates for map and JSON-LD
     lat: 52.2297
     lng: 21.0122
     start_year: 2018
-  # Open Graph image (ścieżka względna do static/)
+  # Open Graph image
   og_image: "/images/og-default.jpg"
   footer:
     description: "Profesjonalna pielęgnacja Twoich pupili"

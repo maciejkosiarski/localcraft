@@ -25,10 +25,10 @@
 
         <div class="hero__cta animate-fade-up delay-3">
           {{- with $s.cta_primary }}
-            <a href="{{ .url }}" class="btn btn-primary">{{ .text }}</a>
+            <a href="{{ .url | absURL }}" class="btn btn-primary">{{ .text }}</a>
           {{- end }}
           {{- with $s.cta_secondary }}
-            <a href="{{ .url }}" class="btn btn-outline">{{ .text }}</a>
+            <a href="{{ .url | absURL }}" class="btn btn-outline">{{ .text }}</a>
           {{- end }}
         </div>
 
