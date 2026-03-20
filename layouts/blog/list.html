@@ -50,7 +50,7 @@
               {{ with .Params.tags }}
                 <div class="blog__tags">
                   {{ range first 3 . }}
-                    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="blog__tag">{{ . }}</a>
+                    <a href="{{ (printf "/tags/%s/" (. | urlize)) | relLangURL | relURL }}" class="blog__tag">{{ . }}</a>
                   {{ end }}
                 </div>
               {{ end }}

@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <a href="{{ "/" | relLangURL }}" class="footer__logo">
+      <a href="{{ .Site.Home.RelPermalink }}" class="footer__logo">
         {{ .Site.Params.logo.name }}{{ if .Site.Params.logo.dot }}<span class="footer__dot">.</span>{{ end }}
       </a>
       {{ with .Site.Params.footer.description }}

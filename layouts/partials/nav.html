@@ -1,6 +1,6 @@
 <nav class="nav">
   <div class="container nav__inner">
-    <a href="{{ "/" | relLangURL }}" class="nav__logo">
+    <a href="{{ .Site.Home.RelPermalink }}" class="nav__logo">
       {{ .Site.Params.logo.name }}{{ if .Site.Params.logo.dot }}<span class="nav__dot">.</span>{{ end }}
     </a>
     
