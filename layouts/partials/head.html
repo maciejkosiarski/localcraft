@@ -36,6 +36,26 @@
 {{/* Canonical URL */}}
 <link rel="canonical" href="{{ $url }}">
 
+{{/* Hreflang for multilingual sites */}}
+{{- if .IsTranslated }}
+<link rel="alternate" hreflang="{{ .Site.Language.LanguageCode }}" href="{{ .Permalink }}">
+{{- range .AllTranslations }}
+{{- if ne .Language.LanguageCode $.Site.Language.LanguageCode }}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
+{{- end }}
+{{- end }}
+<link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+{{- end }}
+
+{{/* Robots: noindex for paginated section pages > 1 */}}
+{{- if .IsSection }}
+{{- with .Paginator }}
+{{- if gt .PageNumber 1 }}
+<meta name="robots" content="noindex, follow">
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{ $css := resources.Get "css/main.css" }}
 {{ if $css }}
   {{ $css = $css | minify | fingerprint }}

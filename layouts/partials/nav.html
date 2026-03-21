@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="nav" aria-label="{{ i18n "main_navigation" }}">
   <div class="container nav__inner">
     <a href="{{ .Site.Home.RelPermalink }}" class="nav__logo">
       {{ .Site.Params.logo.name }}{{ if .Site.Params.logo.dot }}<span class="nav__dot">.</span>{{ end }}
@@ -24,7 +24,7 @@
 
       {{/* Language switcher */}}
       {{ if gt (len .Site.Languages) 1 }}
-      <div class="nav__lang">
+      <div class="nav__lang" role="group" aria-label="{{ i18n "language_switch" }}">
         {{- $currentLang := .Language.Lang -}}
         {{- $translations := .Translations -}}
         {{ range .Site.Languages }}

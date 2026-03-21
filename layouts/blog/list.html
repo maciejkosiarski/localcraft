@@ -16,7 +16,7 @@
           <article class="blog__card card">
             {{ with .Params.image }}
               <a href="{{ $.RelPermalink }}" class="blog__image-link">
-                <img src="{{ partial "url.html" . }}" alt="" class="blog__image" loading="lazy">
+                <img src="{{ partial "url.html" . }}" alt="{{ $.Title }}" class="blog__image" loading="lazy">
               </a>
             {{ else }}
               <a href="{{ $.RelPermalink }}" class="blog__image-link">
