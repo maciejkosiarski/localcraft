@@ -67,8 +67,10 @@ languages:
           url: "/en/location/"
           weight: 6
 languageCode: en-US
-themesDir: ".."
-theme: ["."]
+
+module:
+  imports:
+    - path: github.com/maciejkosiarski/localcraft
 
 taxonomies:
   tag: tags
