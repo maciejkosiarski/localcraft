@@ -5,6 +5,7 @@
   {{ block "head" . }}{{ end }}
 </head>
 <body>
+  {{- partial "gtm-body.html" . -}}
   <a href="#main-content" class="skip-link">Skip to main content</a>
   {{ partial "nav.html" . }}
 
@@ -20,5 +21,7 @@
   {{- end -}}
 
   {{ block "scripts" . }}{{ end }}
+
+  {{- partial "cookie-consent.html" . -}}
 </body>
 </html>

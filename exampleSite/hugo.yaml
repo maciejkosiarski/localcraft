@@ -83,6 +83,9 @@ params:
   logo:
     name: "Snip Snip"
     dot: true
+  # Google Tag Manager (optional) - uncomment and add your GTM ID
+  # gtm:
+  #   id: "GTM-XXXXXXX"
   # Custom colors (optional) - uncomment to override default theme colors
   # colors:
   #   primary: "#3B5C45"      # Main brand color (buttons, links, accents)

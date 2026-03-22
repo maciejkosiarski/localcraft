@@ -57,3 +57,8 @@ map_aria_label: "Map showing business location"
 status_open: "Open now"
 status_closed: "Closed now"
 status_closing_soon: "Closing soon"
+
+# Cookie Consent
+cookie_message: "We use cookies and analytics to improve your experience. By accepting, you agree to our use of cookies for analytics purposes."
+cookie_accept: "Accept"
+cookie_decline: "Decline"

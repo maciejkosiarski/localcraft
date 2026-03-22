@@ -1,3 +1,4 @@
+{{- partial "gtm-head.html" . -}}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -56,11 +57,17 @@
 {{- end }}
 {{- end }}
 
-{{ $css := resources.Get "css/main.css" }}
-{{ if $css }}
-  {{ $css = $css | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-{{ end }}
+{{/* Bundle all CSS files */}}
+{{- $main := resources.Get "css/main.css" -}}
+{{- $cookieConsent := resources.Get "css/cookie-consent.css" -}}
+{{- if $main -}}
+  {{- $cssBundle := slice $main -}}
+  {{- with $cookieConsent -}}
+    {{- $cssBundle = $cssBundle | append . -}}
+  {{- end -}}
+  {{- $css := $cssBundle | resources.Concat "css/bundle.css" | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- end -}}
 
 {{/* Custom colors from site.Params.colors */}}
 {{- with site.Params.colors }}

@@ -1,0 +1,14 @@
+{{/*
+  Google Tag Manager - Noscript Fallback
+
+  Place immediately after opening <body> tag.
+  Only renders when GTM ID is configured.
+
+  Usage: Add {{ partial "gtm-body.html" . }} after <body>
+*/}}
+{{- with site.Params.gtm.id -}}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ . }}"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{{- end -}}

@@ -1,0 +1,134 @@
+{{/*
+  Cookie Consent Banner
+
+  GDPR-compliant cookie consent with GTM integration.
+  Shows banner only when:
+  1. GTM ID is configured
+  2. User hasn't made a choice yet
+
+  On accept: Sets cookie, loads GTM, pushes consent to dataLayer
+  On decline: Sets cookie, no tracking
+
+  Usage: Add {{ partial "cookie-consent.html" . }} before </body>
+*/}}
+{{- with site.Params.gtm.id -}}
+{{- $gtmId := . -}}
+<div id="cookie-consent" class="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cookie-consent-title" hidden>
+  <div class="cookie-consent__inner">
+    <p id="cookie-consent-title" class="cookie-consent__message">
+      {{ i18n "cookie_message" | default "We use cookies and analytics to improve your experience. By accepting, you agree to our use of cookies for analytics purposes." }}
+    </p>
+    <div class="cookie-consent__actions">
+      <button type="button" id="cookie-decline" class="cookie-consent__btn cookie-consent__btn--decline">
+        {{ i18n "cookie_decline" | default "Decline" }}
+      </button>
+      <button type="button" id="cookie-accept" class="cookie-consent__btn cookie-consent__btn--accept">
+        {{ i18n "cookie_accept" | default "Accept" }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var COOKIE_NAME = 'cookie_consent';
+  var COOKIE_DAYS = 365;
+  var GTM_ID = '{{ $gtmId }}';
+
+  var banner = document.getElementById('cookie-consent');
+  var acceptBtn = document.getElementById('cookie-accept');
+  var declineBtn = document.getElementById('cookie-decline');
+
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+
+  function setCookie(name, value, days) {
+    var expires = '';
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie = name + '=' + value + expires + '; path=/; SameSite=Lax; Secure';
+  }
+
+  function loadGTM() {
+    if (window.gtmLoaded) return;
+    window.gtmLoaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'gtm.start': new Date().getTime(),
+      'event': 'gtm.js'
+    });
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(script);
+  }
+
+  function notifyGTMConsent(granted) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'consent_update',
+      'analytics_consent': granted ? 'granted' : 'denied'
+    });
+  }
+
+  function hideBanner() {
+    banner.hidden = true;
+    banner.setAttribute('aria-hidden', 'true');
+  }
+
+  function showBanner() {
+    banner.hidden = false;
+    banner.removeAttribute('aria-hidden');
+    acceptBtn.focus();
+  }
+
+  function handleAccept() {
+    setCookie(COOKIE_NAME, 'accepted', COOKIE_DAYS);
+    hideBanner();
+    loadGTM();
+    notifyGTMConsent(true);
+  }
+
+  function handleDecline() {
+    setCookie(COOKIE_NAME, 'declined', COOKIE_DAYS);
+    hideBanner();
+    notifyGTMConsent(false);
+  }
+
+  // Initialize
+  acceptBtn.addEventListener('click', handleAccept);
+  declineBtn.addEventListener('click', handleDecline);
+
+  // Keyboard support: Escape to decline
+  banner.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      handleDecline();
+    }
+  });
+
+  // Check existing consent
+  var consent = getCookie(COOKIE_NAME);
+
+  if (consent === 'accepted') {
+    // User already accepted - load GTM silently
+    loadGTM();
+    notifyGTMConsent(true);
+  } else if (consent === 'declined') {
+    // User already declined - do nothing
+    notifyGTMConsent(false);
+  } else {
+    // No decision yet - show banner
+    showBanner();
+  }
+})();
+</script>
+{{- end -}}

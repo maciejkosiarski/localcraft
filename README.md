@@ -12,6 +12,7 @@ A Hugo theme for small local service businesses — hairdressers, beauty salons,
 - Fully responsive (mobile-first)
 - Multi-language support (i18n)
 - SEO optimized (JSON-LD, Open Graph, Twitter Cards)
+- Google Tag Manager with GDPR cookie consent
 - No JavaScript frameworks — vanilla JS only
 - Leaflet.js integration for location maps
 - Before/after image slider for galleries
@@ -259,6 +260,48 @@ All colors are optional — only specify the ones you want to override.
 
 - **Headings:** Cormorant Garamond
 - **Body:** DM Sans
+
+## Analytics (Google Tag Manager)
+
+The theme includes built-in support for Google Tag Manager with GDPR-compliant cookie consent.
+
+### Configuration
+
+Add your GTM container ID in `hugo.yaml`:
+
+```yaml
+params:
+  gtm:
+    id: "GTM-XXXXXXX"
+```
+
+### How It Works
+
+1. **Cookie consent banner** appears on first visit
+2. **GTM loads only after user accepts** cookies
+3. **Consent is stored** for 365 days
+4. **dataLayer events** are pushed for GTM triggers:
+   - `consent_update` event with `analytics_consent: "granted"` or `"denied"`
+
+### GTM Configuration (Recommended)
+
+To respect user consent in GTM:
+
+1. Create a **Data Layer Variable** named `analytics_consent`
+2. Create a **Trigger** for Custom Event `consent_update` where `analytics_consent equals granted`
+3. Configure your GA4 tag to fire on:
+   - "Initialization - All Pages" (for users who already consented)
+   - Your consent trigger (for new consent)
+
+### Customizing Consent Text
+
+Edit the i18n files (`i18n/en.yaml`, `i18n/pl.yaml`):
+
+```yaml
+cookie_message: "Your custom consent message here."
+cookie_accept: "Accept"
+cookie_decline: "Decline"
+```
 
 ## Development
 

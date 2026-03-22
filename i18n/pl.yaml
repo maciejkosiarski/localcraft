@@ -57,3 +57,8 @@ map_aria_label: "Mapa z lokalizacja"
 status_open: "Teraz otwarte"
 status_closed: "Teraz zamkniete"
 status_closing_soon: "Zamykamy wkrotce"
+
+# Cookie Consent
+cookie_message: "Uzywamy plikow cookie i analityki, aby poprawic Twoje doswiadczenia. Akceptujac, zgadzasz sie na wykorzystanie plikow cookie do celow analitycznych."
+cookie_accept: "Akceptuj"
+cookie_decline: "Odrzuc"
