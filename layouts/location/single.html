@@ -119,9 +119,9 @@
 </script>
 
 {{/* Location JS */}}
-{{ $locationJS := resources.Get "js/location.js" }}
+{{ $locationJS := resources.Get "js/location.js" | minify | fingerprint }}
 {{ with $locationJS }}
-  <script src="{{ .RelPermalink }}" defer></script>
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
 {{ end }}
 
 {{ end }}

@@ -75,9 +75,8 @@
 {{ end }}
 
 {{ define "scripts" }}
-{{- $faqJs := resources.Get "js/faq.js" -}}
-{{- if $faqJs -}}
-  {{- $faqJs = $faqJs | minify | fingerprint -}}
-  <script src="{{ $faqJs.RelPermalink }}" defer></script>
+{{- $faqJs := resources.Get "js/faq.js" | minify | fingerprint -}}
+{{- with $faqJs -}}
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
 {{- end -}}
 {{ end }}

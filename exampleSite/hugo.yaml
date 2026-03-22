@@ -83,6 +83,17 @@ params:
   logo:
     name: "Snip Snip"
     dot: true
+  # Custom colors (optional) - uncomment to override default theme colors
+  # colors:
+  #   primary: "#3B5C45"      # Main brand color (buttons, links, accents)
+  #   primary_light: "#4A7257"
+  #   primary_pale: "#E8F0EA"
+  #   accent: "#C4714A"       # Secondary accent color (CTAs, highlights)
+  #   accent_dark: "#B5633D"
+  #   accent_pale: "#F5E6E0"
+  #   background: "#FAF7F0"   # Page background color
+  #   text: "#2D2D2D"         # Main text color
+  #   text_muted: "#6B6B6B"   # Secondary text color
   # SEO & Business Info
   business:
     name: "Snip Snip"

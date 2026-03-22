@@ -14,10 +14,9 @@
 
   {{ partial "footer.html" . }}
 
-  {{- $navJs := resources.Get "js/nav.js" -}}
-  {{- if $navJs -}}
-    {{- $navJs = $navJs | minify | fingerprint -}}
-    <script src="{{ $navJs.RelPermalink }}" defer></script>
+  {{- $navJs := resources.Get "js/nav.js" | minify | fingerprint -}}
+  {{- with $navJs -}}
+    <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
   {{- end -}}
 
   {{ block "scripts" . }}{{ end }}

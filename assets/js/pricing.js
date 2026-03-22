@@ -1,3 +1,14 @@
+/**
+ * Pricing Filter Module
+ *
+ * Real-time search and category filtering for pricing tables.
+ * Features:
+ * - Text search by service name and tags
+ * - Category filter buttons
+ * - Combined filtering (search + category)
+ * - "No results" message handling
+ * - Progressive enhancement (works without JS)
+ */
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('pricing-search-input');
   const noResults = document.getElementById('pricing-no-results');

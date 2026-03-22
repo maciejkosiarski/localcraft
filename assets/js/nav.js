@@ -1,3 +1,14 @@
+/**
+ * Navigation Module
+ *
+ * Handles mobile navigation toggle with accessibility support.
+ * Features:
+ * - Hamburger menu toggle for mobile viewports
+ * - ARIA attributes for screen readers
+ * - Keyboard navigation (Escape to close)
+ * - Click outside to close
+ * - Auto-close on link click (mobile)
+ */
 document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.querySelector('.nav__menu');

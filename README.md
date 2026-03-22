@@ -226,14 +226,34 @@ Add your own translations by creating `i18n/{lang}.yaml` in your site.
 
 ## Design System
 
-### Colors (CSS Variables)
+### Default Colors (CSS Variables)
 
 ```css
 --cream: #FAF7F0;     /* Background */
 --green: #3B5C45;     /* Primary */
 --terra: #C4714A;     /* Accent */
---charcoal: #2D2D2D;  /* Text */
+--text: #2D2D2D;      /* Text */
 ```
+
+### Custom Colors
+
+Override the default color scheme in your `hugo.yaml`:
+
+```yaml
+params:
+  colors:
+    primary: "#3B5C45"      # Main brand color (buttons, links)
+    primary_light: "#4A7257"
+    primary_pale: "#E8F0EA"
+    accent: "#C4714A"       # Secondary accent (CTAs, highlights)
+    accent_dark: "#B5633D"
+    accent_pale: "#F5E6E0"
+    background: "#FAF7F0"   # Page background
+    text: "#2D2D2D"         # Main text color
+    text_muted: "#6B6B6B"   # Secondary text
+```
+
+All colors are optional — only specify the ones you want to override.
 
 ### Fonts
 

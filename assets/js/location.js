@@ -4,6 +4,13 @@
 (function() {
   'use strict';
 
+  // Escape HTML to prevent XSS
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
   // Custom terracotta marker SVG
   const markerSvg = `
     <svg width="32" height="44" viewBox="0 0 32 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +46,7 @@
 
     L.marker([lat, lng], { icon: customIcon })
       .addTo(map)
-      .bindPopup(`<strong>${name}</strong>`)
+      .bindPopup(`<strong>${escapeHtml(name)}</strong>`)
       .openPopup();
   }
 

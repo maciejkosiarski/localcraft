@@ -140,9 +140,8 @@
 {{ end }}
 
 {{ define "scripts" }}
-{{- $galleryJs := resources.Get "js/gallery.js" -}}
-{{- if $galleryJs -}}
-  {{- $galleryJs = $galleryJs | minify | fingerprint -}}
-  <script src="{{ $galleryJs.RelPermalink }}" defer></script>
+{{- $galleryJs := resources.Get "js/gallery.js" | minify | fingerprint -}}
+{{- with $galleryJs -}}
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
 {{- end -}}
 {{ end }}

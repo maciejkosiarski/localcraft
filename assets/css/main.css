@@ -44,6 +44,8 @@
   --radius: 4px;
   --radius-lg: 8px;
   --transition: 0.3s ease;
+
+  --nav-height: 72px;
 }
 
 *, *::before, *::after {
@@ -251,7 +253,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: var(--nav-height);
 }
 
 .nav__logo {
@@ -403,7 +405,7 @@ img {
 
   .nav__menu {
     position: fixed;
-    top: 72px;
+    top: var(--nav-height);
     left: 0;
     right: 0;
     flex-direction: column;
@@ -440,7 +442,7 @@ img {
 
 /* Hero Section */
 .hero {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -1691,7 +1693,7 @@ img {
 
 /* About Page */
 .about-hero {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
   text-align: center;
 }
 
@@ -1899,7 +1901,7 @@ img {
 
 /* FAQ Section */
 .faq-page {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
 }
 
 .faq__list {
@@ -2036,7 +2038,7 @@ img {
 
 /* Location Page */
 .location-hero {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
   text-align: center;
 }
 
@@ -2250,7 +2252,7 @@ img {
 
 /* Blog Page */
 .blog-page {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
 }
 
 .blog__grid {
@@ -2443,7 +2445,7 @@ img {
 
 /* Blog Post (Single) */
 .blog-post__header {
-  padding-top: calc(72px + var(--space-3xl));
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
   padding-bottom: var(--space-xl);
 }
 
