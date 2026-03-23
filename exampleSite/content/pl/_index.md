@@ -60,7 +60,6 @@ sections:
     enabled: true
     heading: "Gotowy na wizytę?"
     description: "Zadzwoń i umów się na termin, który Ci odpowiada."
-    phone: "+48 123 456 789"
     cta:
       text: "Zadzwoń teraz"
 ---

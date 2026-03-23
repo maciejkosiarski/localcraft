@@ -1,5 +1,6 @@
 <footer class="footer" role="contentinfo">
   <div class="container footer__inner">
+    {{/* Brand section */}}
     <div class="footer__brand">
       <a href="{{ .Site.Home.RelPermalink }}" class="footer__logo">
         {{ .Site.Params.logo.name }}{{ if .Site.Params.logo.dot }}<span class="footer__dot">.</span>{{ end }}
@@ -7,26 +8,93 @@
       {{ with .Site.Params.footer.description }}
         <p class="footer__desc">{{ . }}</p>
       {{ end }}
+
+      {{/* Social media icons */}}
+      {{ with .Site.Params.footer.social }}
+        <div class="footer__social">
+          {{ range . }}
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="{{ .platform | title }}">
+              {{- $iconPath := printf "icons/%s.html" .platform -}}
+              {{- partial $iconPath . -}}
+            </a>
+          {{ end }}
+        </div>
+      {{ end }}
     </div>
-    
-    <div class="footer__contact">
+
+    {{/* Dynamic columns */}}
+    {{ range .Site.Params.footer.columns }}
+      <div class="footer__column">
+        {{ with .title }}
+          <h3 class="footer__column-title">{{ . }}</h3>
+        {{ end }}
+
+        {{/* Column with links */}}
+        {{ with .links }}
+          <ul class="footer__links">
+            {{ range . }}
+              <li>
+                <a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>
+                  {{- .name -}}
+                  {{- if .external }} <svg class="footer__external-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>{{ end -}}
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+
+        {{/* Column with content (address, etc.) */}}
+        {{ with .content }}
+          <div class="footer__content">{{ . | markdownify }}</div>
+        {{ end }}
+
+        {{/* Special contact column - pulls data from params.business */}}
+        {{ if (eq .type "contact") }}
+          {{ with $.Site.Params.business }}
+            <ul class="footer__links">
+              {{ with .street }}<li>{{ . }}</li>{{ end }}
+              {{ with .city }}<li>{{ $.Site.Params.business.postalCode }} {{ . }}</li>{{ end }}
+              {{ with .phone }}<li><a href="tel:{{ . }}">{{ . }}</a></li>{{ end }}
+              {{ with .email }}<li><a href="mailto:{{ . }}">{{ . }}</a></li>{{ end }}
+            </ul>
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+
+    {{/* Fallback: contact info from business params if no columns defined */}}
+    {{ if not .Site.Params.footer.columns }}
       {{ with .Site.Params.business }}
-        <p class="footer__address">{{ .address }}</p>
-        <a href="tel:{{ .phone }}" class="footer__phone">{{ .phone }}</a>
-        <a href="mailto:{{ .email }}" class="footer__email">{{ .email }}</a>
+        <div class="footer__column">
+          <h3 class="footer__column-title">{{ i18n "contact" | default "Contact" }}</h3>
+          <div class="footer__content">
+            {{ with .street }}<p>{{ . }}</p>{{ end }}
+            {{ with .city }}<p>{{ $.Site.Params.business.postalCode }} {{ . }}</p>{{ end }}
+            {{ with .phone }}<p><a href="tel:{{ . }}">{{ . }}</a></p>{{ end }}
+            {{ with .email }}<p><a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+          </div>
+        </div>
       {{ end }}
-    </div>
-    
-    <div class="footer__social">
-      {{ range .Site.Params.footer.social }}
-        <a href="{{ .url }}" target="_blank" rel="noopener" class="footer__social-link" aria-label="{{ .name }}">{{ .name }}</a>
-      {{ end }}
-    </div>
+    {{ end }}
   </div>
-  
+
+  {{/* Bottom bar */}}
   <div class="container footer__bottom">
-    {{- $startYear := .Site.Params.business.start_year | default now.Year -}}
-    {{- $currentYear := now.Year -}}
-    <p>&copy; {{ if eq $startYear $currentYear }}{{ $currentYear }}{{ else }}{{ $startYear }}–{{ $currentYear }}{{ end }} {{ .Site.Params.business.name }}. {{ i18n "footer_copyright" }}</p>
+    <div class="footer__bottom-inner">
+      {{/* Copyright */}}
+      <p class="footer__copyright">
+        {{- $startYear := .Site.Params.business.start_year | default now.Year -}}
+        {{- $currentYear := now.Year -}}
+        &copy; {{ if eq $startYear $currentYear }}{{ $currentYear }}{{ else }}{{ $startYear }}–{{ $currentYear }}{{ end }} {{ .Site.Params.business.name }}.
+        {{ with .Site.Params.footer.copyright }}{{ . }}{{ else }}{{ i18n "footer_copyright" | default "All rights reserved." }}{{ end }}
+      </p>
+
+      {{/* Powered by credit */}}
+      {{ if .Site.Params.footer.show_credit | default true }}
+        <p class="footer__credit">
+          {{ i18n "powered_by" | default "Powered by" }} <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/maciejkosiarski/localcraft" target="_blank" rel="noopener">Localcraft</a>
+        </p>
+      {{ end }}
+    </div>
   </div>
 </footer>

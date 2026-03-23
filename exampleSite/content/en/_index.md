@@ -60,7 +60,6 @@ sections:
     enabled: true
     heading: "Ready for a visit?"
     description: "Call us and book an appointment that suits you."
-    phone: "+48 123 456 789"
     cta:
       text: "Call now"
 ---

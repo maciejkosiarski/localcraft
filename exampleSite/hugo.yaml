@@ -14,6 +14,34 @@ languages:
         dot: true
       business:
         name: "Ciachu Ciachu"
+      footer:
+        description: "Profesjonalna pielęgnacja Twoich pupili"
+        columns:
+          - title: "Nawigacja"
+            links:
+              - name: "O nas"
+                url: "/pl/o-nas/"
+              - name: "Cennik"
+                url: "/pl/cennik/"
+              - name: "Galeria"
+                url: "/pl/galeria/"
+              - name: "FAQ"
+                url: "/pl/faq/"
+          - title: "Informacje"
+            links:
+              - name: "Polityka prywatności"
+                url: "/documents/polityka-prywatnosci.pdf"
+                external: true
+          - title: "Kontakt"
+            type: "contact"
+        social:
+          - platform: "facebook"
+            url: "https://facebook.com/ciachuciachupets"
+          - platform: "instagram"
+            url: "https://instagram.com/ciachuciachupets"
+          - platform: "tiktok"
+            url: "https://tiktok.com/@ciachuciachupets"
+        show_credit: true
     menu:
       main:
         - name: "O nas"
@@ -46,6 +74,34 @@ languages:
         dot: true
       business:
         name: "Snip Snip"
+      footer:
+        description: "Professional care for your furry friends"
+        columns:
+          - title: "Navigation"
+            links:
+              - name: "About"
+                url: "/en/about/"
+              - name: "Pricing"
+                url: "/en/pricing/"
+              - name: "Gallery"
+                url: "/en/gallery/"
+              - name: "FAQ"
+                url: "/en/faq/"
+          - title: "Information"
+            links:
+              - name: "Privacy Policy"
+                url: "/documents/polityka-prywatnosci.pdf"
+                external: true
+          - title: "Contact"
+            type: "contact"
+        social:
+          - platform: "facebook"
+            url: "https://facebook.com/snipsnip"
+          - platform: "instagram"
+            url: "https://instagram.com/snipsnip"
+          - platform: "tiktok"
+            url: "https://tiktok.com/@snipsnip"
+        show_credit: true
     menu:
       main:
         - name: "About"
@@ -114,8 +170,3 @@ params:
     start_year: 2018
   # Open Graph image
   og_image: "/images/og-default.jpg"
-  footer:
-    description: "Profesjonalna pielęgnacja Twoich pupili"
-    social:
-      - name: "Facebook"
-        url: "https://facebook.com/"
