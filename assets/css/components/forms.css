@@ -1,0 +1,47 @@
+/*
+ * Forms & Inputs
+ */
+
+/* Base input styles */
+.input {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: white;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-pale);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Pricing page specific input (extends .input) */
+.pricing__input {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: white;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.pricing__input:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-pale);
+}
+
+.pricing__input::placeholder {
+  color: var(--text-muted);
+}

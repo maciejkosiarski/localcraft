@@ -57,14 +57,40 @@
 {{- end }}
 {{- end }}
 
-{{/* Bundle all CSS files */}}
-{{- $main := resources.Get "css/main.css" -}}
-{{- $cookieConsent := resources.Get "css/cookie-consent.css" -}}
-{{- if $main -}}
-  {{- $cssBundle := slice $main -}}
-  {{- with $cookieConsent -}}
-    {{- $cssBundle = $cssBundle | append . -}}
-  {{- end -}}
+{{/* Bundle all CSS files in correct cascade order */}}
+{{- $cssBundle := slice -}}
+
+{{/* 1. Base styles (variables, reset, typography, utilities) */}}
+{{- range resources.Match "css/base/*.css" }}
+  {{- $cssBundle = $cssBundle | append . -}}
+{{- end -}}
+
+{{/* 2. Components (buttons, cards, forms) */}}
+{{- range resources.Match "css/components/*.css" }}
+  {{- $cssBundle = $cssBundle | append . -}}
+{{- end -}}
+
+{{/* 3. Layout (nav, footer) */}}
+{{- range resources.Match "css/layout/*.css" }}
+  {{- $cssBundle = $cssBundle | append . -}}
+{{- end -}}
+
+{{/* 4. Sections (hero, services, etc.) */}}
+{{- range resources.Match "css/sections/*.css" }}
+  {{- $cssBundle = $cssBundle | append . -}}
+{{- end -}}
+
+{{/* 5. Pages (about, blog, gallery, faq, location) */}}
+{{- range resources.Match "css/pages/*.css" }}
+  {{- $cssBundle = $cssBundle | append . -}}
+{{- end -}}
+
+{{/* 6. Additional standalone CSS files */}}
+{{- with resources.Get "css/cookie-consent.css" }}
+  {{- $cssBundle = $cssBundle | append . -}}
+{{- end -}}
+
+{{- if gt (len $cssBundle) 0 -}}
   {{- $css := $cssBundle | resources.Concat "css/bundle.css" | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{- end -}}

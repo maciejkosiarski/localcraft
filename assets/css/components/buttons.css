@@ -1,0 +1,53 @@
+/*
+ * Buttons
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+.btn-primary:hover {
+  background-color: var(--green-light);
+  border-color: var(--green-light);
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.btn-outline:hover {
+  background-color: var(--green);
+  color: white;
+}
+
+.btn-terra {
+  background-color: var(--terra);
+  color: white;
+  border-color: var(--terra);
+}
+
+.btn-terra:hover {
+  background-color: var(--terra-dark);
+  border-color: var(--terra-dark);
+}

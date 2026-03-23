@@ -1,0 +1,216 @@
+/*
+ * Location Page
+ */
+
+.location-hero {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+  text-align: center;
+}
+
+.location-hero__content {
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.location-hero__heading {
+  font-size: var(--text-5xl);
+  margin-bottom: var(--space-lg);
+}
+
+.location-hero__description {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .location-hero__heading {
+    font-size: var(--text-4xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .location-hero__heading {
+    font-size: var(--text-3xl);
+  }
+}
+
+/* Location Grid */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+@media (max-width: 968px) {
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Map */
+.location-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+#map {
+  width: 100%;
+  height: 450px;
+}
+
+@media (max-width: 600px) {
+  #map {
+    height: 300px;
+  }
+}
+
+/* Custom marker */
+.location-marker {
+  background: none;
+  border: none;
+}
+
+/* Location Info */
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.location-info__block {
+  background: white;
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.location-info__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-md);
+  color: var(--text);
+}
+
+.location-info__text {
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.location-info__text:last-child {
+  margin-bottom: 0;
+}
+
+.location-info__text a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.location-info__text a:hover {
+  color: var(--terra);
+}
+
+.location-info__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--green);
+}
+
+.location-info__link:hover {
+  color: var(--terra);
+}
+
+.location-info__link svg {
+  transition: transform var(--transition);
+}
+
+.location-info__link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Open/Closed Status */
+.location-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: white;
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.location-status__indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.location-status.is-open .location-status__indicator {
+  background: var(--success);
+  animation: pulse 2s infinite;
+}
+
+.location-status.is-closed .location-status__indicator {
+  background: var(--terra);
+}
+
+.location-status.is-closing-soon .location-status__indicator {
+  background: #f59e0b;
+  animation: pulse 1s infinite;
+}
+
+.location-status__text {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.location-status.is-open .location-status__text {
+  color: var(--success);
+}
+
+.location-status.is-closed .location-status__text {
+  color: var(--terra);
+}
+
+.location-status.is-closing-soon .location-status__text {
+  color: #f59e0b;
+}
+
+/* Opening Hours List */
+.location-hours {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.location-hours__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-light);
+}
+
+.location-hours__item:last-child {
+  border-bottom: none;
+}
+
+.location-hours__item.is-today {
+  font-weight: 600;
+  color: var(--green);
+}
+
+.location-hours__day {
+  color: var(--text);
+}
+
+.location-hours__time {
+  color: var(--text-muted);
+}

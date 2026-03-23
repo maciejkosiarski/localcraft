@@ -7,7 +7,7 @@
 <section class="blog-preview section">
   <div class="container">
     {{/* Section header */}}
-    <div class="section__header animate-fade-up">
+    <div class="section-header animate-fade-up">
       {{- with $s.label }}
         <span class="section-label">{{ . }}</span>
       {{- end }}
@@ -93,7 +93,7 @@
   {{- if hugo.IsServer }}
     <section class="blog-preview section">
       <div class="container">
-        <div class="section__header">
+        <div class="section-header">
           <p style="color: var(--text-muted); text-align: center;">
             Brak postów w sekcji blog. Dodaj posty do <code>content/blog/</code>.
           </p>

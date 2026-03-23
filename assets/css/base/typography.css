@@ -1,0 +1,106 @@
+/*
+ * Typography
+ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+/* Section typography */
+.section-label {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--terra);
+  margin-bottom: var(--space-sm);
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.section-sub {
+  font-family: var(--sans);
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+/* Prose styles for blog content */
+.prose h2 {
+  font-size: var(--text-2xl);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.prose h3 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.prose p {
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+}
+
+.prose ul, .prose ol {
+  margin-bottom: var(--space-lg);
+  padding-left: var(--space-xl);
+}
+
+.prose li {
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: var(--space-sm);
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--terra);
+  padding-left: var(--space-lg);
+  margin: var(--space-xl) 0;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.prose img {
+  border-radius: var(--radius-lg);
+  margin: var(--space-xl) 0;
+}
+
+.prose a {
+  color: var(--terra);
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: var(--terra-dark);
+}
