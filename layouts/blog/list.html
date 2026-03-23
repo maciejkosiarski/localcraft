@@ -13,13 +13,14 @@
     {{ if gt (len $pages) 0 }}
       <div class="blog__grid">
         {{ range $pages.ByDate.Reverse }}
+          {{ $post := . }}
           <article class="blog__card card">
             {{ with .Params.image }}
-              <a href="{{ $.RelPermalink }}" class="blog__image-link">
-                <img src="{{ partial "url.html" . }}" alt="{{ $.Title }}" class="blog__image" loading="lazy">
+              <a href="{{ $post.RelPermalink }}" class="blog__image-link">
+                <img src="{{ partial "url.html" . }}" alt="{{ $post.Title }}" class="blog__image" loading="lazy">
               </a>
             {{ else }}
-              <a href="{{ $.RelPermalink }}" class="blog__image-link">
+              <a href="{{ $post.RelPermalink }}" class="blog__image-link">
                 <div class="blog__placeholder">
                   <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <rect width="400" height="250" fill="#E8F0EA"/>
