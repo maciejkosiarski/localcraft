@@ -45,7 +45,7 @@ jobs:
         run: |
           cd exampleSite
           rm -rf public/
-          hugo --minify --verbose
+          hugo --minify
 
       - name: Verify build output
         run: |
