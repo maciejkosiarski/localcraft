@@ -6,7 +6,7 @@ homepage = "https://github.com/maciejkosiarski/localcraft"
 demosite = "https://maciejkosiarski.github.io/localcraft/"
 tags = ["business", "responsive", "multilingual", "minimal", "services", "portfolio", "gallery", "blog", "contact", "seo"]
 features = ["i18n", "SEO", "JSON-LD", "Leaflet maps", "Before/after gallery", "Responsive", "No JS frameworks"]
-min_version = "0.123.0"
+min_version = "0.115.0"
 
 [author]
   name = "Maciej Kosiarski"

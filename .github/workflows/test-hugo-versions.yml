@@ -14,8 +14,6 @@ jobs:
       fail-fast: false
       matrix:
         hugo-version:
-          # Testowanie różnych wersji Hugo aby znaleźć minimalną działającą
-          - '0.110.0'
           - '0.115.0'
           - '0.120.0'
           - '0.123.0'
