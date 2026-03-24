@@ -1,0 +1,76 @@
+name: Test Hugo Versions
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  test-hugo-versions:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        hugo-version:
+          # Testowanie różnych wersji Hugo aby znaleźć minimalną działającą
+          - '0.110.0'
+          - '0.115.0'
+          - '0.120.0'
+          - '0.123.0'
+          - '0.125.0'
+          - '0.130.0'
+          - '0.135.0'
+          - '0.139.0'
+          - '0.140.0'
+          - 'latest'
+
+    name: Hugo ${{ matrix.hugo-version }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ matrix.hugo-version }}
+          extended: true
+
+      - name: Print Hugo version
+        run: hugo version
+
+      - name: Build exampleSite
+        run: |
+          cd exampleSite
+          rm -rf public/
+          hugo --minify --verbose
+
+      - name: Verify build output
+        run: |
+          cd exampleSite
+          echo "✓ Build successful for Hugo ${{ matrix.hugo-version }}"
+          echo ""
+          echo "Generated files count:"
+          find public -name "*.html" | wc -l
+          echo ""
+
+          # Sprawdź czy kluczowe strony zostały wygenerowane
+          echo "Checking critical pages:"
+          test -f public/en/index.html && echo "✓ EN homepage" || echo "✗ EN homepage MISSING"
+          test -f public/pl/index.html && echo "✓ PL homepage" || echo "✗ PL homepage MISSING"
+          test -f public/en/about/index.html && echo "✓ About page" || echo "✗ About page MISSING"
+          test -f public/en/pricing/index.html && echo "✓ Pricing page" || echo "✗ Pricing page MISSING"
+          test -f public/en/gallery/index.html && echo "✓ Gallery page" || echo "✗ Gallery page MISSING"
+          test -f public/en/faq/index.html && echo "✓ FAQ page" || echo "✗ FAQ page MISSING"
+          test -f public/en/blog/index.html && echo "✓ Blog page" || echo "✗ Blog page MISSING"
+          test -f public/en/location/index.html && echo "✓ Location page" || echo "✗ Location page MISSING"
+
+      - name: Upload build artifacts (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output-hugo-${{ matrix.hugo-version }}
+          path: exampleSite/public/
+          retention-days: 7
