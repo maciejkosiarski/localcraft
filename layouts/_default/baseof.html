@@ -15,6 +15,9 @@
 
   {{ partial "footer.html" . }}
 
+  
+  {{- partial "support-button.html" . -}}
+
   {{- $navJs := resources.Get "js/nav.js" | minify | fingerprint -}}
   {{- with $navJs -}}
     <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>

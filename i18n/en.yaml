@@ -63,3 +63,9 @@ status_closing_soon: "Closing soon"
 cookie_message: "We use cookies and analytics to improve your experience. By accepting, you agree to our use of cookies for analytics purposes."
 cookie_accept: "Accept"
 cookie_decline: "Decline"
+
+# Support Button
+support_title: "Support this project"
+support_description: "If you find this useful, consider buying me a coffee!"
+support_button: "Buy Me a Coffee"
+support_qr_alt: "Scan QR code to support"

@@ -63,3 +63,9 @@ status_closing_soon: "Zamykamy wkrotce"
 cookie_message: "Uzywamy plikow cookie i analityki, aby poprawic Twoje doswiadczenia. Akceptujac, zgadzasz sie na wykorzystanie plikow cookie do celow analitycznych."
 cookie_accept: "Akceptuj"
 cookie_decline: "Odrzuc"
+
+# Support Button
+support_title: "Wesprzyj projekt"
+support_description: "Jesli Localcraft jest dla Ciebie przydatny, postaw mi kawe!"
+support_button: "Postaw kawe"
+support_qr_alt: "Zeskanuj kod QR, aby wesprzec"

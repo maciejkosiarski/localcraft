@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Support Button Component
+   A floating button with popup for support links (Buy Me a Coffee, etc.)
+   ========================================================================== */
+
+.support-button {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9998;
+}
+
+/* Toggle button */
+.support-button__toggle {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--terra);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.support-button__toggle:hover {
+  transform: scale(1.1);
+  background: var(--terra-dark);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.support-button__toggle:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+
+.support-button__toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Popup */
+.support-button__popup {
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  right: 0;
+  width: 280px;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  animation: support-popup-in 0.2s ease;
+}
+
+.support-button__popup[hidden] {
+  display: none;
+}
+
+@keyframes support-popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header */
+.support-button__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.support-button__header h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.support-button__close {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 0.25rem;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.support-button__close:hover {
+  color: var(--text);
+}
+
+.support-button__close:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Description */
+.support-button__description {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+/* QR Code */
+.support-button__qr {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.support-button__qr img {
+  border-radius: 0.5rem;
+  border: 1px solid var(--cream);
+}
+
+/* Link button */
+.support-button__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  text-decoration: none;
+}
+
+.support-button__link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Ensure button stays above cookie consent on mobile */
+@media (max-width: 600px) {
+  .support-button {
+    bottom: 5rem; /* Space for cookie consent banner */
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .support-button {
+    right: 1rem;
+  }
+
+  .support-button__toggle {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .support-button__toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .support-button__popup {
+    width: calc(100vw - 2rem);
+    right: 0;
+  }
+}

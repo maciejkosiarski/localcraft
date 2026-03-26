@@ -3,6 +3,7 @@
 A Hugo theme for small local service businesses — hairdressers, beauty salons, massage parlors, pet groomers, and more.
 
 [![Demo](https://img.shields.io/badge/Demo-Live-green?style=for-the-badge)](https://maciejkosiarski.github.io/localcraft/)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/maciejkosiarski)
 
 ![Localcraft Theme Screenshot](https://raw.githubusercontent.com/maciejkosiarski/localcraft/master/images/screenshot.png)
 
@@ -261,6 +262,30 @@ All colors are optional — only specify the ones you want to override.
 - **Headings:** Cormorant Garamond
 - **Body:** DM Sans
 
+## Floating Support Button
+
+Add a floating "Buy Me a Coffee" style button to encourage visitors to support your project:
+
+```yaml
+params:
+  support_button:
+    enabled: true
+    url: "https://buymeacoffee.com/username"
+    qr_image: "/images/bmc-qr.png"  # optional
+```
+
+Text content is loaded from i18n files (`support_title`, `support_description`, `support_button`). You can override these in your site's i18n files or set custom values directly in config:
+
+```yaml
+params:
+  support_button:
+    enabled: true
+    url: "https://ko-fi.com/username"
+    title: "Support My Work"
+    description: "Help me create more content!"
+    button_text: "Donate on Ko-fi"
+```
+
 ## Analytics (Google Tag Manager)
 
 The theme includes built-in support for Google Tag Manager with GDPR-compliant cookie consent.
@@ -311,6 +336,12 @@ Run the example site:
 cd exampleSite
 hugo server
 ```
+
+## Support
+
+If you find this theme useful, consider supporting its development:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/maciejkosiarski)
 
 ## License
 

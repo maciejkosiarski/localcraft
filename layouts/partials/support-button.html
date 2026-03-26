@@ -1,0 +1,108 @@
+{{/*
+  Floating Support Button
+
+  A configurable floating button that shows a popup with QR code and link.
+  Useful for Buy Me a Coffee, Ko-fi, or similar support links.
+
+  Configuration in hugo.yaml:
+    params:
+      support_button:
+        enabled: true
+        url: "https://buymeacoffee.com/username"
+        qr_image: "/images/bmc-qr.png"
+        title: "Support this project"
+        description: "If you find this useful, consider buying me a coffee!"
+        button_text: "Buy Me a Coffee"
+
+  Usage: Add {{ partial "support-button.html" . }} before </body>
+*/}}
+{{- if and .Site.Params.support_button .Site.Params.support_button.enabled -}}
+{{- $url := .Site.Params.support_button.url -}}
+{{- $qr := .Site.Params.support_button.qr_image -}}
+{{- $title := .Site.Params.support_button.title | default (i18n "support_title") | default "Support this project" -}}
+{{- $description := .Site.Params.support_button.description | default (i18n "support_description") | default "If you find this useful, consider buying me a coffee!" -}}
+{{- $button_text := .Site.Params.support_button.button_text | default (i18n "support_button") | default "Buy Me a Coffee" -}}
+
+<div class="support-button" id="support-button">
+  <button class="support-button__toggle" aria-label="{{ $title }}" aria-expanded="false" aria-controls="support-popup">
+    {{- partial "icons/heart.html" (dict "size" 24) -}}
+  </button>
+
+  <div class="support-button__popup" id="support-popup" role="dialog" aria-modal="true" aria-labelledby="support-title" hidden>
+    <div class="support-button__header">
+      <h3 id="support-title">{{ $title }}</h3>
+      <button class="support-button__close" aria-label="{{ i18n "close" | default "Close" }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="support-button__description">{{ $description }}</p>
+
+    {{- with $qr -}}
+    <div class="support-button__qr">
+      <img src="{{ . }}" alt="{{ i18n "support_qr_alt" | default "Scan QR code to support" }}" loading="lazy" width="150" height="150">
+    </div>
+    {{- end -}}
+
+    <a href="{{ $url }}" target="_blank" rel="noopener noreferrer" class="support-button__link btn btn--primary">
+      {{- partial "icons/buymeacoffee.html" . -}}
+      <span>{{ $button_text }}</span>
+    </a>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var container = document.getElementById('support-button');
+  if (!container) return;
+
+  var toggle = container.querySelector('.support-button__toggle');
+  var popup = document.getElementById('support-popup');
+  var closeBtn = container.querySelector('.support-button__close');
+
+  function openPopup() {
+    popup.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    closeBtn.focus();
+  }
+
+  function closePopup() {
+    popup.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.focus();
+  }
+
+  function isOpen() {
+    return !popup.hidden;
+  }
+
+  toggle.addEventListener('click', function() {
+    if (isOpen()) {
+      closePopup();
+    } else {
+      openPopup();
+    }
+  });
+
+  closeBtn.addEventListener('click', closePopup);
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && isOpen()) {
+      closePopup();
+    }
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', function(e) {
+    if (isOpen() && !container.contains(e.target)) {
+      closePopup();
+    }
+  });
+})();
+</script>
+{{- end -}}

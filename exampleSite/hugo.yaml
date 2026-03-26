@@ -41,6 +41,8 @@ languages:
             url: "https://instagram.com/ciachuciachupets"
           - platform: "tiktok"
             url: "https://tiktok.com/@ciachuciachupets"
+          - platform: "buymeacoffee"
+            url: "https://buymeacoffee.com/maciejkosiarski"
         show_credit: true
     menu:
       main:
@@ -101,6 +103,8 @@ languages:
             url: "https://instagram.com/snipsnip"
           - platform: "tiktok"
             url: "https://tiktok.com/@snipsnip"
+          - platform: "buymeacoffee"
+            url: "https://buymeacoffee.com/maciejkosiarski"
         show_credit: true
     menu:
       main:
@@ -170,3 +174,9 @@ params:
     start_year: 2018
   # Open Graph image
   og_image: "/images/og-default.jpg"
+  # Floating support button (Buy Me a Coffee, Ko-fi, etc.)
+  # Text is loaded from i18n files (support_title, support_description, support_button)
+  support_button:
+    enabled: true
+    url: "https://buymeacoffee.com/maciejkosiarski"
+    qr_image: "/images/bmc-qr-code.png"
