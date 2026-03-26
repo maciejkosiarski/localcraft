@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="taxonomy-terms section">
+  <div class="container">
+    <header class="section-header">
+      <h1 class="section-heading">{{ .Title }}</h1>
+      {{ with .Description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{ $terms := .Data.Terms.ByCount }}
+    {{ if gt (len $terms) 0 }}
+      <div class="taxonomy-terms__grid">
+        {{ range $terms }}
+          {{ $count := .Count }}
+          {{ $term := .Page }}
+          <a href="{{ $term.RelPermalink }}" class="taxonomy-terms__card card">
+            <h2 class="taxonomy-terms__name">{{ $term.Title }}</h2>
+            <p class="taxonomy-terms__count">
+              {{ $count }} {{ if eq $count 1 }}{{ i18n "post" | default "post" }}{{ else }}{{ i18n "posts" | default "posts" }}{{ end }}
+            </p>
+          </a>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="taxonomy-terms__empty">{{ i18n "no_terms" | default "No terms yet." }}</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

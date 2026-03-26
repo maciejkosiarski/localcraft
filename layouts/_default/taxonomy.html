@@ -1,15 +1,26 @@
 {{ define "main" }}
-<section class="blog-page section">
+<section class="taxonomy-page section">
   <div class="container">
     <header class="section-header">
-      <span class="section-label">{{ i18n "blog" | default "Blog" }}</span>
+      <span class="section-label">{{ .Type | humanize }}</span>
       <h1 class="section-heading">{{ .Title }}</h1>
       {{ with .Description }}
         <p class="section-sub">{{ . }}</p>
       {{ end }}
+
+      <p class="taxonomy-page__count">
+        {{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ i18n "post" | default "post" }}{{ else }}{{ i18n "posts" | default "posts" }}{{ end }}
+      </p>
+
+      <a href="{{ (.Parent).RelPermalink }}" class="taxonomy-page__back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        {{ i18n "back_to" }} {{ .Parent.Title }}
+      </a>
     </header>
 
-    {{ $pages := .RegularPages }}
+    {{ $pages := .Pages }}
     {{ if gt (len $pages) 0 }}
       <div class="blog__grid">
         {{ range $pages.ByDate.Reverse }}

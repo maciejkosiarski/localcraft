@@ -29,6 +29,14 @@ no_posts: "No posts yet."
 prev: "Previous"
 next: "Next"
 pagination: "Pagination"
+post: "post"
+posts: "posts"
+
+# Taxonomy
+tags: "Tags"
+categories: "Categories"
+no_terms: "No terms yet."
+back_to: "Back to"
 
 # Testimonials
 stars_of_5: "out of 5 stars"

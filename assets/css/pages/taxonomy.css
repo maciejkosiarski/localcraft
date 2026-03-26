@@ -1,0 +1,95 @@
+/*
+ * Taxonomy Pages (Tags, Categories)
+ */
+
+/* Terms Page (list of all tags/categories) */
+.taxonomy-terms {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+}
+
+.taxonomy-terms__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.taxonomy-terms__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-xl);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.taxonomy-terms__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  background: var(--green-pale);
+}
+
+.taxonomy-terms__name {
+  font-size: var(--text-xl);
+  color: var(--text);
+  margin-bottom: var(--space-sm);
+  transition: color var(--transition);
+}
+
+.taxonomy-terms__card:hover .taxonomy-terms__name {
+  color: var(--green);
+}
+
+.taxonomy-terms__count {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.taxonomy-terms__empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: var(--space-3xl);
+}
+
+/* Taxonomy Page (posts for a specific tag/category) */
+.taxonomy-page {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+}
+
+.taxonomy-page__count {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.taxonomy-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.taxonomy-page__back:hover {
+  color: var(--green);
+}
+
+@media (max-width: 768px) {
+  .taxonomy-terms__grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .taxonomy-terms__card {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .taxonomy-terms__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -12,7 +12,7 @@
 
         <div class="blog-post__meta">
           <time datetime="{{ .Date.Format "2006-01-02" }}">
-            {{ .Date.Format "2 January 2006" }}
+            {{ .Date | time.Format ":date_long" }}
           </time>
           <span class="blog-post__separator" aria-hidden="true">&bull;</span>
           <span>{{ math.Round (div (countwords .Content) 200.0) }} {{ i18n "min_read" }}</span>
@@ -70,7 +70,7 @@
                 {{ end }}
                 <div class="blog-post__related-content">
                   <h3 class="blog-post__related-name">{{ .Title }}</h3>
-                  <span class="blog-post__related-date">{{ .Date.Format "2 Jan 2006" }}</span>
+                  <span class="blog-post__related-date">{{ .Date | time.Format ":date_medium" }}</span>
                 </div>
               </a>
             {{ end }}

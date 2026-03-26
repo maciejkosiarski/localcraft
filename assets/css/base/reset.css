@@ -19,6 +19,13 @@ body {
   color: var(--text);
   background-color: var(--cream);
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 img {

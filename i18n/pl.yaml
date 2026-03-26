@@ -29,6 +29,14 @@ no_posts: "Brak artykulow."
 prev: "Poprzednia"
 next: "Nastepna"
 pagination: "Nawigacja stron"
+post: "artykul"
+posts: "artykulow"
+
+# Taxonomy
+tags: "Tagi"
+categories: "Kategorie"
+no_terms: "Brak wynikow."
+back_to: "Wroc do"
 
 # Testimonials
 stars_of_5: "z 5 gwiazdek"
