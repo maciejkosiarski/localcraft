@@ -10,9 +10,10 @@
     </header>
 
     {{ $pages := .RegularPages }}
+    {{ $paginator := .Paginate ($pages.ByDate.Reverse) }}
     {{ if gt (len $pages) 0 }}
       <div class="blog__grid">
-        {{ range $pages.ByDate.Reverse }}
+        {{ range $paginator.Pages }}
           {{ $post := . }}
           <article class="blog__card card">
             {{ with .Params.image }}
@@ -68,7 +69,6 @@
       </div>
 
       {{/* Pagination */}}
-      {{ $paginator := .Paginate $pages }}
       {{ if gt $paginator.TotalPages 1 }}
         <nav class="blog__pagination" aria-label="{{ i18n "pagination" | default "Pagination" }}">
           {{ if $paginator.HasPrev }}
