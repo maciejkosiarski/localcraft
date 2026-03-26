@@ -33,6 +33,13 @@ pagination: "Nawigacja stron"
 # Testimonials
 stars_of_5: "z 5 gwiazdek"
 
+# Hero
+years_of_experience:
+  one: "rok doświadczenia"
+  few: "lata doświadczenia"
+  many: "lat doświadczenia"
+  other: "lat doświadczenia"
+
 # Pricing
 filter_by_category: "Filtruj wedlug kategorii"
 service: "Usluga"

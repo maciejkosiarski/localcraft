@@ -32,12 +32,23 @@
           {{- end }}
         </div>
 
-        {{- with $s.stats }}
+        {{/* Dynamic years of experience calculation */}}
+        {{- $startYear := site.Params.business.start_year | default now.Year -}}
+        {{- $currentYear := now.Year -}}
+        {{- $yearsOfExperience := sub $currentYear $startYear -}}
+
+        {{- if or $s.stats (gt $yearsOfExperience 1) }}
           <div class="hero__stats animate-fade-up delay-3">
-            {{- range . }}
+            {{- range $s.stats }}
               <div class="hero__stat">
                 <span class="hero__stat-value">{{ .value }}</span>
                 <span class="hero__stat-label">{{ .label }}</span>
+              </div>
+            {{- end }}
+            {{- if gt $yearsOfExperience 1 }}
+              <div class="hero__stat">
+                <span class="hero__stat-value">{{ $yearsOfExperience }}+</span>
+                <span class="hero__stat-label">{{ i18n "years_of_experience" $yearsOfExperience }}</span>
               </div>
             {{- end }}
           </div>

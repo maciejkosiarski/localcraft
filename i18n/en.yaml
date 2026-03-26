@@ -33,6 +33,11 @@ pagination: "Pagination"
 # Testimonials
 stars_of_5: "out of 5 stars"
 
+# Hero
+years_of_experience:
+  one: "year of experience"
+  other: "years of experience"
+
 # Pricing
 filter_by_category: "Filter by category"
 service: "Service"

@@ -19,8 +19,6 @@ sections:
     stats:
       - value: "2000+"
         label: "happy pups"
-      - value: "6"
-        label: "years of experience"
       - value: "5.0"
         label: "Google rating"
 

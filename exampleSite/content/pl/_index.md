@@ -19,8 +19,6 @@ sections:
     stats:
       - value: "2000+"
         label: "zadowolonych piesków"
-      - value: "6"
-        label: "lat doświadczenia"
       - value: "5.0"
         label: "ocena Google"
 
