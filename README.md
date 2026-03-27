@@ -2,6 +2,7 @@
 
 A Hugo theme for small local service businesses — hairdressers, beauty salons, massage parlors, pet groomers, and more.
 
+[![GitHub release (latest)](https://img.shields.io/github/v/release/maciejkosiarski/localcraft?sort=semver&style=for-the-badge)](https://github.com/maciejkosiarski/localcraft/releases)
 [![Demo](https://img.shields.io/badge/Demo-Live-green?style=for-the-badge)](https://maciejkosiarski.github.io/localcraft/)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/maciejkosiarski)
 
