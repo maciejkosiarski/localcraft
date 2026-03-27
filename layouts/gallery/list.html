@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="gallery section">
   <div class="container">
-    <header class="section-header">
+    <header class="section-header animate-fade-up">
       {{ with .Params.label }}
         <span class="section-label">{{ . }}</span>
       {{ end }}
@@ -22,7 +22,7 @@
     {{- end -}}
     {{- $categories = $categories | uniq | sort -}}
     {{- if gt (len $categories) 1 -}}
-    <div class="gallery__filters" role="group" aria-label="{{ i18n "filter_by_category" | default "Filter by category" }}">
+    <div class="gallery__filters animate-fade-up delay-1" role="group" aria-label="{{ i18n "filter_by_category" | default "Filter by category" }}">
       <button type="button" class="gallery__filter-btn active" data-category="all">
         {{ i18n "all" | default "All" }}
       </button>
@@ -36,7 +36,7 @@
 
     <div class="gallery__grid">
       {{- range $pages -}}
-      <article class="gallery__card" data-category="{{ .Params.category | urlize }}">
+      <article class="gallery__card animate-fade-up delay-2" data-category="{{ .Params.category | urlize }}">
         <div class="ba-slider" aria-label="{{ i18n "ba_slider_label" | default "Before and after comparison. Drag the slider to compare." }}">
           {{/* After image (background layer) */}}
           <div class="ba-slider__after">

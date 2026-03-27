@@ -36,7 +36,7 @@
 {{ define "main" }}
 <section class="pricing section">
   <div class="container">
-    <header class="section-header">
+    <header class="section-header animate-fade-up">
       {{ with .Params.label }}
         <span class="section-label">{{ . }}</span>
       {{ end }}
@@ -49,7 +49,7 @@
     {{- $pricing := index site.Data .Language.Lang "pricing" -}}
     {{- if $pricing -}}
 
-    <div class="pricing__controls">
+    <div class="pricing__controls animate-fade-up delay-1">
       <div class="pricing__search" id="pricing-search">
         <input
           type="search"
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div class="pricing__categories">
+    <div class="pricing__categories animate-fade-up delay-2">
       {{- range $pricing.categories -}}
       <div class="pricing__category" data-category="{{ .name | urlize }}">
         <div class="pricing__category-header">

@@ -2,6 +2,10 @@
  * Pricing Page
  */
 
+.pricing {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+}
+
 .pricing__controls {
   display: flex;
   flex-direction: column;

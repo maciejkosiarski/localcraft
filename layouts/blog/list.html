@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="blog-page section">
   <div class="container">
-    <header class="section-header">
+    <header class="section-header animate-fade-up">
       <span class="section-label">{{ i18n "blog" | default "Blog" }}</span>
       <h1 class="section-heading">{{ .Title }}</h1>
       {{ with .Description }}
@@ -15,7 +15,7 @@
       <div class="blog__grid">
         {{ range $paginator.Pages }}
           {{ $post := . }}
-          <article class="blog__card card">
+          <article class="blog__card card animate-fade-up">
             {{ with .Params.image }}
               <a href="{{ $post.RelPermalink }}" class="blog__image-link">
                 <img src="{{ partial "url.html" . }}" alt="{{ $post.Title }}" class="blog__image" loading="lazy">
