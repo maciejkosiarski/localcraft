@@ -1,11 +1,38 @@
 - name: "Anna Kowalska"
   role: "Założycielka & Główna groomerka"
-  bio: "Z psami pracuję od ponad 15 lat. Ukończyłam certyfikowane szkolenia w Polsce i za granicą. Specjalizuję się w strzyżeniu ras długowłosych i show grooming."
+  bio: "Z psami pracuję od 2010 roku. Ukończyłam Akademię Groomerską w Warszawie (2011), certyfikat European Pet Grooming Federation w Berlinie (2017) oraz specjalizację Show Grooming w Polish Grooming Academy w Krakowie (2019). Specjalizuję się w strzyżeniu pudli, yorków, shih tzu i maltańczyków. Regularnie uczestniczę w konkursach groomerskich w Polsce i Europie."
   image: ""
   initials: "AK"
+  credentials:
+    - name: "Europejski Certyfikat Groomera"
+      issuer: "European Pet Grooming Federation"
+      date: "2017-06"
+    - name: "Specjalizacja Show Grooming"
+      issuer: "Polish Grooming Academy"
+      date: "2019-03"
+  specialization:
+    - "Dog Grooming"
+    - "Show Grooming"
+    - "Long-haired Breeds"
+    - "Poodle Grooming"
+  social:
+    - "https://www.linkedin.com/in/anna-kowalska-groomer"
+    - "https://www.instagram.com/ciachu_ciachu_grooming"
+  yearsOfExperience: 15
 
 - name: "Maja Nowak"
   role: "Groomerka & Specjalistka od kotów"
-  bio: "Dołączyłam do zespołu 5 lat temu. Kocham pracę zarówno z psami jak i kotami. Moja supermocy to uspokajanie najbardziej stresujących się pupili."
+  bio: "Dołączyłam do zespołu w 2020 roku. Ukończyłam certyfikat Cat Grooming Academy w Poznaniu (2019), gdzie opanowałam techniki pracy z kotami długo- i krótkowłosymi. Specjalizuję się w obsłudze zwierząt lękowych, stosując metody redukcji stresu zalecane przez Low Stress Handling® University. Pracuję głównie z rasami perskimi, brytyjskimi, maine coonami oraz psami ras małych."
   image: ""
   initials: "MN"
+  credentials:
+    - name: "Certyfikat Groomera Kotów"
+      issuer: "Cat Grooming Academy"
+      date: "2019-09"
+  specialization:
+    - "Cat Grooming"
+    - "Dog Grooming"
+    - "Anxious Pets Handling"
+  social:
+    - "https://www.instagram.com/maja_groomer"
+  yearsOfExperience: 5

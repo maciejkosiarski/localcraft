@@ -1,3 +1,38 @@
+{{ define "head" }}
+{{- $pricing := index site.Data .Language.Lang "pricing" -}}
+{{- if $pricing -}}
+{{- $services := slice -}}
+{{- range $pricing.categories -}}
+  {{- range .services -}}
+    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
+    {{- with .duration -}}
+      {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+    {{- end -}}
+    {{- $price := .price | replaceRE "[^0-9.]" "" -}}
+    {{- $currency := "PLN" -}}
+    {{- $offer := dict "@type" "Offer" "price" $price "priceCurrency" $currency -}}
+    {{- $service = merge $service (dict "offers" $offer) -}}
+    {{- $services = $services | append $service -}}
+  {{- end -}}
+{{- end -}}
+{{- with $pricing.extras -}}
+  {{- range . -}}
+    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
+    {{- with .duration -}}
+      {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+    {{- end -}}
+    {{- $price := .price | replaceRE "[^0-9.]" "" -}}
+    {{- $currency := "PLN" -}}
+    {{- $offer := dict "@type" "Offer" "price" $price "priceCurrency" $currency -}}
+    {{- $service = merge $service (dict "offers" $offer) -}}
+    {{- $services = $services | append $service -}}
+  {{- end -}}
+{{- end -}}
+{{- $ld := dict "@context" "https://schema.org" "@type" "ItemList" "itemListElement" $services -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end -}}
+{{ end }}
+
 {{ define "main" }}
 <section class="pricing section">
   <div class="container">

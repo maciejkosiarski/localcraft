@@ -1,0 +1,26 @@
+{{- if and .IsPage (eq .Section "blog") .Params.howto -}}
+{{- $steps := slice -}}
+{{- range $i, $step := .Params.howto.steps -}}
+  {{- $stepItem := dict "@type" "HowToStep" "position" (add $i 1) "name" $step.name -}}
+  {{- with $step.text -}}
+    {{- $stepItem = merge $stepItem (dict "text" .) -}}
+  {{- end -}}
+  {{- with $step.image -}}
+    {{- $stepItem = merge $stepItem (dict "image" (. | absURL)) -}}
+  {{- end -}}
+  {{- $steps = $steps | append $stepItem -}}
+{{- end -}}
+{{- $ld := dict "@context" "https://schema.org" "@type" "HowTo" "name" .Title -}}
+{{- with .Description -}}
+  {{- $ld = merge $ld (dict "description" .) -}}
+{{- end -}}
+{{- $ld = merge $ld (dict "step" $steps) -}}
+{{- with .Params.howto.totalTime -}}
+  {{- $ld = merge $ld (dict "totalTime" .) -}}
+{{- end -}}
+{{- with .Params.howto.estimatedCost -}}
+  {{- $cost := dict "@type" "MonetaryAmount" "currency" "PLN" "value" . -}}
+  {{- $ld = merge $ld (dict "estimatedCost" $cost) -}}
+{{- end -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end -}}

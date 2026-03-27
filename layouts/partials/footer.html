@@ -51,12 +51,12 @@
         {{/* Special contact column - pulls data from params.business */}}
         {{ if (eq .type "contact") }}
           {{ with $.Site.Params.business }}
-            <ul class="footer__links">
-              {{ with .street }}<li>{{ . }}</li>{{ end }}
-              {{ with .city }}<li>{{ $.Site.Params.business.postalCode }} {{ . }}</li>{{ end }}
-              {{ with .phone }}<li><a href="tel:{{ . }}">{{ . }}</a></li>{{ end }}
-              {{ with .email }}<li><a href="mailto:{{ . }}">{{ . }}</a></li>{{ end }}
-            </ul>
+            <address class="footer__links">
+              {{ with .street }}<div>{{ . }}</div>{{ end }}
+              {{ with .city }}<div>{{ $.Site.Params.business.postalCode }} {{ . }}</div>{{ end }}
+              {{ with .phone }}<div><a href="tel:{{ . }}">{{ . }}</a></div>{{ end }}
+              {{ with .email }}<div><a href="mailto:{{ . }}">{{ . }}</a></div>{{ end }}
+            </address>
           {{ end }}
         {{ end }}
       </div>
@@ -67,12 +67,12 @@
       {{ with .Site.Params.business }}
         <div class="footer__column">
           <h3 class="footer__column-title">{{ i18n "contact" | default "Contact" }}</h3>
-          <div class="footer__content">
-            {{ with .street }}<p>{{ . }}</p>{{ end }}
-            {{ with .city }}<p>{{ $.Site.Params.business.postalCode }} {{ . }}</p>{{ end }}
-            {{ with .phone }}<p><a href="tel:{{ . }}">{{ . }}</a></p>{{ end }}
-            {{ with .email }}<p><a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
-          </div>
+          <address class="footer__content">
+            {{ with .street }}<div>{{ . }}</div>{{ end }}
+            {{ with .city }}<div>{{ $.Site.Params.business.postalCode }} {{ . }}</div>{{ end }}
+            {{ with .phone }}<div><a href="tel:{{ . }}">{{ . }}</a></div>{{ end }}
+            {{ with .email }}<div><a href="mailto:{{ . }}">{{ . }}</a></div>{{ end }}
+          </address>
         </div>
       {{ end }}
     {{ end }}

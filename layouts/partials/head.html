@@ -55,6 +55,24 @@
 <meta name="robots" content="noindex, follow">
 {{- end }}
 {{- end }}
+{{- else }}
+{{/* LLM-friendly robots meta */}}
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+{{- end }}
+
+{{/* Citation metadata for blog articles */}}
+{{- if and .IsPage (eq .Section "blog") }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- with .Params.author }}
+<meta property="article:author" content="{{ . }}">
+{{- end }}
+{{- if .Section }}
+<meta property="article:section" content="{{ .Section }}">
+{{- end }}
+{{- range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}
 {{- end }}
 
 {{/* Bundle all CSS files in correct cascade order */}}
@@ -142,7 +160,7 @@
 {{- if $biz }}
 {{- $address := dict "@type" "PostalAddress" "streetAddress" ($biz.street | default "") "addressLocality" ($biz.city | default "") "addressCountry" ($biz.country | default "PL") }}
 {{- if $biz.postalCode }}{{ $address = merge $address (dict "postalCode" $biz.postalCode) }}{{ end }}
-{{- $ld := dict "@context" "https://schema.org" "@type" ($biz.type | default "LocalBusiness") "name" site.Title "url" (site.BaseURL | string) "address" $address }}
+{{- $ld := dict "@context" "https://schema.org" "@type" ($biz.type | default "LocalBusiness") "@id" (printf "%s#business" (site.BaseURL | string)) "name" site.Title "url" (site.BaseURL | string) "address" $address }}
 {{- if site.Params.description }}{{ $ld = merge $ld (dict "description" site.Params.description) }}{{ end }}
 {{- if $biz.phone }}{{ $ld = merge $ld (dict "telephone" $biz.phone) }}{{ end }}
 {{- if $biz.email }}{{ $ld = merge $ld (dict "email" $biz.email) }}{{ end }}
@@ -166,14 +184,46 @@
   {{- range site.Params.footer.social }}{{ $urls = $urls | append .url }}{{ end }}
   {{- $ld = merge $ld (dict "sameAs" $urls) }}
 {{- end }}
+{{/* LLM-friendly enhancements */}}
+{{- with $biz.priceRange }}{{ $ld = merge $ld (dict "priceRange" .) }}{{ end }}
+{{- with $biz.paymentAccepted }}{{ $ld = merge $ld (dict "paymentAccepted" .) }}{{ end }}
+{{- with $biz.areaServed }}
+  {{- $area := dict "@type" "City" "name" . }}
+  {{- $ld = merge $ld (dict "areaServed" $area) }}
+{{- end }}
+{{- with $biz.rating }}
+  {{- $rating := dict "@type" "AggregateRating" "ratingValue" .value "reviewCount" .count "bestRating" .best }}
+  {{- $ld = merge $ld (dict "aggregateRating" $rating) }}
+{{- end }}
 <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- end }}
 {{- else if and .IsPage (eq .Section "blog") }}
 {{- $author := dict "@type" "Organization" "name" site.Title }}
+{{- if .Params.author }}
+  {{- $author = dict "@type" "Person" "name" .Params.author }}
+{{- end }}
 {{- $publisher := dict "@type" "Organization" "name" site.Title "url" (site.BaseURL | string) }}
+{{- with site.Params.og_image }}
+  {{- $logo := dict "@type" "ImageObject" "url" (. | absURL) }}
+  {{- $publisher = merge $publisher (dict "logo" $logo) }}
+{{- end }}
 {{- $ld := dict "@context" "https://schema.org" "@type" "Article" "headline" .Title "url" .Permalink "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00") "author" $author "publisher" $publisher }}
 {{- $desc := .Description | default (.Summary | plainify | truncate 160) }}
 {{- if $desc }}{{ $ld = merge $ld (dict "description" $desc) }}{{ end }}
 {{- with $image }}{{ $ld = merge $ld (dict "image" (. | absURL)) }}{{ end }}
+{{/* LLM-friendly Article enhancements */}}
+{{- with .WordCount }}{{ $ld = merge $ld (dict "wordCount" .) }}{{ end }}
+{{- with .Params.tags }}{{ $ld = merge $ld (dict "keywords" (delimit . ", ")) }}{{ end }}
+{{- if .Section }}{{ $ld = merge $ld (dict "articleSection" .Section) }}{{ end }}
+{{- $ld = merge $ld (dict "inLanguage" .Language.LanguageCode) }}
+{{- if gt .ReadingTime 0 }}
+  {{- $ld = merge $ld (dict "timeRequired" (printf "PT%dM" .ReadingTime)) }}
+{{- end }}
 <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- end }}
+
+{{/* Breadcrumb Schema for all non-home pages */}}
+{{- partial "breadcrumb-schema.html" . }}
+
+{{/* HowTo Schema for blog tutorials */}}
+{{- partial "howto-schema.html" . }}

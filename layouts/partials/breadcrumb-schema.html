@@ -1,0 +1,29 @@
+{{- /* Breadcrumb Schema for LLM optimization */ -}}
+{{- if not .IsHome -}}
+{{- $items := slice -}}
+{{- $position := 1 -}}
+
+{{/* Home */}}
+{{- $homeItem := dict "@type" "ListItem" "position" $position "name" (i18n "nav_home" | default "Home") "item" (.Site.BaseURL | string) -}}
+{{- $items = $items | append $homeItem -}}
+{{- $position = add $position 1 -}}
+
+{{/* Section (if exists) */}}
+{{- if .Section -}}
+  {{- $sectionName := .Section | humanize | title -}}
+  {{- if eq .Section "blog" }}{{ $sectionName = i18n "nav_blog" | default "Blog" }}{{ end -}}
+  {{- $sectionURL := printf "%s%s/" (.Site.BaseURL | string) .Section -}}
+  {{- $sectionItem := dict "@type" "ListItem" "position" $position "name" $sectionName "item" $sectionURL -}}
+  {{- $items = $items | append $sectionItem -}}
+  {{- $position = add $position 1 -}}
+{{- end -}}
+
+{{/* Current page (only if not section list page) */}}
+{{- if .IsPage -}}
+  {{- $currentItem := dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink -}}
+  {{- $items = $items | append $currentItem -}}
+{{- end -}}
+
+{{- $schema := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- end -}}

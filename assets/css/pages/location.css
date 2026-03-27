@@ -111,6 +111,11 @@
   color: var(--terra);
 }
 
+/* Semantic address element */
+address.location-info__text {
+  font-style: normal;
+}
+
 .location-info__link {
   display: inline-flex;
   align-items: center;
@@ -184,7 +189,6 @@
 
 /* Opening Hours List */
 .location-hours {
-  list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -209,8 +213,10 @@
 
 .location-hours__day {
   color: var(--text);
+  margin: 0;
 }
 
 .location-hours__time {
   color: var(--text-muted);
+  margin: 0;
 }

@@ -1,0 +1,34 @@
+{{- /* Person Schema Generator for E-E-A-T */ -}}
+{{- $person := . -}}
+{{- $schema := dict "@context" "https://schema.org" "@type" "Person" -}}
+{{- $schema = merge $schema (dict "name" $person.name) -}}
+{{- with $person.role }}{{ $schema = merge $schema (dict "jobTitle" .) }}{{ end -}}
+{{- with $person.bio }}{{ $schema = merge $schema (dict "description" .) }}{{ end -}}
+{{- with $person.url }}{{ $schema = merge $schema (dict "url" .) }}{{ end -}}
+
+{{- /* Credentials (certificates, education) */ -}}
+{{- if $person.credentials -}}
+  {{- $creds := slice -}}
+  {{- range $person.credentials -}}
+    {{- $cred := dict "@type" "EducationalOccupationalCredential" "name" .name -}}
+    {{- with .issuer }}{{ $cred = merge $cred (dict "issuedBy" .) }}{{ end -}}
+    {{- with .date }}{{ $cred = merge $cred (dict "dateCreated" .) }}{{ end -}}
+    {{- $creds = $creds | append $cred -}}
+  {{- end -}}
+  {{- $schema = merge $schema (dict "hasCredential" $creds) -}}
+{{- end -}}
+
+{{- /* Social media profiles */ -}}
+{{- with $person.social }}{{ $schema = merge $schema (dict "sameAs" .) }}{{ end -}}
+
+{{- /* Areas of expertise */ -}}
+{{- with $person.specialization }}{{ $schema = merge $schema (dict "knowsAbout" .) }}{{ end -}}
+
+{{- /* Years of experience */ -}}
+{{- with $person.yearsOfExperience }}{{ $schema = merge $schema (dict "yearsOfExperience" (string .)) }}{{ end -}}
+
+{{- /* Organization affiliation */ -}}
+{{- $org := dict "@type" "Organization" "name" site.Title "url" (site.BaseURL | string) -}}
+{{- $schema = merge $schema (dict "worksFor" $org) -}}
+
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

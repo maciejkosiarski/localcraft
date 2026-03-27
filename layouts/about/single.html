@@ -1,3 +1,11 @@
+{{ define "head" }}
+{{- $lang := .Language.Lang -}}
+{{- $team := index site.Data $lang "team" -}}
+{{- range $team }}
+  {{- partial "person-schema.html" (merge . (dict "url" $.Permalink)) -}}
+{{- end }}
+{{ end }}
+
 {{ define "main" }}
 {{- $lang := .Language.Lang -}}
 
@@ -37,6 +45,9 @@
   </div>
 </section>
 {{ end }}
+
+{{/* Key Facts Section */}}
+{{ partial "key-facts.html" . }}
 
 {{/* Team Section */}}
 {{ with index site.Data $lang "team" }}

@@ -1,11 +1,38 @@
 - name: "Anna Kowalska"
   role: "Founder & Lead Groomer"
-  bio: "I've been working with dogs for over 15 years. I completed certified training in Poland and abroad. I specialize in long-haired breeds and show grooming."
+  bio: "I've been working with dogs since 2010. I graduated from the Grooming Academy in Warsaw (2011), earned a certificate from the European Pet Grooming Federation in Berlin (2017), and completed a Show Grooming specialization at Polish Grooming Academy in Krakow (2019). I specialize in grooming poodles, Yorkshire terriers, Shih Tzus, and Maltese dogs. I regularly compete in grooming competitions across Poland and Europe."
   image: ""
   initials: "AK"
+  credentials:
+    - name: "European Pet Groomer Certificate"
+      issuer: "European Pet Grooming Federation"
+      date: "2017-06"
+    - name: "Show Grooming Specialization"
+      issuer: "Polish Grooming Academy"
+      date: "2019-03"
+  specialization:
+    - "Dog Grooming"
+    - "Show Grooming"
+    - "Long-haired Breeds"
+    - "Poodle Grooming"
+  social:
+    - "https://www.linkedin.com/in/anna-kowalska-groomer"
+    - "https://www.instagram.com/ciachu_ciachu_grooming"
+  yearsOfExperience: 15
 
 - name: "Maja Nowak"
   role: "Groomer & Cat Specialist"
-  bio: "I joined the team 5 years ago. I love working with both dogs and cats. My superpower is calming the most stressed pets."
+  bio: "I joined the team in 2020. I earned a Cat Grooming Academy certificate in Poznań (2019), where I mastered techniques for working with long- and short-haired cats. I specialize in handling anxious pets, using stress-reduction methods recommended by Low Stress Handling® University. I primarily work with Persian, British Shorthair, and Maine Coon cats, as well as small dog breeds."
   image: ""
   initials: "MN"
+  credentials:
+    - name: "Cat Groomer Certificate"
+      issuer: "Cat Grooming Academy"
+      date: "2019-09"
+  specialization:
+    - "Cat Grooming"
+    - "Dog Grooming"
+    - "Anxious Pets Handling"
+  social:
+    - "https://www.instagram.com/maja_groomer"
+  yearsOfExperience: 5

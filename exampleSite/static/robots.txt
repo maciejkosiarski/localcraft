@@ -1,0 +1,52 @@
+# robots.txt - Optimized for LLM/AI search engines
+
+# Default crawlers (allow all)
+User-agent: *
+Allow: /
+
+# OpenAI (ChatGPT Search)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic Claude
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google (including AI Overview)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl (used by many AI models)
+User-agent: CCBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Bing (including AI features)
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://snipsnip.pl/sitemap.xml

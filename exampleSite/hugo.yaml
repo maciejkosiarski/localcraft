@@ -14,6 +14,19 @@ languages:
         dot: true
       business:
         name: "Ciachu Ciachu"
+        specialties:
+          - "Grooming psów długowłosych"
+          - "Show grooming"
+          - "Strzyżenie rasowe"
+        parking: "Bezpłatny parking + miejsca dla niepełnosprawnych"
+        payment_methods:
+          - "Gotówka"
+          - "Karta"
+          - "BLIK"
+        languages:
+          - "Polski"
+          - "Angielski"
+      opening_hours: "Pn-Pt 9:00-18:00, Sob 10:00-16:00"
       footer:
         description: "Profesjonalna pielęgnacja Twoich pupili"
         columns:
@@ -172,6 +185,26 @@ params:
     lat: 52.2297
     lng: 21.0122
     start_year: 2018
+    # Customer ratings (optional) - for AggregateRating schema
+    rating:
+      value: 4.9
+      count: 127
+      best: 5
+    # Key Facts section (optional)
+    specialties:
+      - "Long-haired dog grooming"
+      - "Show grooming"
+      - "Breed-specific cuts"
+    parking: "Free parking + disabled spaces available"
+    payment_methods:
+      - "Cash"
+      - "Card"
+      - "BLIK"
+    languages:
+      - "Polish"
+      - "English"
+  # Opening hours for Key Facts section (optional)
+  opening_hours: "Mon-Fri 9:00-18:00, Sat 10:00-16:00"
   # Open Graph image
   og_image: "/images/og-default.jpg"
   # Floating support button (Buy Me a Coffee, Ko-fi, etc.)

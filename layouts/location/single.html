@@ -39,7 +39,10 @@
         {{/* Address */}}
         <div class="location-info__block">
           <h2 class="location-info__title">{{ i18n "address" }}</h2>
-          <p class="location-info__text">{{ $business.address }}</p>
+          <address class="location-info__text">
+            {{ $business.street }}<br>
+            {{ $business.postalCode }} {{ $business.city }}
+          </address>
           <a href="https://www.google.com/maps/search/?api=1&query={{ $business.lat }},{{ $business.lng }}"
              target="_blank"
              rel="noopener noreferrer"
@@ -72,20 +75,20 @@
         {{ with $hours }}
         <div class="location-info__block">
           <h2 class="location-info__title">{{ i18n "opening_hours" }}</h2>
-          <ul class="location-hours" id="opening-hours-list">
+          <dl class="location-hours" id="opening-hours-list">
             {{ range $index, $item := .days }}
-              <li class="location-hours__item" data-day="{{ $index }}">
-                <span class="location-hours__day">{{ $item.day }}</span>
-                <span class="location-hours__time">
+              <div class="location-hours__item" data-day="{{ $index }}">
+                <dt class="location-hours__day">{{ $item.day }}</dt>
+                <dd class="location-hours__time">
                   {{ if $item.closed }}
                     {{ i18n "closed" }}
                   {{ else }}
                     {{ $item.open }} – {{ $item.close }}
                   {{ end }}
-                </span>
-              </li>
+                </dd>
+              </div>
             {{ end }}
-          </ul>
+          </dl>
         </div>
         {{ end }}
       </div>

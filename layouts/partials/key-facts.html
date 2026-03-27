@@ -1,0 +1,117 @@
+{{- $business := site.Params.business -}}
+
+<section class="key-facts section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ i18n "key_facts_label" }}</span>
+      <h2 class="section-heading">{{ i18n "key_facts_heading" }}</h2>
+    </div>
+
+    <div class="key-facts__grid">
+      {{/* Location */}}
+      {{ with $business.street }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_location" }}</dt>
+          <dd class="key-facts__definition">
+            <address class="key-facts__address">
+              {{ $business.street }}<br>
+              {{ $business.postalCode }} {{ $business.city }}
+            </address>
+          </dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Opening Hours */}}
+      {{ with site.Params.opening_hours }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_hours" }}</dt>
+          <dd class="key-facts__definition">{{ . }}</dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Experience */}}
+      {{ with $business.start_year }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_experience" }}</dt>
+          <dd class="key-facts__definition">{{ sub now.Year . }}+ {{ i18n "kf_years" }}</dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Contact */}}
+      {{ with $business.phone }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_phone" }}</dt>
+          <dd class="key-facts__definition">
+            <a href="tel:{{ . }}" class="key-facts__link">{{ . }}</a>
+          </dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Email */}}
+      {{ with $business.email }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_email" }}</dt>
+          <dd class="key-facts__definition">
+            <a href="mailto:{{ . }}" class="key-facts__link">{{ . }}</a>
+          </dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Specialties */}}
+      {{ with $business.specialties }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_specialties" }}</dt>
+          <dd class="key-facts__definition">
+            <ul class="key-facts__sublist">
+              {{ range . }}
+                <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Parking */}}
+      {{ with $business.parking }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_parking" }}</dt>
+          <dd class="key-facts__definition">{{ . }}</dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Payment Methods */}}
+      {{ with $business.payment_methods }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_payment" }}</dt>
+          <dd class="key-facts__definition">{{ delimit . ", " }}</dd>
+        </dl>
+      </div>
+      {{ end }}
+
+      {{/* Languages */}}
+      {{ with $business.languages }}
+      <div class="key-facts__item">
+        <dl class="key-facts__list">
+          <dt class="key-facts__term">{{ i18n "kf_languages" }}</dt>
+          <dd class="key-facts__definition">{{ delimit . ", " }}</dd>
+        </dl>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
