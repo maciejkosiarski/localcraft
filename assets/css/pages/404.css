@@ -1,0 +1,219 @@
+/*
+ * 404 Error Page
+ */
+
+.error-page {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+  padding-bottom: var(--space-3xl);
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+}
+
+.error-content {
+  max-width: 600px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.error-number {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--green-pale);
+  margin-bottom: var(--space-lg);
+}
+
+.error-title {
+  font-family: var(--serif);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--space-md);
+}
+
+.error-description {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+}
+
+.error-search {
+  margin-bottom: var(--space-xl);
+}
+
+.search-form {
+  display: flex;
+  max-width: 400px;
+  margin-inline: auto;
+  border: var(--border-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: white;
+  transition: box-shadow var(--transition);
+}
+
+.search-form:focus-within {
+  box-shadow: var(--shadow-md);
+  border-color: var(--green);
+}
+
+.search-input {
+  flex: 1;
+  padding: var(--space-md) var(--space-lg);
+  font-family: inherit;
+  font-size: var(--text-base);
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  color: var(--green);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+
+.search-button:hover {
+  color: var(--terra);
+  background: var(--green-pale);
+}
+
+.search-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+.error-actions {
+  margin-bottom: var(--space-2xl);
+}
+
+.error-links {
+  padding-top: var(--space-xl);
+  border-top: var(--border-subtle);
+  text-align: left;
+}
+
+.error-links-title {
+  font-family: var(--serif);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--space-md);
+}
+
+.error-links-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+}
+
+.error-links-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--green);
+  background: var(--green-pale);
+  border-radius: var(--radius-md);
+  transition: background var(--transition), color var(--transition);
+}
+
+.error-links-list a:hover {
+  background: var(--green);
+  color: white;
+}
+
+.error-recent {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: var(--border-subtle);
+  text-align: left;
+}
+
+.error-recent-title {
+  font-family: var(--serif);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--space-md);
+}
+
+.error-recent-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.error-recent-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.error-recent-list li:last-child {
+  border-bottom: none;
+}
+
+.error-recent-list a {
+  font-weight: 500;
+  color: var(--text);
+  transition: color var(--transition);
+}
+
+.error-recent-list a:hover {
+  color: var(--green);
+}
+
+.error-recent-date {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  .error-number {
+    font-size: clamp(5rem, 25vw, 8rem);
+  }
+
+  .error-title {
+    font-size: var(--text-xl);
+  }
+
+  .error-description {
+    font-size: var(--text-base);
+  }
+
+  .error-links-list {
+    flex-direction: column;
+  }
+
+  .error-recent-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .error-recent-date {
+    font-size: var(--text-xs);
+  }
+}

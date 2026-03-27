@@ -1,6 +1,7 @@
 # Localcraft Theme - English translations (defaults)
 
 # General
+home: "Home"
 footer_copyright: "All rights reserved."
 powered_by: "Powered by"
 before: "Before"
@@ -96,3 +97,10 @@ kf_specialties: "Specialties"
 kf_parking: "Parking"
 kf_payment: "Payment Methods"
 kf_languages: "Languages Spoken"
+
+# 404 Page
+404_title: "Page Not Found"
+404_description: "The page you're looking for doesn't exist or has been moved. Try searching or navigate back to the homepage."
+404_home_button: "Go to Homepage"
+404_helpful_links: "Helpful Links"
+404_recent_posts: "Recent Posts"

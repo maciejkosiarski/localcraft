@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ or (index .Site.Params.error_404 .Language.Lang).title (i18n "404_title") }} | {{ .Site.Title }}</title>
+  <meta name="description" content="{{ or (index .Site.Params.error_404 .Language.Lang).description (i18n "404_description") }}">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="{{ .Permalink }}">
+  
+  {{ $cssBundle := slice }}
+  {{ range resources.Match "css/base/*.css" }}{{ $cssBundle = $cssBundle | append . }}{{ end }}
+  {{ range resources.Match "css/components/*.css" }}{{ $cssBundle = $cssBundle | append . }}{{ end }}
+  {{ range resources.Match "css/layout/*.css" }}{{ $cssBundle = $cssBundle | append . }}{{ end }}
+  {{ range resources.Match "css/sections/*.css" }}{{ $cssBundle = $cssBundle | append . }}{{ end }}
+  {{ range resources.Match "css/pages/*.css" }}{{ $cssBundle = $cssBundle | append . }}{{ end }}
+  {{ with resources.Get "css/cookie-consent.css" }}{{ $cssBundle = $cssBundle | append . }}{{ end }}
+  
+  {{ if gt (len $cssBundle) 0 }}
+    {{ $css := $cssBundle | resources.Concat "css/bundle.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ end }}
+  
+  {{ with site.Params.colors }}
+  <style>
+    :root {
+      {{ with .primary }}--green: {{ . }};{{ end }}
+      {{ with .primary_light }}--green-light: {{ . }};{{ end }}
+      {{ with .primary_pale }}--green-pale: {{ . }};{{ end }}
+      {{ with .accent }}--terra: {{ . }};{{ end }}
+      {{ with .accent_dark }}--terra-dark: {{ . }};{{ end }}
+      {{ with .accent_pale }}--terra-pale: {{ . }};{{ end }}
+      {{ with .background }}--cream: {{ . }};{{ end }}
+      {{ with .text }}--text: {{ . }};{{ end }}
+      {{ with .text_muted }}--text-muted: {{ . }};{{ end }}
+    }
+  </style>
+  {{ end }}
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  {{ partial "nav.html" . }}
+  
+  <main id="main-content">
+    <section class="error-page">
+      <div class="container">
+        <div class="error-content">
+          <span class="error-number">404</span>
+          <h1 class="error-title">{{ or (index .Site.Params.error_404 .Language.Lang).title (i18n "404_title") }}</h1>
+          <p class="error-description">{{ or (index .Site.Params.error_404 .Language.Lang).description (i18n "404_description") }}</p>
+          
+          <div class="error-actions">
+            <a href="{{ "/" | relLangURL }}" class="btn btn-primary">{{ i18n "404_home_button" }}</a>
+          </div>
+          
+          {{ if .Site.Params.error_404.show_links | default true }}
+          <div class="error-links">
+            <h2 class="error-links-title">{{ i18n "404_helpful_links" }}</h2>
+            <ul class="error-links-list">
+              <li><a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a></li>
+              {{ range where (where (where .Site.Pages "Language.Lang" .Language.Lang) "Section" "in" (slice "blog" "faq")) "Kind" "page" }}
+              <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+          
+          {{ if .Site.Params.error_404.show_recent_posts | default false }}
+          {{ $recentPosts := where (where .Site.RegularPages "Language.Lang" .Language.Lang) "Section" "blog" | first 3 }}
+          {{ if $recentPosts }}
+          <div class="error-recent">
+            <h2 class="error-recent-title">{{ i18n "404_recent_posts" }}</h2>
+            <ul class="error-recent-list">
+              {{ range $recentPosts }}
+              <li>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <span class="error-recent-date">{{ .Date.Format "2006-01-02" }}</span>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  {{ partial "footer.html" . }}
+  {{ partial "support-button.html" . }}
+  
+  {{ $navJs := resources.Get "js/nav.js" | minify | fingerprint }}
+  {{ with $navJs }}
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
+  {{ end }}
+  
+  {{ partial "cookie-consent.html" . }}
+</body>
+</html>

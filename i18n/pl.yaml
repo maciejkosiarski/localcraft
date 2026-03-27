@@ -1,6 +1,7 @@
 # Localcraft Theme - Polish translations (defaults)
 
 # General
+home: "Strona główna"
 footer_copyright: "Wszelkie prawa zastrzezone."
 powered_by: "Wspierane przez"
 before: "Przed"
@@ -98,3 +99,10 @@ kf_specialties: "Specjalizacje"
 kf_parking: "Parking"
 kf_payment: "Metody platnosci"
 kf_languages: "Obsługiwane jezyki"
+
+# 404 Page
+404_title: "Strona nie znaleziona"
+404_description: "Strona, której szukasz, nie istnieje lub została przeniesiona. Wypróbuj wyszukiwanie lub wróć na stronę główną."
+404_home_button: "Przejdź do strony głównej"
+404_helpful_links: "Przydatne linki"
+404_recent_posts: "Ostatnie wpisy"

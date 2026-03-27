@@ -27,6 +27,11 @@ languages:
           - "Polski"
           - "Angielski"
       opening_hours: "Pn-Pt 9:00-18:00, Sob 10:00-16:00"
+      error_404:
+        title: "Ups! Strona nie znaleziona"
+        description: "Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć do strony głównej lub skorzystaj z poniższych linków."
+        show_links: true
+        show_recent_posts: false
       footer:
         description: "Profesjonalna pielęgnacja Twoich pupili"
         columns:
@@ -89,6 +94,12 @@ languages:
         dot: true
       business:
         name: "Snip Snip"
+      error_404:
+        title: "Oops! Page Not Found"
+        description: "The page you're looking for doesn't exist or has been moved. Go back to the homepage or use the links below."
+        show_search: false
+        show_links: true
+        show_recent_posts: false
       footer:
         description: "Professional care for your furry friends"
         columns:
