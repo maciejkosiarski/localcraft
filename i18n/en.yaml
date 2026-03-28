@@ -50,7 +50,7 @@ years_of_experience:
 # Pricing
 filter_by_category: "Filter by category"
 service: "Service"
-duration: "Duration"
+service_info: "Info"
 price: "Price"
 
 # Gallery

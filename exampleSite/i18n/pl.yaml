@@ -33,7 +33,7 @@ stars_of_5: "z 5 gwiazdek"
 # Pricing
 filter_by_category: "Filtruj według kategorii"
 service: "Usługa"
-duration: "Czas"
+service_info: "Opis"
 price: "Cena"
 
 # Gallery

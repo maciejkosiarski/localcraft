@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
       rows.forEach(function(row) {
         const name = row.dataset.name || '';
         const tags = row.dataset.tags || '';
-        const matchesSearch = !query || name.includes(query) || tags.includes(query);
+        const description = row.dataset.description || '';
+        const matchesSearch = !query || name.includes(query) || tags.includes(query) || description.includes(query);
         const matchesCategory = activeCategory === 'all' || categoryName === activeCategory;
 
         if (matchesSearch && matchesCategory) {

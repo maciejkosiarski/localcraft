@@ -52,7 +52,7 @@ years_of_experience:
 # Pricing
 filter_by_category: "Filtruj wedlug kategorii"
 service: "Usluga"
-duration: "Czas"
+service_info: "Opis"
 price: "Cena"
 
 # Gallery

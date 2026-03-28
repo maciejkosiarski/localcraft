@@ -5,8 +5,12 @@
 {{- range $pricing.categories -}}
   {{- range .services -}}
     {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
-    {{- with .duration -}}
-      {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+    {{- with .description -}}
+      {{- $service = merge $service (dict "description" .) -}}
+    {{- else -}}
+      {{- with .duration -}}
+        {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+      {{- end -}}
     {{- end -}}
     {{- $price := .price | replaceRE "[^0-9.]" "" -}}
     {{- $currency := "PLN" -}}
@@ -18,8 +22,12 @@
 {{- with $pricing.extras -}}
   {{- range . -}}
     {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
-    {{- with .duration -}}
-      {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+    {{- with .description -}}
+      {{- $service = merge $service (dict "description" .) -}}
+    {{- else -}}
+      {{- with .duration -}}
+        {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+      {{- end -}}
     {{- end -}}
     {{- $price := .price | replaceRE "[^0-9.]" "" -}}
     {{- $currency := "PLN" -}}
@@ -86,7 +94,7 @@
           <thead class="visually-hidden">
             <tr>
               <th scope="col">{{ i18n "service" | default "Service" }}</th>
-              <th scope="col">{{ i18n "duration" | default "Duration" }}</th>
+              <th scope="col">{{ i18n "service_info" | default "Info" }}</th>
               <th scope="col">{{ i18n "price" | default "Price" }}</th>
             </tr>
           </thead>
@@ -96,9 +104,10 @@
               class="pricing__row"
               data-name="{{ .name | lower }}"
               data-tags="{{ delimit .tags " " }}"
+              data-description="{{ .description | default .duration | lower }}"
             >
               <td class="pricing__service">{{ .name }}</td>
-              <td class="pricing__duration">{{ .duration }}</td>
+              <td class="pricing__description">{{ .description | default .duration }}</td>
               <td class="pricing__price">{{ .price }}</td>
             </tr>
             {{- end -}}
@@ -117,7 +126,7 @@
           <thead class="visually-hidden">
             <tr>
               <th scope="col">{{ i18n "service" | default "Service" }}</th>
-              <th scope="col">{{ i18n "duration" | default "Duration" }}</th>
+              <th scope="col">{{ i18n "service_info" | default "Info" }}</th>
               <th scope="col">{{ i18n "price" | default "Price" }}</th>
             </tr>
           </thead>
@@ -127,9 +136,10 @@
               class="pricing__row"
               data-name="{{ .name | lower }}"
               data-tags="extras"
+              data-description="{{ .description | default .duration | lower }}"
             >
               <td class="pricing__service">{{ .name }}</td>
-              <td class="pricing__duration">{{ .duration }}</td>
+              <td class="pricing__description">{{ .description | default .duration }}</td>
               <td class="pricing__price">{{ .price }}</td>
             </tr>
             {{- end -}}

@@ -33,7 +33,7 @@ stars_of_5: "out of 5 stars"
 # Pricing
 filter_by_category: "Filter by category"
 service: "Service"
-duration: "Duration"
+service_info: "Info"
 price: "Price"
 
 # Gallery
