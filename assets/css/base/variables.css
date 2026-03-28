@@ -8,6 +8,25 @@
  * - 480px: Small phone
  */
 
+/* Fallback fonts with size-adjust to match Google Fonts metrics */
+@font-face {
+  font-family: 'Cormorant Garamond Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 105%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'DM Sans Fallback';
+  src: local('Arial'), local('Helvetica'), local('system-ui');
+  size-adjust: 97%;
+  ascent-override: 98%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
 :root {
   --cream: #FAF7F0;
   --green: #3B5C45;
@@ -20,8 +39,8 @@
   --text: #2D2D2D;
   --text-muted: #6B6B6B;
 
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'DM Sans', system-ui, sans-serif;
+  --serif: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif;
+  --sans: 'DM Sans', 'DM Sans Fallback', system-ui, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
