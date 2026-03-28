@@ -14,6 +14,7 @@ A Hugo theme for small local service businesses — hairdressers, beauty salons,
 - Fully responsive (mobile-first)
 - Multi-language support (i18n)
 - SEO optimized (JSON-LD, Open Graph, Twitter Cards)
+- **Automatic image optimization** (WebP, responsive images, lazy loading)
 - Google Tag Manager with GDPR cookie consent
 - No JavaScript frameworks — vanilla JS only
 - Leaflet.js integration for location maps
@@ -217,6 +218,121 @@ sections:
 - **FAQ** (`layouts/faq/section.html`) — Accordion with JSON-LD
 - **Location** (`layouts/location/single.html`) — Map with opening hours
 - **Blog** (`layouts/blog/`) — List and single post layouts
+
+## Image Optimization
+
+The theme includes automatic image optimization with responsive images and modern formats.
+
+### How It Works
+
+All images referenced in templates are automatically processed through Hugo's image pipeline:
+
+- **WebP conversion** — Modern format with ~95% size reduction
+- **Multiple sizes** — Responsive variants for different screens (400px, 800px, 1200px, 1600px)
+- **srcset & sizes** — Browser selects optimal image based on viewport
+- **Lazy loading** — Off-screen images load on demand
+- **Fallback** — Original format for browsers without WebP support
+
+### Configuration
+
+Customize image processing globally in `hugo.yaml`:
+
+```yaml
+params:
+  images:
+    quality: 80                    # Image quality (1-100), default: 80
+    widths: [400, 800, 1200, 1600] # Responsive image widths, default: [400, 800, 1200, 1600]
+    lazy_loading: true             # Enable lazy loading by default, default: true
+```
+
+**Quality recommendations:**
+- **60-70** — Content-heavy blogs (prioritize file size)
+- **80** — Balanced (default, recommended)
+- **90-95** — Portfolio/galleries (prioritize quality)
+
+**Widths recommendations:**
+- Default `[400, 800, 1200, 1600]` works for most sites
+- Add `2000` or `2400` for large hero images on high-DPI displays
+- Remove smaller sizes if targeting desktop-only audiences
+
+### Image Placement
+
+**Use `assets/images/` for content images** that should be optimized:
+
+```
+assets/
+└── images/
+    ├── hero.jpg
+    ├── blog/
+    │   ├── post-1.jpg
+    │   └── post-2.jpg
+    └── team/
+        └── member.jpg
+```
+
+**Use `static/images/` only for** images that shouldn't be processed (logos, favicons, QR codes).
+
+### Adding Images to Content
+
+#### Blog Posts
+
+```yaml
+---
+title: "My Blog Post"
+image: "/images/blog/post-image.jpg"
+---
+```
+
+#### Hero Section
+
+```yaml
+sections:
+  - type: hero
+    heading: "Welcome"
+    image: "/images/hero.jpg"
+```
+
+#### Gallery (Before/After)
+
+```yaml
+---
+title: "Transformation Example"
+category: "Haircut"
+image_before: "/images/gallery/before.jpg"
+image_after: "/images/gallery/after.jpg"
+---
+```
+
+#### Team Members
+
+```yaml
+# data/en/team.yaml
+- name: "John Smith"
+  role: "Senior Stylist"
+  image: "/images/team/john.jpg"
+```
+
+### Recommended Image Sizes
+
+For optimal performance, upload images in these dimensions:
+
+| Component | Recommended Size | Aspect Ratio |
+|-----------|-----------------|--------------|
+| Hero image | 1200×900px | 4:3 |
+| Blog featured image | 1600×1000px | 16:10 |
+| Blog card/preview | 800×500px | 16:10 |
+| Gallery before/after | 1200×900px | 4:3 |
+| Team member photo | 800×1000px | 4:5 |
+| OG image (social) | 1200×630px | 1.91:1 |
+
+### Performance Results
+
+Example optimization for a typical blog image:
+
+- **Original:** 2.5 MB JPEG (1920×1200)
+- **WebP 1600px:** 145 KB (94% reduction)
+- **WebP 800px:** 42 KB (98% reduction)
+- **Total load time:** <200ms (with lazy loading)
 
 ## Internationalization (i18n)
 

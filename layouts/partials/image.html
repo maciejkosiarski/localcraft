@@ -1,0 +1,98 @@
+{{- /*
+  Partial: image.html
+  Description: Optimized image rendering with responsive sizes and WebP support
+
+  Parameters:
+    - src (string, required): Image path (e.g., "/images/hero.jpg" or "images/hero.jpg")
+    - alt (string, required): Alt text for accessibility
+    - class (string, optional): CSS classes
+    - loading (string, optional): "lazy" or "eager", default from config or "lazy"
+    - sizes (string, optional): sizes attribute for responsive images
+    - widths (slice, optional): Array of widths to generate, default from config or [400, 800, 1200, 1600]
+    - quality (int, optional): Image quality 1-100, default from config or 80
+    - fit (string, optional): Hugo image processing method: "resize", "fill", "fit", default: "resize"
+
+  Global configuration (hugo.yaml):
+    params:
+      images:
+        quality: 80                    # Default image quality (1-100)
+        widths: [400, 800, 1200, 1600] # Default responsive widths
+        lazy_loading: true             # Default lazy loading behavior
+
+  Usage:
+    {{ partial "image.html" (dict "src" "/images/hero.jpg" "alt" "Hero image" "class" "hero-img") }}
+    {{ partial "image.html" (dict "src" "/images/hero.jpg" "alt" "Hero" "quality" 90) }}
+*/ -}}
+
+{{- /* Get global image config */ -}}
+{{- $globalQuality := site.Params.images.quality | default 80 -}}
+{{- $globalWidths := site.Params.images.widths | default (slice 400 800 1200 1600) -}}
+{{- $globalLazyLoading := site.Params.images.lazy_loading | default true -}}
+{{- $defaultLoading := "lazy" -}}
+{{- if not $globalLazyLoading }}{{ $defaultLoading = "eager" }}{{ end -}}
+
+{{- /* Parse parameters with fallback to global config */ -}}
+{{- $src := .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "" -}}
+{{- $loading := .loading | default $defaultLoading -}}
+{{- $sizes := .sizes | default "100vw" -}}
+{{- $widths := .widths | default $globalWidths -}}
+{{- $quality := .quality | default $globalQuality -}}
+{{- $fit := .fit | default "resize" -}}
+
+{{- /* Normalize path - remove leading slash for resources.Get */ -}}
+{{- $resourcePath := strings.TrimPrefix "/" $src -}}
+
+{{- /* Try to get image from assets/ directory */ -}}
+{{- $img := resources.Get $resourcePath -}}
+
+{{- if $img -}}
+  {{- /* Image found in assets/ - process it */ -}}
+
+  {{- /* Generate responsive image variants */ -}}
+  {{- $srcsetWebP := slice -}}
+  {{- $srcsetOriginal := slice -}}
+
+  {{- range $widths -}}
+    {{- $width := . -}}
+    {{- $resizeStr := printf "%dx webp q%d" $width $quality -}}
+
+    {{- /* Generate WebP variant */ -}}
+    {{- $resized := $img.Resize $resizeStr -}}
+    {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink $width) -}}
+
+    {{- /* Generate original format variant */ -}}
+    {{- $resizeStrOriginal := printf "%dx q%d" $width $quality -}}
+    {{- $resizedOriginal := $img.Resize $resizeStrOriginal -}}
+    {{- $srcsetOriginal = $srcsetOriginal | append (printf "%s %dw" $resizedOriginal.RelPermalink $width) -}}
+  {{- end -}}
+
+  {{- /* Default image (largest size in original format) */ -}}
+  {{- $default := $img.Resize (printf "%dx q%d" (index $widths (sub (len $widths) 1)) $quality) -}}
+
+  <picture>
+    <source type="image/webp" srcset="{{ delimit $srcsetWebP ", " }}" sizes="{{ $sizes }}">
+    <source type="{{ $img.MediaType }}" srcset="{{ delimit $srcsetOriginal ", " }}" sizes="{{ $sizes }}">
+    <img
+      src="{{ $default.RelPermalink }}"
+      alt="{{ $alt }}"
+      {{- with $class }} class="{{ . }}"{{ end }}
+      loading="{{ $loading }}"
+      decoding="async"
+      width="{{ $default.Width }}"
+      height="{{ $default.Height }}"
+    >
+  </picture>
+
+{{- else -}}
+  {{- /* Fallback: Image not in assets/, use static path */ -}}
+  {{- $urlHelper := partial "url.html" $src -}}
+  <img
+    src="{{ $urlHelper }}"
+    alt="{{ $alt }}"
+    {{- with $class }} class="{{ . }}"{{ end }}
+    loading="{{ $loading }}"
+    decoding="async"
+  >
+{{- end -}}

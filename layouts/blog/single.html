@@ -38,7 +38,14 @@
   {{ with .Params.image }}
     <div class="blog-post__hero animate-fade-up delay-1">
       <div class="container">
-        <img src="{{ partial "url.html" . }}" alt="{{ $.Title }}" class="blog-post__hero-image">
+        {{- partial "image.html" (dict
+          "src" .
+          "alt" $.Title
+          "class" "blog-post__hero-image"
+          "loading" "eager"
+          "sizes" "(min-width: 1200px) 1200px, 100vw"
+          "widths" (slice 800 1200 1600 2000)
+        ) -}}
       </div>
     </div>
   {{ end }}
@@ -58,7 +65,14 @@
             {{ range . }}
               <a href="{{ .RelPermalink }}" class="blog-post__related-card">
                 {{ with .Params.image }}
-                  <img src="{{ partial "url.html" . }}" alt="{{ $.Title }}" class="blog-post__related-image" loading="lazy">
+                  {{- partial "image.html" (dict
+                    "src" .
+                    "alt" $.Title
+                    "class" "blog-post__related-image"
+                    "loading" "lazy"
+                    "sizes" "(min-width: 768px) 33vw, 100vw"
+                    "widths" (slice 400 600 800)
+                  ) -}}
                 {{ else }}
                   <div class="blog-post__related-placeholder">
                     <svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

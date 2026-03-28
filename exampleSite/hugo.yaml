@@ -224,3 +224,8 @@ params:
     enabled: true
     url: "https://buymeacoffee.com/maciejkosiarski"
     qr_image: "/images/bmc-qr-code.png"
+  # Image optimization settings
+  images:
+    quality: 80                    # Image quality (1-100). Recommendations: 60-70 (size), 80 (balanced), 90-95 (quality)
+    widths: [400, 800, 1200, 1600] # Responsive image widths in pixels
+    lazy_loading: true             # Enable lazy loading by default

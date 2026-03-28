@@ -58,12 +58,14 @@
       {{/* Right column - Image */}}
       <div class="hero__media animate-fade-up delay-2">
         {{- if $s.image }}
-          <img
-            src="{{ partial "url.html" $s.image }}"
-            alt="{{ $s.heading | default "Hero" }}"
-            class="hero__image"
-            loading="eager"
-          >
+          {{- partial "image.html" (dict
+            "src" $s.image
+            "alt" ($s.heading | default "Hero")
+            "class" "hero__image"
+            "loading" "eager"
+            "sizes" "(min-width: 1024px) 50vw, 100vw"
+            "widths" (slice 600 900 1200 1600)
+          ) -}}
         {{- else }}
           {{/* SVG Placeholder */}}
           <div class="hero__placeholder">

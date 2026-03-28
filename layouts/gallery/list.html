@@ -41,12 +41,14 @@
           {{/* After image (background layer) */}}
           <div class="ba-slider__after">
             {{ with .Params.image_after }}
-              <img
-                src="{{ partial "url.html" . }}"
-                alt="{{ $.Title }} — {{ i18n "after" | default "after" }}"
-                class="ba-slider__image"
-                loading="lazy"
-              >
+              {{- partial "image.html" (dict
+                "src" .
+                "alt" (printf "%s — %s" $.Title (i18n "after" | default "after"))
+                "class" "ba-slider__image"
+                "loading" "lazy"
+                "sizes" "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                "widths" (slice 400 600 800 1000)
+              ) -}}
             {{ else }}
               <div class="ba-slider__placeholder ba-slider__placeholder--after" aria-hidden="true">
                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
@@ -62,12 +64,14 @@
           {{/* Before image (overlay layer with clip-path) */}}
           <div class="ba-slider__before">
             {{ with .Params.image_before }}
-              <img
-                src="{{ partial "url.html" . }}"
-                alt="{{ $.Title }} — {{ i18n "before" | default "before" }}"
-                class="ba-slider__image"
-                loading="lazy"
-              >
+              {{- partial "image.html" (dict
+                "src" .
+                "alt" (printf "%s — %s" $.Title (i18n "before" | default "before"))
+                "class" "ba-slider__image"
+                "loading" "lazy"
+                "sizes" "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                "widths" (slice 400 600 800 1000)
+              ) -}}
             {{ else }}
               <div class="ba-slider__placeholder ba-slider__placeholder--before" aria-hidden="true">
                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
