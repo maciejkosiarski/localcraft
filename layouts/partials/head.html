@@ -108,6 +108,11 @@
   {{- $cssBundle = $cssBundle | append . -}}
 {{- end -}}
 
+{{/* 7. User custom CSS - loaded last to allow overriding theme styles */}}
+{{- with resources.Get "css/custom.css" }}
+  {{- $cssBundle = $cssBundle | append . -}}
+{{- end -}}
+
 {{- if gt (len $cssBundle) 0 -}}
   {{- $css := $cssBundle | resources.Concat "css/bundle.css" | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

@@ -144,10 +144,10 @@ categories:
   - name: "Haircuts"
     services:
       - name: "Men's Haircut"
-        duration: "30 min"
+        description: "30 min"
         price: "$25"
       - name: "Women's Haircut"
-        duration: "45 min"
+        description: "45 min"
         price: "$40"
 ```
 
@@ -257,6 +257,32 @@ params:
 ```
 
 All colors are optional — only specify the ones you want to override.
+
+### Custom CSS
+
+To add your own styles or override theme styles, create a file `assets/css/custom.css` in your project root:
+
+```css
+/* assets/css/custom.css */
+
+/* Override existing styles */
+.hero h1 {
+  font-size: 3.5rem;
+}
+
+/* Add custom styles */
+.my-custom-section {
+  background: var(--green-pale);
+  padding: 4rem 0;
+}
+
+/* Override CSS variables */
+:root {
+  --green: #2ecc71;
+}
+```
+
+The custom CSS file is loaded **last** in the CSS cascade, ensuring your styles take precedence over theme defaults. It's automatically minified and bundled with other theme styles for optimal performance.
 
 ### Fonts
 

@@ -1,0 +1,17 @@
+/* Custom CSS - User overrides
+ *
+ * This file is loaded last in the CSS cascade, allowing you to override
+ * any theme styles. Add your custom styles below.
+ *
+ * Example:
+ *
+ * .hero h1 {
+ *   font-size: 3rem;
+ * }
+ *
+ * :root {
+ *   --green: #2ecc71;
+ * }
+ */
+
+/* Your custom styles here */
