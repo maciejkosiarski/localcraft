@@ -42,7 +42,7 @@
 
     {{- with $qr -}}
     <div class="support-button__qr">
-      <img src="{{ . }}" alt="{{ i18n "support_qr_alt" | default "Scan QR code to support" }}" loading="lazy" width="150" height="150">
+      <img src="{{ partial "url.html" . }}" alt="{{ i18n "support_qr_alt" | default "Scan QR code to support" }}" loading="lazy" width="150" height="150">
     </div>
     {{- end -}}
 
