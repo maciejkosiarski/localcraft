@@ -21,3 +21,15 @@
   {{/* Render dynamic sections */}}
   {{ partial "sections-renderer.html" . }}
 {{ end }}
+
+{{ define "scripts" }}
+  {{/* Load section-specific JavaScript if sections are enabled */}}
+  {{ range .Params.sections }}
+    {{ if and .enabled (eq .type "faq") }}
+      {{- $faqJs := resources.Get "js/faq.js" | minify | fingerprint -}}
+      {{- with $faqJs -}}
+        <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
+      {{- end -}}
+    {{ end }}
+  {{ end }}
+{{ end }}
