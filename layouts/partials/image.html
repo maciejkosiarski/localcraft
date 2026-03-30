@@ -1,6 +1,6 @@
 {{- /*
   Partial: image.html
-  Description: Optimized image rendering with responsive sizes and WebP support
+  Description: Optimized image rendering with responsive sizes, WebP support, and smart crop
 
   Parameters:
     - src (string, required): Image path (e.g., "/images/hero.jpg" or "images/hero.jpg")
@@ -10,7 +10,8 @@
     - sizes (string, optional): sizes attribute for responsive images
     - widths (slice, optional): Array of widths to generate, default from config or [400, 800, 1200, 1600]
     - quality (int, optional): Image quality 1-100, default from config or 80
-    - fit (string, optional): Hugo image processing method: "resize", "fill", "fit", default: "resize"
+    - fit (string, optional): "resize" (preserve aspect ratio) or "fill" (smart crop), default: "resize"
+    - aspectRatio (string, optional): Target aspect ratio for "fill" mode (e.g., "16:9", "16:10", "4:3")
 
   Global configuration (hugo.yaml):
     params:
@@ -19,9 +20,15 @@
         widths: [400, 800, 1200, 1600] # Default responsive widths
         lazy_loading: true             # Default lazy loading behavior
 
-  Usage:
-    {{ partial "image.html" (dict "src" "/images/hero.jpg" "alt" "Hero image" "class" "hero-img") }}
-    {{ partial "image.html" (dict "src" "/images/hero.jpg" "alt" "Hero" "quality" 90) }}
+  Usage examples:
+    Preserve aspect ratio (default):
+      partial "image.html" (dict "src" "/images/hero.jpg" "alt" "Hero image")
+
+    Smart crop to 16:9:
+      partial "image.html" (dict "src" "/images/hero.jpg" "alt" "Hero" "fit" "fill" "aspectRatio" "16:9")
+
+    High quality smart crop:
+      partial "image.html" (dict "src" "/images/blog.jpg" "alt" "Blog" "quality" 90 "fit" "fill" "aspectRatio" "16:10")
 */ -}}
 
 {{- /* Get global image config */ -}}
@@ -40,6 +47,7 @@
 {{- $widths := .widths | default $globalWidths -}}
 {{- $quality := .quality | default $globalQuality -}}
 {{- $fit := .fit | default "resize" -}}
+{{- $aspectRatio := .aspectRatio | default "" -}}
 
 {{- /* Normalize path - remove leading slash for resources.Get */ -}}
 {{- $resourcePath := strings.TrimPrefix "/" $src -}}
@@ -56,20 +64,61 @@
 
   {{- range $widths -}}
     {{- $width := . -}}
-    {{- $resizeStr := printf "%dx webp q%d" $width $quality -}}
 
-    {{- /* Generate WebP variant */ -}}
-    {{- $resized := $img.Resize $resizeStr -}}
-    {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink $width) -}}
+    {{- /* Determine processing method based on fit parameter */ -}}
+    {{- if eq $fit "fill" -}}
+      {{- /* Smart crop - requires aspect ratio */ -}}
+      {{- if $aspectRatio -}}
+        {{- /* Parse aspect ratio (e.g., "16:9" -> width=16, height=9) */ -}}
+        {{- $parts := split $aspectRatio ":" -}}
+        {{- $aspectWidth := index $parts 0 | int -}}
+        {{- $aspectHeight := index $parts 1 | int -}}
+        {{- $height := div (mul $width $aspectHeight) $aspectWidth -}}
 
-    {{- /* Generate original format variant */ -}}
-    {{- $resizeStrOriginal := printf "%dx q%d" $width $quality -}}
-    {{- $resizedOriginal := $img.Resize $resizeStrOriginal -}}
-    {{- $srcsetOriginal = $srcsetOriginal | append (printf "%s %dw" $resizedOriginal.RelPermalink $width) -}}
+        {{- /* Generate WebP variant with smart crop */ -}}
+        {{- $resizeStr := printf "%dx%d webp q%d Smart" $width $height $quality -}}
+        {{- $resized := $img.Fill $resizeStr -}}
+        {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink $width) -}}
+
+        {{- /* Generate original format variant with smart crop */ -}}
+        {{- $resizeStrOriginal := printf "%dx%d q%d Smart" $width $height $quality -}}
+        {{- $resizedOriginal := $img.Fill $resizeStrOriginal -}}
+        {{- $srcsetOriginal = $srcsetOriginal | append (printf "%s %dw" $resizedOriginal.RelPermalink $width) -}}
+      {{- else -}}
+        {{- /* Fallback to resize if no aspect ratio specified */ -}}
+        {{- warnf "image.html: fit='fill' specified but no aspectRatio provided for %s. Falling back to resize." $src -}}
+        {{- $resizeStr := printf "%dx webp q%d" $width $quality -}}
+        {{- $resized := $img.Resize $resizeStr -}}
+        {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink $width) -}}
+
+        {{- $resizeStrOriginal := printf "%dx q%d" $width $quality -}}
+        {{- $resizedOriginal := $img.Resize $resizeStrOriginal -}}
+        {{- $srcsetOriginal = $srcsetOriginal | append (printf "%s %dw" $resizedOriginal.RelPermalink $width) -}}
+      {{- end -}}
+    {{- else -}}
+      {{- /* Default: Resize (preserve aspect ratio) */ -}}
+      {{- $resizeStr := printf "%dx webp q%d" $width $quality -}}
+      {{- $resized := $img.Resize $resizeStr -}}
+      {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink $width) -}}
+
+      {{- $resizeStrOriginal := printf "%dx q%d" $width $quality -}}
+      {{- $resizedOriginal := $img.Resize $resizeStrOriginal -}}
+      {{- $srcsetOriginal = $srcsetOriginal | append (printf "%s %dw" $resizedOriginal.RelPermalink $width) -}}
+    {{- end -}}
   {{- end -}}
 
-  {{- /* Default image (largest size in original format) */ -}}
-  {{- $default := $img.Resize (printf "%dx q%d" (index $widths (sub (len $widths) 1)) $quality) -}}
+  {{- /* Default image (largest size) */ -}}
+  {{- $defaultWidth := index $widths (sub (len $widths) 1) -}}
+  {{- $default := "" -}}
+  {{- if and (eq $fit "fill") $aspectRatio -}}
+    {{- $parts := split $aspectRatio ":" -}}
+    {{- $aspectWidth := index $parts 0 | int -}}
+    {{- $aspectHeight := index $parts 1 | int -}}
+    {{- $defaultHeight := div (mul $defaultWidth $aspectHeight) $aspectWidth -}}
+    {{- $default = $img.Fill (printf "%dx%d q%d Smart" $defaultWidth $defaultHeight $quality) -}}
+  {{- else -}}
+    {{- $default = $img.Resize (printf "%dx q%d" $defaultWidth $quality) -}}
+  {{- end -}}
 
   <picture>
     <source type="image/webp" srcset="{{ delimit $srcsetWebP ", " }}" sizes="{{ $sizes }}">
