@@ -1,0 +1,36 @@
+{{- /*
+  Section: about-content.html
+  Description: Renders markdown content from the page
+
+  Parameters (from .section):
+    - label (string, optional): Section label/eyebrow
+    - heading (string, optional): Section heading
+    - description (string, optional): Section description
+    - background (string, optional): Background color (e.g., "var(--green-pale)")
+    - max_width (string, optional): Max width for content (default: "800px")
+*/ -}}
+
+{{ with .page.Content }}
+<section class="about-content section"{{ with $.section.background }} style="background: {{ . }}"{{ end }}>
+  <div class="container">
+    {{/* Optional section header */}}
+    {{ if or $.section.label $.section.heading $.section.description }}
+    <div class="section-header animate-fade-up">
+      {{ with $.section.label }}
+        <span class="section-label">{{ . }}</span>
+      {{ end }}
+      {{ with $.section.heading }}
+        <h2 class="section-heading">{{ . }}</h2>
+      {{ end }}
+      {{ with $.section.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="prose animate-fade-up"{{ with $.section.max_width }} style="max-width: {{ . }}"{{ end }}>
+      {{ . }}
+    </div>
+  </div>
+</section>
+{{ end }}

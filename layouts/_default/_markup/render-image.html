@@ -1,0 +1,20 @@
+{{- /*
+  Render Hook: render-image.html
+  Description: Automatically processes markdown images with optimization
+
+  This hook is triggered when an image is used in markdown content:
+    ![Alt text](images/photo.jpg)
+    ![Alt text](images/photo.jpg "Custom title")
+
+  All images will be processed through the image.html partial for:
+  - WebP conversion
+  - Responsive srcset
+  - Lazy loading
+  - Proper sizing
+*/ -}}
+
+{{- partial "image.html" (dict
+  "src" .Destination
+  "alt" .Text
+  "loading" "lazy"
+) -}}

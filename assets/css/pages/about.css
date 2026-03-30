@@ -195,20 +195,13 @@
 }
 
 /* About Content (from markdown) */
-.about-content__inner {
+.about-content .prose {
   max-width: 700px;
   margin-inline: auto;
 }
 
-.about-content__inner h2 {
-  font-size: var(--text-2xl);
-  margin-top: var(--space-2xl);
-  margin-bottom: var(--space-md);
-}
-
-.about-content__inner p {
-  color: var(--text-muted);
-  line-height: 1.8;
+.about-content .section-header + .prose {
+  margin-top: var(--space-xl);
 }
 
 /* Key Facts */

@@ -1,0 +1,38 @@
+{{- /*
+  Section: about-values.html
+  Description: Displays company values in a grid
+
+  Parameters (from .section):
+    - label (string, optional): Section label/eyebrow
+    - heading (string, optional): Section heading
+    - description (string, optional): Section description
+
+  Data source: site.Data.[lang].values
+*/ -}}
+
+{{- $lang := .page.Language.Lang -}}
+{{- with index site.Data $lang "values" }}
+<section class="about-values section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ $.section.label | default (i18n "our_values") }}</span>
+      <h2 class="section-heading">{{ $.section.heading | default (i18n "values_heading") }}</h2>
+      {{ with $.section.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </div>
+
+    <div class="about-values__grid">
+      {{ range . }}
+        <div class="about-values__card card animate-fade-up">
+          <div class="about-values__icon">
+            {{ partial "icon.html" (dict "name" .icon "size" 32) }}
+          </div>
+          <h3 class="about-values__title">{{ .title }}</h3>
+          <p class="about-values__description">{{ .description }}</p>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
