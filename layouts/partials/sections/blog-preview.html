@@ -70,8 +70,8 @@
             </h3>
 
             {{/* Excerpt */}}
-            {{- with $post.Summary }}
-              <p class="blog-preview__excerpt">{{ . | truncate 120 }}</p>
+            {{- with $post.Params.description }}
+              <p class="blog-preview__excerpt">{{ . }}</p>
             {{- end }}
 
             {{/* Read more link */}}
