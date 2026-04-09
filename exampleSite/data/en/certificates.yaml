@@ -1,0 +1,20 @@
+# Company certificates
+- name: "Pet-Friendly Certificate"
+  issuer: "Polish Grooming Federation"
+  date: "2024-01"
+  description: "Salon meets highest pet care standards"
+  image: "/images/example-cert.jpg"
+
+- name: "Hygiene and Safety Certificate"
+  issuer: "Warsaw Health Authority"
+  date: "2023-11"
+
+- name: "Premium Petstore Partner"
+  issuer: "Petstore Poland"
+  date: "2023-06"
+  description: "Official premium cosmetics distribution partner"
+
+- name: "Google Local Guides Award"
+  issuer: "Google"
+  date: "2022-12"
+  icon: "star"

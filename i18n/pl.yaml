@@ -106,3 +106,8 @@ kf_languages: "Obsługiwane jezyki"
 404_home_button: "Przejdź do strony głównej"
 404_helpful_links: "Przydatne linki"
 404_recent_posts: "Ostatnie wpisy"
+
+# Credentials
+show_more: "Pokaz wiecej"
+show_less: "Pokaz mniej"
+credentials: "Certyfikaty i kwalifikacje"

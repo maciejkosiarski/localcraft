@@ -20,6 +20,13 @@ sections:
     enabled: true
     label: "Our team"
     heading: "Meet our groomers"
+
+  - type: certificates
+    enabled: true
+    label: "Certificates"
+    heading: "Our Awards & Certifications"
+    description: "Proof of our service quality"
+    limit: 6
 ---
 
 ## Our story

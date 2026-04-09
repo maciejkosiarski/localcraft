@@ -1,0 +1,54 @@
+{{/*
+  certificates.html
+  Section for displaying company/business certificates and credentials.
+
+  Usage in frontmatter:
+    sections:
+      - type: certificates
+        enabled: true
+        label: "Our Certificates"
+        heading: "Quality Assurance"
+        description: "Professional certifications and accreditations"
+        limit: 6  # optional, default 6
+        data_source: certificates  # optional, default "certificates"
+*/}}
+
+{{- $s := .section -}}
+{{- $page := .page -}}
+{{- $lang := $page.Language.Lang -}}
+{{- $dataSource := $s.data_source | default "certificates" -}}
+{{- $certificates := index site.Data $lang $dataSource -}}
+{{- $limit := $s.limit | default 6 -}}
+
+{{- with $certificates }}
+<section class="certificates section">
+  <div class="container">
+    {{/* Section header */}}
+    <div class="section-header animate-fade-up">
+      {{- with $s.label }}
+        <span class="section-label">{{ . }}</span>
+      {{- end }}
+      {{- with $s.heading }}
+        <h2 class="section-heading">{{ . }}</h2>
+      {{- end }}
+      {{- with $s.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{- end }}
+    </div>
+
+    {{/* Certificates list */}}
+    {{- partial "credentials-list.html" (dict
+        "items" $certificates
+        "limit" $limit
+        "id" "company-certs"
+        "page" $page) -}}
+  </div>
+</section>
+
+{{/* Load credentials JS if needed */}}
+{{- $hasMore := gt (len $certificates) $limit -}}
+{{- if $hasMore -}}
+  {{- $js := resources.Get "js/credentials.js" | minify | fingerprint -}}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+{{- end -}}
+{{- end }}

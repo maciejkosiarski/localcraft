@@ -45,10 +45,31 @@
             <h3 class="about-team__name">{{ $member.name }}</h3>
             <span class="about-team__role">{{ $member.role }}</span>
             <p class="about-team__bio">{{ $member.bio }}</p>
+
+            {{/* Member credentials/certificates */}}
+            {{- with $member.credentials -}}
+              {{- partial "credentials-list.html" (dict
+                  "items" .
+                  "limit" 3
+                  "id" (printf "team-%d-creds" $index)
+                  "page" $.page) -}}
+            {{- end -}}
           </div>
         </div>
       {{ end }}
     </div>
   </div>
 </section>
+
+{{/* Load credentials JS if any member has more than 3 credentials */}}
+{{- $needsJs := false -}}
+{{- range . -}}
+  {{- if gt (len .credentials) 3 -}}
+    {{- $needsJs = true -}}
+  {{- end -}}
+{{- end -}}
+{{- if $needsJs -}}
+  {{- $js := resources.Get "js/credentials.js" | minify | fingerprint -}}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+{{- end -}}
 {{ end }}

@@ -21,6 +21,13 @@ sections:
     enabled: true
     label: "Nasz zespół"
     heading: "Poznaj naszych groomerów"
+
+  - type: certificates
+    enabled: true
+    label: "Certyfikaty"
+    heading: "Nasze wyróżnienia i certyfikaty"
+    description: "Potwierdzenie jakości naszych usług"
+    limit: 6
 ---
 
 ## Nasza historia

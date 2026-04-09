@@ -104,3 +104,8 @@ kf_languages: "Languages Spoken"
 404_home_button: "Go to Homepage"
 404_helpful_links: "Helpful Links"
 404_recent_posts: "Recent Posts"
+
+# Credentials
+show_more: "Show more"
+show_less: "Show less"
+credentials: "Credentials & Certifications"
