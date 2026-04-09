@@ -14,6 +14,11 @@
   padding-block: var(--space-3xl);
 }
 
+/* Top spacing for pages directly under navigation */
+main > .section {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+}
+
 /* Animations */
 @keyframes fadeUp {
   from {
