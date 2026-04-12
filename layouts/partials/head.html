@@ -205,8 +205,21 @@
   {{- $ld = merge $ld (dict "areaServed" $area) }}
 {{- end }}
 {{- with $biz.rating }}
-  {{- $rating := dict "@type" "AggregateRating" "ratingValue" .value "reviewCount" .count "bestRating" .best }}
+  {{- $rating := dict "@type" "AggregateRating" "ratingValue" .value "reviewCount" .count "bestRating" .best "worstRating" 1 }}
   {{- $ld = merge $ld (dict "aggregateRating" $rating) }}
+{{- end }}
+{{/* Review items from testimonials data */}}
+{{- $testimonials := index site.Data $lang "testimonials" }}
+{{- if $testimonials }}
+  {{- $bizRef := dict "@id" (printf "%s#business" (site.BaseURL | string)) }}
+  {{- $reviews := slice }}
+  {{- range $testimonials }}
+    {{- $author := dict "@type" "Person" "name" .name }}
+    {{- $reviewRating := dict "@type" "Rating" "ratingValue" .rating "bestRating" 5 "worstRating" 1 }}
+    {{- $review := dict "@type" "Review" "author" $author "reviewRating" $reviewRating "reviewBody" .text "itemReviewed" $bizRef }}
+    {{- $reviews = $reviews | append $review }}
+  {{- end }}
+  {{- $ld = merge $ld (dict "review" $reviews) }}
 {{- end }}
 <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- end }}
