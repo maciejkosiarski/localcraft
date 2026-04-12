@@ -23,7 +23,7 @@
           const otherAnswer = otherItem.querySelector('.faq__answer');
           if (otherButton && otherAnswer) {
             otherButton.setAttribute('aria-expanded', 'false');
-            otherAnswer.hidden = true;
+            otherAnswer.classList.remove('faq__answer--open');
             otherItem.classList.remove('faq__item--open');
           }
         }
@@ -31,7 +31,7 @@
 
       // Toggle current item
       button.setAttribute('aria-expanded', !isExpanded);
-      answer.hidden = isExpanded;
+      answer.classList.toggle('faq__answer--open', !isExpanded);
       item.classList.toggle('faq__item--open', !isExpanded);
     });
 
