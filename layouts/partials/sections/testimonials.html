@@ -54,6 +54,18 @@
         </div>
       {{- end }}
     </div>
+
+    {{/* CTA */}}
+    {{- $reviewUrl := $s.cta.url | default site.Params.review_url -}}
+    {{- $reviewText := $s.cta.text | default (i18n "leave_review" | default "Leave a review") -}}
+    {{- with $reviewUrl }}
+      <div class="testimonials__cta animate-fade-up">
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-terra">
+          {{- partial "icon.html" (dict "name" "star" "size" 20) -}}
+          {{ $reviewText }}
+        </a>
+      </div>
+    {{- end }}
   </div>
 </section>
 {{- end }}

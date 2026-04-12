@@ -164,6 +164,7 @@ pagination:
   pagerSize: 6
 
 params:
+  review_url: "https://g.page/r/example/review"
   logo:
     name: "Snip Snip"
     dot: true

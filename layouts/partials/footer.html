@@ -20,6 +20,14 @@
           {{ end }}
         </div>
       {{ end }}
+
+      {{/* Review CTA */}}
+      {{ with .Site.Params.review_url }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="footer__review-cta">
+          {{- partial "icon.html" (dict "name" "star" "size" 16) -}}
+          {{ i18n "leave_review" | default "Leave a review" }}
+        </a>
+      {{ end }}
     </div>
 
     {{/* Dynamic columns */}}

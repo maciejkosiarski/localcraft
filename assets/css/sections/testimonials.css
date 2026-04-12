@@ -99,6 +99,11 @@
   }
 }
 
+.testimonials__cta {
+  text-align: center;
+  margin-top: var(--space-xl);
+}
+
 @media (max-width: 600px) {
   .testimonials__grid {
     grid-template-columns: 1fr;

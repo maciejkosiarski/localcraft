@@ -71,6 +71,30 @@
   height: 20px;
 }
 
+.footer__review-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--terra);
+  border-radius: var(--radius-md);
+  color: var(--terra);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer__review-cta:hover {
+  background: var(--terra);
+  color: white;
+}
+
+.footer__review-cta svg {
+  flex-shrink: 0;
+}
+
 /* Column styling */
 .footer__column {
   min-width: 0;
