@@ -18,6 +18,11 @@ languages:
           - "Grooming psów długowłosych"
           - "Show grooming"
           - "Strzyżenie rasowe"
+        tax_ids:
+          - label: NIP
+            value: "1234567890"
+          - label: REGON
+            value: "123456789"
         parking: "Bezpłatny parking + miejsca dla niepełnosprawnych"
         payment_methods:
           - "Gotówka"
@@ -94,6 +99,9 @@ languages:
         dot: true
       business:
         name: "Snip Snip"
+        tax_ids:
+          - label: EIN
+            value: "12-3456789"
       error_404:
         title: "Oops! Page Not Found"
         description: "The page you're looking for doesn't exist or has been moved. Go back to the homepage or use the links below."
@@ -197,6 +205,11 @@ params:
     lat: 52.2297
     lng: 21.0122
     start_year: 2018
+    # Tax / registration IDs (optional) - displayed in footer contact column
+    # Use any label you need: NIP, REGON, VAT, Tax ID, EIN, etc.
+    # tax_ids:
+    #   - label: "NIP"
+    #     value: "1234567890"
     # Customer ratings (optional) - for AggregateRating schema
     rating:
       value: 4.9

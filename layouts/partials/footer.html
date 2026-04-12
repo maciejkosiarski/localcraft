@@ -64,6 +64,9 @@
               {{ with .city }}<div>{{ $.Site.Params.business.postalCode }} {{ . }}</div>{{ end }}
               {{ with .phone }}<div><a href="tel:{{ . }}">{{ . }}</a></div>{{ end }}
               {{ with .email }}<div><a href="mailto:{{ . }}">{{ . }}</a></div>{{ end }}
+              {{ range .tax_ids }}
+                <div>{{ .label }}: {{ .value }}</div>
+              {{ end }}
             </address>
           {{ end }}
         {{ end }}
@@ -80,6 +83,9 @@
             {{ with .city }}<div>{{ $.Site.Params.business.postalCode }} {{ . }}</div>{{ end }}
             {{ with .phone }}<div><a href="tel:{{ . }}">{{ . }}</a></div>{{ end }}
             {{ with .email }}<div><a href="mailto:{{ . }}">{{ . }}</a></div>{{ end }}
+            {{ range .tax_ids }}
+              <div class="footer__tax-id">{{ .label }}: {{ .value }}</div>
+            {{ end }}
           </address>
         </div>
       {{ end }}

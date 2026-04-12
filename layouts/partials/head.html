@@ -177,6 +177,15 @@
 {{- if site.Params.description }}{{ $ld = merge $ld (dict "description" site.Params.description) }}{{ end }}
 {{- if $biz.phone }}{{ $ld = merge $ld (dict "telephone" $biz.phone) }}{{ end }}
 {{- if $biz.email }}{{ $ld = merge $ld (dict "email" $biz.email) }}{{ end }}
+{{- with $biz.tax_ids }}
+  {{- if eq (len .) 1 }}
+    {{- $ld = merge $ld (dict "taxID" (index . 0).value) }}
+  {{- else }}
+    {{- $ids := slice }}
+    {{- range . }}{{ $ids = $ids | append .value }}{{ end }}
+    {{- $ld = merge $ld (dict "taxID" $ids) }}
+  {{- end }}
+{{- end }}
 {{- if and $biz.lat $biz.lng }}
   {{- $geo := dict "@type" "GeoCoordinates" "latitude" $biz.lat "longitude" $biz.lng }}
   {{- $ld = merge $ld (dict "geo" $geo) }}
