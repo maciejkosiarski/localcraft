@@ -18,26 +18,32 @@
 <section class="location-main section">
   <div class="container">
     <div class="location-grid">
-      {{/* Map */}}
-      <div class="location-map animate-fade-up">
-        <div id="map"
-             data-lat="{{ $business.lat }}"
-             data-lng="{{ $business.lng }}"
-             data-name="{{ $business.name }}"
-             aria-label="{{ i18n "map_aria_label" }}">
+      {{/* Left column: Map + Photo */}}
+      <div class="location-col">
+        <div class="location-card location-card--map animate-fade-up">
+          <div id="map"
+               data-lat="{{ $business.lat }}"
+               data-lng="{{ $business.lng }}"
+               data-name="{{ $business.name }}"
+               aria-label="{{ i18n "map_aria_label" }}">
+          </div>
         </div>
+
+        {{ with .Params.image }}
+        <div class="location-card location-card--photo animate-fade-up delay-1">
+          {{ partial "image.html" (dict "src" . "alt" (i18n "our_place") "sizes" "(max-width: 968px) 100vw, 60vw" "widths" (slice 400 800 1200) "fit" "fill" "aspectRatio" "3:2") }}
+        </div>
+        {{ end }}
       </div>
 
-      {{/* Info */}}
-      <div class="location-info animate-fade-up delay-1">
-        {{/* Status */}}
+      {{/* Right column: Status + Address + Contact + Hours */}}
+      <div class="location-col">
         <div class="location-status" id="open-status" data-lang="{{ $lang }}">
           <span class="location-status__indicator"></span>
           <span class="location-status__text"></span>
         </div>
 
-        {{/* Address */}}
-        <div class="location-info__block">
+        <div class="location-card animate-fade-up delay-1">
           <h2 class="location-info__title">{{ i18n "address" }}</h2>
           <address class="location-info__text">
             {{ $business.street }}<br>
@@ -56,8 +62,7 @@
           </a>
         </div>
 
-        {{/* Contact */}}
-        <div class="location-info__block">
+        <div class="location-card animate-fade-up delay-2">
           <h2 class="location-info__title">{{ i18n "contact" }}</h2>
           {{ with $business.phone }}
             <p class="location-info__text">
@@ -71,9 +76,8 @@
           {{ end }}
         </div>
 
-        {{/* Opening Hours */}}
         {{ with $hours }}
-        <div class="location-info__block">
+        <div class="location-card animate-fade-up delay-2">
           <h2 class="location-info__title">{{ i18n "opening_hours" }}</h2>
           <dl class="location-hours" id="opening-hours-list">
             {{ range $index, $item := .days }}

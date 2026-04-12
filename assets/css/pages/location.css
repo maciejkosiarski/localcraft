@@ -39,8 +39,14 @@
 .location-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  gap: var(--space-2xl);
+  gap: var(--space-lg);
   align-items: start;
+}
+
+.location-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
 }
 
 @media (max-width: 968px) {
@@ -49,11 +55,18 @@
   }
 }
 
-/* Map */
-.location-map {
+/* Card — shared style for all grid items */
+.location-card {
+  background: white;
+  border: var(--border-subtle);
   border-radius: var(--radius-lg);
+  padding: var(--space-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+}
+
+/* Map card */
+.location-card--map {
+  padding: 0;
 }
 
 #map {
@@ -73,20 +86,29 @@
   border: none;
 }
 
-/* Location Info */
-.location-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
+/* Photo card */
+.location-card--photo {
+  padding: 0;
 }
 
-.location-info__block {
+.location-card--photo picture,
+.location-card--photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.location-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
   background: white;
   border: var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl);
 }
 
+/* Info styles */
 .location-info__title {
   font-size: var(--text-lg);
   margin-bottom: var(--space-md);
@@ -138,17 +160,7 @@ address.location-info__text {
   transform: translate(2px, -2px);
 }
 
-/* Open/Closed Status */
-.location-status {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md) var(--space-lg);
-  background: white;
-  border: var(--border-subtle);
-  border-radius: var(--radius-lg);
-}
-
+/* Status indicators */
 .location-status__indicator {
   width: 12px;
   height: 12px;
