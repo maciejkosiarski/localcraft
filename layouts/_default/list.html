@@ -33,7 +33,7 @@
       {{ range .Pages }}
         <article>
           <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-          {{ with .Params.description }}
+          {{ with .Params.description | default .Summary }}
             <p>{{ . }}</p>
           {{ end }}
         </article>

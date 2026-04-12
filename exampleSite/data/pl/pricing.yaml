@@ -5,15 +5,15 @@ categories:
       - name: "Kąpiel z suszeniem"
         price: "50 zł"
         description: "45 min"
-        tags: ["kapiel", "pielegnacja"]
+        tags: ["kąpiel", "pielęgnacja"]
       - name: "Strzyżenie maszynką"
         price: "80 zł"
         description: "60 min"
-        tags: ["strzyzenie"]
+        tags: ["strzyżenie"]
       - name: "Strzyżenie nożyczkami"
         price: "100 zł"
         description: "90 min"
-        tags: ["strzyzenie"]
+        tags: ["strzyżenie"]
       - name: "Trymowanie"
         price: "120 zł"
         description: "120 min"
@@ -21,7 +21,7 @@ categories:
       - name: "Rozczesywanie kołtunów"
         price: "30 zł"
         description: "30 min"
-        tags: ["pielegnacja"]
+        tags: ["pielęgnacja"]
 
   - name: "Psy średnie"
     description: "10–25 kg"
@@ -29,15 +29,15 @@ categories:
       - name: "Kąpiel z suszeniem"
         price: "70 zł"
         description: "60 min"
-        tags: ["kapiel", "pielegnacja"]
+        tags: ["kąpiel", "pielęgnacja"]
       - name: "Strzyżenie maszynką"
         price: "120 zł"
         description: "90 min"
-        tags: ["strzyzenie"]
+        tags: ["strzyżenie"]
       - name: "Strzyżenie nożyczkami"
         price: "150 zł"
         description: "120 min"
-        tags: ["strzyzenie"]
+        tags: ["strzyżenie"]
       - name: "Trymowanie"
         price: "180 zł"
         description: "150 min"
@@ -45,7 +45,7 @@ categories:
       - name: "Rozczesywanie kołtunów"
         price: "50 zł"
         description: "45 min"
-        tags: ["pielegnacja"]
+        tags: ["pielęgnacja"]
 
   - name: "Psy duże"
     description: "powyżej 25 kg"
@@ -53,15 +53,15 @@ categories:
       - name: "Kąpiel z suszeniem"
         price: "100 zł"
         description: "90 min"
-        tags: ["kapiel", "pielegnacja"]
+        tags: ["kąpiel", "pielęgnacja"]
       - name: "Strzyżenie maszynką"
         price: "180 zł"
         description: "120 min"
-        tags: ["strzyzenie"]
+        tags: ["strzyżenie"]
       - name: "Strzyżenie nożyczkami"
         price: "220 zł"
         description: "150 min"
-        tags: ["strzyzenie"]
+        tags: ["strzyżenie"]
       - name: "Trymowanie"
         price: "250 zł"
         description: "180 min"
@@ -69,7 +69,7 @@ categories:
       - name: "Rozczesywanie kołtunów"
         price: "80 zł"
         description: "60 min"
-        tags: ["pielegnacja"]
+        tags: ["pielęgnacja"]
 
 extras:
   - name: "Obcinanie pazurków"

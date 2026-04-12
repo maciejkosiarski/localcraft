@@ -2,19 +2,19 @@
 - name: "Certyfikat Przyjazny Pupilom"
   issuer: "Polska Federacja Groomingu"
   date: "2024-01"
-  description: "Salon spelnia najwyzsze standardy obslugi zwierzat"
+  description: "Salon spełnia najwyższe standardy obsługi zwierząt"
   image: "/images/example-cert.jpg"
 
-- name: "Certyfikat Higieny i Bezpieczenstwa"
+- name: "Certyfikat Higieny i Bezpieczeństwa"
   issuer: "Sanepid Warszawa"
   date: "2023-11"
 
 - name: "Partner Premium Petstore"
   issuer: "Petstore Polska"
   date: "2023-06"
-  description: "Oficjalny partner dystrybucyjny kosmetykow premium"
+  description: "Oficjalny partner dystrybucyjny kosmetyków premium"
 
-- name: "Wyroznienie Google Local Guides"
+- name: "Wyróżnienie Google Local Guides"
   issuer: "Google"
   date: "2022-12"
   icon: "star"

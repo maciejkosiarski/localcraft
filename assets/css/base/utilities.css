@@ -14,8 +14,8 @@
   padding-block: var(--space-3xl);
 }
 
-/* Top spacing for pages directly under navigation */
-main > .section {
+/* Top spacing for first section directly under navigation */
+main > .section:first-child {
   padding-top: calc(var(--nav-height) + var(--space-3xl));
 }
 
