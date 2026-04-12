@@ -58,9 +58,7 @@
                 {{ $post.Date.Format "2 January 2006" }}
               </time>
               <span class="blog-preview__separator" aria-hidden="true">&bull;</span>
-              {{- $wordCount := $post.WordCount -}}
-              {{- $readingTime := div $wordCount 200 -}}
-              {{- if lt $readingTime 1 }}{{ $readingTime = 1 }}{{ end -}}
+              {{- $readingTime := math.Max 1 (div $post.WordCount 200) -}}
               <span>{{ $readingTime }} {{ i18n "min_read" | default "min read" }}</span>
             </div>
 

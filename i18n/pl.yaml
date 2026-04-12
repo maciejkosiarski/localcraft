@@ -2,42 +2,42 @@
 
 # General
 home: "Strona główna"
-footer_copyright: "Wszelkie prawa zastrzezone."
+footer_copyright: "Wszelkie prawa zastrzeżone."
 powered_by: "Wspierane przez"
 before: "Przed"
 after: "Po"
 all: "Wszystkie"
 close: "Zamknij"
 previous: "Poprzednia"
-lightbox_label: "Podglad zdjecia"
-main_navigation: "Nawigacja glowna"
-language_switch: "Zmiana jezyka"
+lightbox_label: "Podgląd zdjęcia"
+main_navigation: "Nawigacja główna"
+language_switch: "Zmiana języka"
 
 # About
 about_us: "O nas"
-our_values: "Nasze wartosci"
+our_values: "Nasze wartości"
 values_heading: "Dlaczego my?"
-our_team: "Nasz zespol"
-team_heading: "Poznaj nas blizej"
+our_team: "Nasz zespół"
+team_heading: "Poznaj nas bliżej"
 
 # Blog
 blog: "Blog"
 read_more: "Czytaj dalej"
 min_read: "min czytania"
-back_to_blog: "Wroc do bloga"
-related_posts: "Powiazane artykuly"
-no_posts: "Brak artykulow."
+back_to_blog: "Wróć do bloga"
+related_posts: "Powiązane artykuły"
+no_posts: "Brak artykułów."
 prev: "Poprzednia"
-next: "Nastepna"
+next: "Następna"
 pagination: "Nawigacja stron"
-post: "artykul"
-posts: "artykulow"
+post: "artykuł"
+posts: "artykułów"
 
 # Taxonomy
 tags: "Tagi"
 categories: "Kategorie"
-no_terms: "Brak wynikow."
-back_to: "Wroc do"
+no_terms: "Brak wyników."
+back_to: "Wróć do"
 
 # Testimonials
 stars_of_5: "z 5 gwiazdek"
@@ -50,55 +50,55 @@ years_of_experience:
   other: "lat doświadczenia"
 
 # Pricing
-filter_by_category: "Filtruj wedlug kategorii"
-service: "Usluga"
+filter_by_category: "Filtruj według kategorii"
+service: "Usługa"
 service_info: "Opis"
 price: "Cena"
 
 # Gallery
-ba_slider_label: "Porownanie przed i po. Przeciagnij suwak, aby porownac."
-ba_handle_label: "Suwak porownania"
+ba_slider_label: "Porównanie przed i po. Przeciągnij suwak, aby porównać."
+ba_handle_label: "Suwak porównania"
 
 # FAQ
 faq: "FAQ"
-faq_heading: "Najczesciej zadawane pytania"
+faq_heading: "Najczęściej zadawane pytania"
 
 # Location
 location: "Lokalizacja"
 address: "Adres"
 contact: "Kontakt"
 opening_hours: "Godziny otwarcia"
-closed: "Zamkniete"
-open_in_google_maps: "Otworz w Google Maps"
-map_aria_label: "Mapa z lokalizacja"
+closed: "Zamknięte"
+open_in_google_maps: "Otwórz w Google Maps"
+map_aria_label: "Mapa z lokalizacją"
 status_open: "Teraz otwarte"
-status_closed: "Teraz zamkniete"
-status_closing_soon: "Zamykamy wkrotce"
+status_closed: "Teraz zamknięte"
+status_closing_soon: "Zamykamy wkrótce"
 
 # Cookie Consent
-cookie_message: "Uzywamy plikow cookie i analityki, aby poprawic Twoje doswiadczenia. Akceptujac, zgadzasz sie na wykorzystanie plikow cookie do celow analitycznych."
+cookie_message: "Używamy plików cookie i analityki, aby poprawić Twoje doświadczenia. Akceptując, zgadzasz się na wykorzystanie plików cookie do celów analitycznych."
 cookie_accept: "Akceptuj"
-cookie_decline: "Odrzuc"
+cookie_decline: "Odrzuć"
 
 # Support Button
 support_title: "Wesprzyj projekt"
-support_description: "Jesli Localcraft jest dla Ciebie przydatny, postaw mi kawe!"
-support_button: "Postaw kawe"
-support_qr_alt: "Zeskanuj kod QR, aby wesprzec"
+support_description: "Jeśli Localcraft jest dla Ciebie przydatny, postaw mi kawę!"
+support_button: "Postaw kawę"
+support_qr_alt: "Zeskanuj kod QR, aby wesprzeć"
 
 # Key Facts
 key_facts_label: "Kluczowe informacje"
-key_facts_heading: "Najwazniejsze w skrocie"
+key_facts_heading: "Najważniejsze w skrócie"
 kf_location: "Lokalizacja"
 kf_hours: "Godziny otwarcia"
-kf_experience: "Doswiadczenie"
+kf_experience: "Doświadczenie"
 kf_years: "lat"
 kf_phone: "Telefon"
 kf_email: "E-mail"
 kf_specialties: "Specjalizacje"
 kf_parking: "Parking"
-kf_payment: "Metody platnosci"
-kf_languages: "Obsługiwane jezyki"
+kf_payment: "Metody płatności"
+kf_languages: "Obsługiwane języki"
 
 # 404 Page
 404_title: "Strona nie znaleziona"
@@ -108,6 +108,6 @@ kf_languages: "Obsługiwane jezyki"
 404_recent_posts: "Ostatnie wpisy"
 
 # Credentials
-show_more: "Pokaz wiecej"
-show_less: "Pokaz mniej"
+show_more: "Pokaż więcej"
+show_less: "Pokaż mniej"
 credentials: "Certyfikaty i kwalifikacje"
