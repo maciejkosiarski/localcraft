@@ -64,7 +64,7 @@
 {{/* Load credentials JS if any member has more than 3 credentials */}}
 {{- $needsJs := false -}}
 {{- range . -}}
-  {{- if gt (len .credentials) 3 -}}
+  {{- if and .credentials (gt (len .credentials) 3) -}}
     {{- $needsJs = true -}}
   {{- end -}}
 {{- end -}}
