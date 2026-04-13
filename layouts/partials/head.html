@@ -108,45 +108,46 @@
   {{- $cssBundle = $cssBundle | append . -}}
 {{- end -}}
 
-{{/* 7. User custom CSS - loaded last to allow overriding theme styles */}}
-{{- with resources.Get "css/custom.css" }}
-  {{- $cssBundle = $cssBundle | append . -}}
-{{- end -}}
-
 {{- if gt (len $cssBundle) 0 -}}
   {{- $css := $cssBundle | resources.Concat "css/bundle.css" | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{- end -}}
 
+{{/* 7. User custom CSS - loaded last to allow overriding theme styles */}}
+{{- with os.ReadFile "assets/css/custom.css" }}
+<style>{{ . | safeCSS }}</style>
+{{- end -}}
+
 {{/* Custom colors from site.Params.colors */}}
 {{- with site.Params.colors }}
+{{- $colors := . }}
 <style>
   :root {
-    {{- with .primary }}
+    {{- with $colors.primary }}
     --green: {{ . }};
     {{- end }}
-    {{- with .primary_light }}
+    {{- with $colors.primary_light }}
     --green-light: {{ . }};
     {{- end }}
-    {{- with .primary_pale }}
+    {{- with $colors.primary_pale }}
     --green-pale: {{ . }};
     {{- end }}
-    {{- with .accent }}
+    {{- with $colors.accent }}
     --terra: {{ . }};
     {{- end }}
-    {{- with .accent_dark }}
+    {{- with $colors.accent_dark }}
     --terra-dark: {{ . }};
     {{- end }}
-    {{- with .accent_pale }}
+    {{- with $colors.accent_pale }}
     --terra-pale: {{ . }};
     {{- end }}
-    {{- with .background }}
+    {{- with $colors.background }}
     --cream: {{ . }};
     {{- end }}
-    {{- with .text }}
+    {{- with $colors.text }}
     --text: {{ . }};
     {{- end }}
-    {{- with .text_muted }}
+    {{- with $colors.text_muted }}
     --text-muted: {{ . }};
     {{- end }}
   }
