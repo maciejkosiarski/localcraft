@@ -85,7 +85,7 @@
     {{/* CTA button */}}
     {{- with $s.cta }}
       <div class="blog-preview__cta animate-fade-up">
-        <a href="{{ partial "url.html" .url }}" class="btn btn-outline">{{ .text }}</a>
+        <a href="{{ partial "url.html" .url | safeURL }}" class="btn btn-outline">{{ .text }}</a>
       </div>
     {{- end }}
   </div>

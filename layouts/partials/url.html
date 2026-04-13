@@ -8,5 +8,10 @@
   Handles both:
     - Root domain: https://example.com/ → /images/photo.jpg
     - Subdirectory: https://example.com/demo/ → /demo/images/photo.jpg
+    - Special protocols: tel:, mailto:, https: → passed through unchanged
 */}}
-{{- strings.TrimPrefix "/" . | relURL -}}
+{{- if or (hasPrefix . "tel:") (hasPrefix . "mailto:") (hasPrefix . "http://") (hasPrefix . "https://") -}}
+  {{- . -}}
+{{- else -}}
+  {{- strings.TrimPrefix "/" . | relURL -}}
+{{- end -}}

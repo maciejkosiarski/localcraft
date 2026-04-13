@@ -58,7 +58,7 @@
     {{/* CTA */}}
     {{- with $s.cta }}
       <div class="faq__cta animate-fade-up">
-        <a href="{{ partial "url.html" .url }}" class="btn btn-outline">{{ .label }}</a>
+        <a href="{{ partial "url.html" .url | safeURL }}" class="btn btn-outline">{{ .label }}</a>
       </div>
     {{- end }}
   </div>
