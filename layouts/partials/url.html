@@ -10,7 +10,9 @@
     - Subdirectory: https://example.com/demo/ → /demo/images/photo.jpg
     - Special protocols: tel:, mailto:, https: → passed through unchanged
 */}}
-{{- if or (hasPrefix . "tel:") (hasPrefix . "mailto:") (hasPrefix . "http://") (hasPrefix . "https://") -}}
+{{- if hasPrefix . "tel:" -}}
+  {{- replace . "+" "%2B" -}}
+{{- else if or (hasPrefix . "mailto:") (hasPrefix . "http://") (hasPrefix . "https://") -}}
   {{- . -}}
 {{- else -}}
   {{- strings.TrimPrefix "/" . | relURL -}}
