@@ -113,7 +113,7 @@
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{- end -}}
 
-{{/* 7. User custom CSS - loaded last to allow overriding theme styles */}}
+{{/* 7. User custom CSS - inline, bypasses resource pipeline cache bug in hugo server */}}
 {{- with os.ReadFile "assets/css/custom.css" }}
 <style>{{ . | safeCSS }}</style>
 {{- end -}}

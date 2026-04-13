@@ -27,3 +27,5 @@ Thumbs.db
 # Local environment
 .env
 .env.local
+
+docs/*
