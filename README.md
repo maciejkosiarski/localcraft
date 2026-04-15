@@ -486,6 +486,12 @@ If you find this theme useful, consider supporting its development:
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/maciejkosiarski)
 
+## Showcase
+
+Sites using Localcraft:
+
+- [donpiesko.pl](https://donpiesko.pl) — grooming salon, Lublin
+
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
