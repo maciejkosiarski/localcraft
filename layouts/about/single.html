@@ -99,7 +99,12 @@
   {{ with .Content }}
   <section class="about-content section">
     <div class="container">
-      <div class="prose">
+      {{ with $.Params.content_heading }}
+        <div class="section-header">
+          <h2 class="section-heading">{{ . }}</h2>
+        </div>
+      {{ end }}
+      <div class="prose animate-fade-up">
         {{ . }}
       </div>
     </div>

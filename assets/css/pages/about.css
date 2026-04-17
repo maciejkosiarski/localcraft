@@ -195,6 +195,10 @@
 }
 
 /* About Content (from markdown) */
+.about-content {
+  border-top: var(--border-subtle);
+}
+
 .about-content .prose {
   max-width: 700px;
   margin-inline: auto;

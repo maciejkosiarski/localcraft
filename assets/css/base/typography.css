@@ -50,20 +50,24 @@ p {
 }
 
 /* Prose styles for blog content */
+.prose {
+  font-size: var(--text-lg);
+}
+
 .prose h2 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
   margin-top: var(--space-2xl);
   margin-bottom: var(--space-md);
 }
 
 .prose h3 {
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
   margin-top: var(--space-xl);
   margin-bottom: var(--space-md);
 }
 
 .prose p {
-  color: var(--text);
+  color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: var(--space-lg);
 }
@@ -74,7 +78,7 @@ p {
 }
 
 .prose li {
-  color: var(--text);
+  color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: var(--space-sm);
 }
