@@ -28,7 +28,7 @@
 {{- with $person.yearsOfExperience }}{{ $schema = merge $schema (dict "yearsOfExperience" (string .)) }}{{ end -}}
 
 {{- /* Organization affiliation */ -}}
-{{- $org := dict "@type" "Organization" "name" site.Title "url" (site.BaseURL | string) -}}
+{{- $org := dict "@type" "Organization" "name" site.Title "url" (site.Home.Permalink | string) -}}
 {{- $schema = merge $schema (dict "worksFor" $org) -}}
 
 <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

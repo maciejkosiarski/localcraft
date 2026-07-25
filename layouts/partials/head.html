@@ -45,7 +45,7 @@
 <link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
 {{- end }}
 {{- end }}
-<link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+<link rel="alternate" hreflang="x-default" href="{{ site.Home.Permalink }}">
 {{- end }}
 
 {{/* Robots: noindex for paginated section pages > 1 */}}
@@ -187,7 +187,7 @@
 {{- if $biz }}
 {{- $address := dict "@type" "PostalAddress" "streetAddress" ($biz.street | default "") "addressLocality" ($biz.city | default "") "addressCountry" ($biz.country | default "PL") }}
 {{- if $biz.postalCode }}{{ $address = merge $address (dict "postalCode" $biz.postalCode) }}{{ end }}
-{{- $ld := dict "@context" "https://schema.org" "@type" ($biz.type | default "LocalBusiness") "@id" (printf "%s#business" (site.BaseURL | string)) "name" site.Title "url" (site.BaseURL | string) "address" $address }}
+{{- $ld := dict "@context" "https://schema.org" "@type" ($biz.type | default "LocalBusiness") "@id" (printf "%s#business" (site.Home.Permalink | string)) "name" site.Title "url" (site.Home.Permalink | string) "address" $address }}
 {{- if site.Params.description }}{{ $ld = merge $ld (dict "description" site.Params.description) }}{{ end }}
 {{- if $biz.phone }}{{ $ld = merge $ld (dict "telephone" $biz.phone) }}{{ end }}
 {{- if $biz.email }}{{ $ld = merge $ld (dict "email" $biz.email) }}{{ end }}
@@ -250,7 +250,7 @@
 {{- if .Params.author }}
   {{- $author = dict "@type" "Person" "name" .Params.author }}
 {{- end }}
-{{- $publisher := dict "@type" "Organization" "name" site.Title "url" (site.BaseURL | string) }}
+{{- $publisher := dict "@type" "Organization" "name" site.Title "url" (site.Home.Permalink | string) }}
 {{- with site.Params.og_image }}
   {{- $logo := dict "@type" "ImageObject" "url" (. | absURL) }}
   {{- $publisher = merge $publisher (dict "logo" $logo) }}

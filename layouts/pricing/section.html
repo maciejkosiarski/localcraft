@@ -4,7 +4,7 @@
 {{- $services := slice -}}
 {{- range $pricing.categories -}}
   {{- range .services -}}
-    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
+    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.Home.Permalink | string))) -}}
     {{- with .description -}}
       {{- $service = merge $service (dict "description" .) -}}
     {{- else -}}
@@ -21,7 +21,7 @@
 {{- end -}}
 {{- with $pricing.extras -}}
   {{- range . -}}
-    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
+    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.Home.Permalink | string))) -}}
     {{- with .description -}}
       {{- $service = merge $service (dict "description" .) -}}
     {{- else -}}

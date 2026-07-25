@@ -4,7 +4,7 @@
 {{- $position := 1 -}}
 
 {{/* Home */}}
-{{- $homeItem := dict "@type" "ListItem" "position" $position "name" (i18n "nav_home" | default "Home") "item" (.Site.BaseURL | string) -}}
+{{- $homeItem := dict "@type" "ListItem" "position" $position "name" (i18n "nav_home" | default "Home") "item" (site.Home.Permalink | string) -}}
 {{- $items = $items | append $homeItem -}}
 {{- $position = add $position 1 -}}
 
@@ -12,7 +12,7 @@
 {{- if .Section -}}
   {{- $sectionName := .Section | humanize | title -}}
   {{- if eq .Section "blog" }}{{ $sectionName = i18n "nav_blog" | default "Blog" }}{{ end -}}
-  {{- $sectionURL := printf "%s%s/" (.Site.BaseURL | string) .Section -}}
+  {{- $sectionURL := printf "%s%s/" (site.Home.Permalink | string) .Section -}}
   {{- $sectionItem := dict "@type" "ListItem" "position" $position "name" $sectionName "item" $sectionURL -}}
   {{- $items = $items | append $sectionItem -}}
   {{- $position = add $position 1 -}}
