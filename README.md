@@ -35,7 +35,13 @@ git submodule add https://github.com/maciejkosiarski/localcraft.git themes/local
 
 ### Option 2: Hugo Modules
 
-Add to your `hugo.yaml`:
+First, Initialize the project itself as a module. Run: 
+
+```bash
+hugo mod init github.com/<YourUserName>/<YourProject>
+```
+
+Then, Add to your `hugo.yaml`:
 
 ```yaml
 module:
@@ -43,7 +49,7 @@ module:
     - path: github.com/maciejkosiarski/localcraft
 ```
 
-Then run:
+Finally run:
 
 ```bash
 hugo mod get -u
@@ -58,7 +64,7 @@ Download the theme and extract it to `themes/localcraft`.
 Add to your `hugo.yaml`:
 
 ```yaml
-theme: localcraft
+theme: localcraft # remove this if you used Hugo Modules
 
 languages:
   en:
@@ -91,9 +97,9 @@ params:
   footer:
     description: "Your tagline here"
     social:
-      - name: "Facebook"
+      - platform: "Facebook"
         url: "https://facebook.com/yourbusiness"
-      - name: "Instagram"
+      - platform: "Instagram"
         url: "https://instagram.com/yourbusiness"
 ```
 
