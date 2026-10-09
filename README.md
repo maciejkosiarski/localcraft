@@ -68,8 +68,8 @@ theme: localcraft # remove this if you used Hugo Modules
 
 languages:
   en:
-    locale: English
-    label: en-US
+    languageName: English
+    languageCode: en-US
     contentDir: content/en
     title: "Your Business Name"
     weight: 1
